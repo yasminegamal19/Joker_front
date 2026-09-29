@@ -1,0 +1,494 @@
+.page {
+    min-height: calc(100vh - 72px);
+    padding: 36px 0 56px;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.eyebrow,
+.sectionEyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header h1 {
+    color: var(--text-primary);
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 750;
+}
+
+.header p {
+    margin-top: 7px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.unreadBadge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 25px;
+    padding: 0 9px;
+    border-radius: 20px;
+    color: var(--primary);
+    background: var(--primary-light);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.markAllButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 42px;
+    padding: 0 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all var(--transition);
+}
+
+.markAllButton:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 15px 17px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.summaryIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.summaryContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.summaryContent strong {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.summaryContent span {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.summaryStatus {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.summaryStatus span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    width: fit-content;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+}
+
+.filters button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 7px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    transition: all var(--transition);
+}
+
+.filters button:hover {
+    color: var(--primary);
+}
+
+.filters .filterActive {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.filters button span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 10px;
+    color: var(--primary);
+    background: var(--white);
+    font-size: 10px;
+}
+
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notificationCard {
+    display: flex;
+    gap: 14px;
+    padding: 17px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.notificationCard:hover {
+    border-color: #cbd5e1;
+    box-shadow: var(--shadow-md);
+}
+
+.notificationCard.unread {
+    border-color: #dbeafe;
+    background: #fbfdff;
+}
+
+.notificationIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+}
+
+.maintenance {
+    color: #2563eb;
+    background: #eff6ff;
+}
+
+.payment {
+    color: #16a34a;
+    background: #f0fdf4;
+}
+
+.offer {
+    color: #d97706;
+    background: #fffbeb;
+}
+
+.package {
+    color: #7c3aed;
+    background: #f5f3ff;
+}
+
+.service {
+    color: #475569;
+    background: #f1f5f9;
+}
+
+.notificationContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.notificationHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.notificationTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.notificationTitle h2 {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.newDot {
+    display: inline-flex;
+    align-items: center;
+    min-height: 20px;
+    padding: 0 7px;
+    border-radius: 10px;
+    color: var(--primary);
+    background: var(--primary-light);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.date {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.notificationContent>p {
+    max-width: 700px;
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+.appointment {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 500px;
+    padding: 10px 11px;
+    margin-top: 12px;
+    border: 1px solid #dbeafe;
+    border-radius: 9px;
+    background: #f8fbff;
+}
+
+.appointmentIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.appointment div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.appointment span {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.appointment strong {
+    margin-top: 1px;
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+.appointment>svg {
+    color: var(--text-muted);
+}
+
+
+.notificationFooter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 25px;
+    margin-top: 8px;
+}
+
+.notificationFooter button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    transition: color var(--transition);
+}
+
+.notificationFooter button:hover {
+    color: var(--primary);
+}
+
+.readStatus {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+
+.emptyHint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 22px 0 0;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+
+@media (max-width: 700px) {
+    .page {
+        padding: 26px 0 40px;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .markAllButton {
+        width: 100%;
+    }
+
+    .summary {
+        align-items: flex-start;
+    }
+
+    .summaryStatus {
+        display: none;
+    }
+
+    .filters {
+        width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filters button {
+        flex-shrink: 0;
+    }
+
+    .notificationCard {
+        padding: 14px;
+        gap: 11px;
+    }
+
+    .notificationIcon {
+        flex-basis: 39px;
+        width: 39px;
+        height: 39px;
+        border-radius: 10px;
+    }
+
+    .notificationHeader {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .date {
+        font-size: 10px;
+    }
+
+    .notificationContent>p {
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 480px) {
+    .titleRow {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .summary {
+        padding: 13px;
+    }
+
+    .summaryContent span {
+        line-height: 1.6;
+    }
+
+    .notificationCard {
+        align-items: flex-start;
+    }
+
+    .notificationIcon {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .notificationTitle {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .notificationTitle h2 {
+        font-size: 13px;
+    }
+
+    .appointment {
+        align-items: flex-start;
+    }
+}

@@ -1,0 +1,160 @@
+.header {
+    margin-bottom: 30px;
+}
+
+.icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    border-radius: 15px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.header h2 {
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 750;
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.otpGroup {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.otpGroup input {
+    width: 54px;
+    height: 58px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    outline: none;
+    text-align: center;
+    color: var(--text-primary);
+    background: var(--white);
+    font-size: 22px;
+    font-weight: 700;
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.otpGroup input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.resendRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 22px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.resendButton {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.resendButton:hover {
+    text-decoration: underline;
+}
+
+.submitButton {
+    width: 100%;
+    min-height: 48px;
+    border-radius: var(--radius-md);
+    color: var(--white);
+    background: var(--primary);
+    font-size: 15px;
+    font-weight: 650;
+    transition:
+        background-color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+.submitButton:hover:not(:disabled) {
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-md);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.submitButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.backLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 22px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    transition: color var(--transition);
+}
+
+.backLink:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 480px) {
+    .header h2 {
+        font-size: 26px;
+    }
+
+    .otpGroup {
+        gap: 7px;
+    }
+
+    .otpGroup input {
+        width: 46px;
+        height: 52px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .otpGroup {
+        gap: 5px;
+    }
+
+    .otpGroup input {
+        width: 42px;
+        height: 50px;
+    }
+}

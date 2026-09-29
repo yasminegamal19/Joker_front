@@ -1,0 +1,680 @@
+.page {
+    min-height: calc(100vh - 72px);
+    padding: 32px 0 56px;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.header {
+    margin-bottom: 24px;
+}
+
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 17px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    transition: color var(--transition);
+}
+
+.backButton:hover {
+    color: var(--primary);
+}
+
+.titleRow {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.eyebrow,
+.sectionEyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.titleRow h1 {
+    color: var(--text-primary);
+    font-size: 29px;
+    line-height: 1.3;
+    font-weight: 750;
+}
+
+.titleRow p {
+    margin-top: 7px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 35px;
+    padding: 0 11px;
+    border: 1px solid #bbf7d0;
+    border-radius: 20px;
+    color: var(--success);
+    background: var(--success-light);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.statusBadge>span,
+.liveBadge>span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    align-items: start;
+    gap: 18px;
+}
+
+.mapCard,
+.timelineCard,
+.technicianCard,
+.problemCard {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.mapCard {
+    overflow: hidden;
+}
+
+.mapHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+}
+
+.mapHeader>div:first-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.mapHeader span {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.mapHeader strong {
+    margin-top: 2px;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.liveBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--success);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.map {
+    position: relative;
+    height: 390px;
+    overflow: hidden;
+    background:
+        linear-gradient(35deg,
+            transparent 46%,
+            rgba(203, 213, 225, 0.8) 47%,
+            rgba(203, 213, 225, 0.8) 48%,
+            transparent 49%),
+        linear-gradient(125deg,
+            transparent 44%,
+            rgba(203, 213, 225, 0.7) 45%,
+            rgba(203, 213, 225, 0.7) 46%,
+            transparent 47%),
+        #f1f5f9;
+}
+
+.mapGrid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.45;
+    background-image:
+        linear-gradient(#cbd5e1 1px, transparent 1px),
+        linear-gradient(90deg, #cbd5e1 1px, transparent 1px);
+    background-size: 65px 65px;
+}
+
+.routeLine {
+    position: absolute;
+    top: 46%;
+    left: 29%;
+    width: 42%;
+    height: 3px;
+    transform: rotate(-17deg);
+    border-radius: 20px;
+    background: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.homeMarker {
+    position: absolute;
+    left: 24%;
+    bottom: 27%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.homeMarker span,
+.technicianMarker>span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--white);
+    background: var(--primary);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
+}
+
+.homeMarker span {
+    width: 38px;
+    height: 38px;
+}
+
+.homeMarker strong {
+    padding: 2px 7px;
+    border-radius: 5px;
+    color: var(--text-primary);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    font-size: 9px;
+}
+
+.technicianMarker {
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 8px 6px 6px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.technicianMarker>span {
+    width: 31px;
+    height: 31px;
+}
+
+.technicianMarker div {
+    display: flex;
+    flex-direction: column;
+}
+
+.technicianMarker strong {
+    color: var(--text-primary);
+    font-size: 10px;
+}
+
+.technicianMarker small {
+    color: var(--text-muted);
+    font-size: 8px;
+}
+
+.mapControls {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.mapControls button {
+    width: 32px;
+    height: 31px;
+    color: var(--text-secondary);
+    font-size: 17px;
+}
+
+.mapControls button+button {
+    border-top: 1px solid var(--border);
+}
+
+.mapControls button:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.eta {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--primary);
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.eta div {
+    display: flex;
+    flex-direction: column;
+}
+
+.eta span {
+    color: var(--text-muted);
+    font-size: 9px;
+}
+
+.eta strong {
+    margin-top: 1px;
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+.timelineCard {
+    padding: 19px;
+    margin-top: 18px;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.cardHeader h2 {
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.requestId {
+    color: var(--text-muted);
+    font-size: 10px;
+    direction: ltr;
+}
+
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.timelineItem {
+    position: relative;
+    min-width: 0;
+}
+
+.timelineIndicator {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text-muted);
+    background: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.timelineItem:not(:last-child) .timelineIndicator {
+    margin-bottom: 10px;
+}
+
+.timelineLine {
+    position: absolute;
+    top: 13px;
+    left: 28px;
+    width: calc(100% - 28px);
+    height: 2px;
+    background: var(--border);
+}
+
+.lineDone {
+    background: var(--primary);
+}
+
+.timelineItem .timelineIndicator {
+    color: var(--text-muted);
+}
+
+.timelineItem:not(:last-child) .timelineIndicator {
+    color: var(--primary);
+    border-color: #bfdbfe;
+    background: var(--primary-light);
+}
+
+.timelineActive .timelineIndicator {
+    color: var(--white);
+    border-color: var(--primary);
+    background: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.timelineContent {
+    display: flex;
+    flex-direction: column;
+    padding-right: 8px;
+}
+
+.timelineContent strong {
+    color: var(--text-primary);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.timelineContent span {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 9px;
+    line-height: 1.6;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.technicianCard {
+    padding: 19px;
+}
+
+.technicianInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.technicianInfo>div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.technicianInfo strong {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.technicianInfo>div:nth-child(2) span {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.verified {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    color: var(--white);
+    background: var(--success);
+}
+
+.visitInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 15px 0;
+}
+
+.visitInfo>div {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: var(--primary);
+}
+
+.visitInfo>div>span {
+    display: flex;
+    flex-direction: column;
+}
+
+.visitInfo small {
+    color: var(--text-muted);
+    font-size: 9px;
+}
+
+.visitInfo strong {
+    margin-top: 2px;
+    color: var(--text-primary);
+    font-size: 10px;
+}
+
+.contactActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+}
+
+.contactActions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.contactActions button:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.contactActions .chatButton {
+    color: var(--white);
+    border-color: var(--primary);
+    background: var(--primary);
+}
+
+.contactActions .chatButton:hover {
+    color: var(--white);
+    background: var(--primary-dark);
+}
+
+.problemCard {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+}
+
+.problemIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.problemCard>div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.problemCard span {
+    color: var(--text-muted);
+    font-size: 9px;
+}
+
+.problemCard strong {
+    margin-top: 2px;
+    color: var(--text-primary);
+    font-size: 11px;
+}
+
+.homeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.homeButton:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+
+@media (max-width: 850px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .technicianCard {
+        grid-column: 1 / -1;
+    }
+
+    .homeButton {
+        min-height: 45px;
+    }
+}
+
+@media (max-width: 650px) {
+    .page {
+        padding: 24px 0 40px;
+    }
+
+    .titleRow {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .titleRow h1 {
+        font-size: 25px;
+    }
+
+    .map {
+        height: 310px;
+    }
+
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .timelineItem {
+        display: flex;
+        gap: 11px;
+        min-height: 62px;
+    }
+
+    .timelineIndicator {
+        flex-shrink: 0;
+    }
+
+    .timelineItem:not(:last-child) .timelineIndicator {
+        margin-bottom: 0;
+    }
+
+    .timelineLine {
+        top: 28px;
+        left: 13px;
+        width: 2px;
+        height: calc(100% - 15px);
+    }
+
+    .timelineContent {
+        padding: 4px 0 15px;
+    }
+
+    .sidebar {
+        display: flex;
+    }
+}
+
+@media (max-width: 450px) {
+    .map {
+        height: 270px;
+    }
+
+    .technicianMarker {
+        right: 10%;
+    }
+
+    .homeMarker {
+        left: 13%;
+    }
+
+    .routeLine {
+        left: 20%;
+        width: 50%;
+    }
+
+    .eta {
+        right: 10px;
+        bottom: 10px;
+    }
+}

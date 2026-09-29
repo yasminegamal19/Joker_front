@@ -1,0 +1,442 @@
+.page {
+    min-height: calc(100vh - 76px);
+    padding: 34px 0 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.eyebrow,
+.sectionEyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.header h1 {
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    font-size: 28px;
+    line-height: 1.35;
+    font-weight: 750;
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.primaryButton {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 16px;
+    border-radius: 9px;
+    color: var(--white);
+    background: var(--primary);
+    font-size: 13px;
+    font-weight: 650;
+    transition:
+        background-color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+.primaryButton:hover {
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-md);
+}
+
+.primaryButton:active {
+    transform: translateY(1px);
+}
+
+
+.walletOverview {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 18px;
+}
+
+.balanceCard,
+.statsCard,
+.transactionsCard {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.balanceCard {
+    padding: 24px;
+    background:
+        radial-gradient(circle at 100% 0%,
+            rgba(37, 99, 235, 0.08),
+            transparent 35%),
+        var(--white);
+}
+
+.balanceTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.balanceTitle {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.walletIcon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.balanceTitle div {
+    display: flex;
+    flex-direction: column;
+}
+
+.balanceTitle span {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.balanceTitle small {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.activeBadge {
+    min-height: 27px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+    border-radius: 7px;
+    color: #15803d;
+    background: #f0fdf4;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.balance {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 30px 0 27px;
+}
+
+.balance strong {
+    color: var(--text-primary);
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.balance>span {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.balanceBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+}
+
+.balanceBottom>span {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.balanceAction {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.balanceAction:hover {
+    text-decoration: underline;
+}
+
+
+.statsCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 22px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.statIcon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 11px;
+}
+
+.incomeIcon {
+    color: var(--success);
+    background: var(--success-light);
+}
+
+.expenseIcon {
+    color: var(--danger);
+    background: var(--danger-light);
+}
+
+.stat div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stat small {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.stat strong {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.divider {
+    height: 1px;
+    margin: 22px 0;
+    background: var(--border-light);
+}
+
+
+.transactionsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.sectionHeader h2 {
+    color: var(--text-primary);
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.filterButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.filterButton:hover {
+    text-decoration: underline;
+}
+
+.transactionsCard {
+    overflow: hidden;
+}
+
+.transaction {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 75px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.transactionIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+}
+
+.transactionDeposit {
+    color: var(--success);
+    background: var(--success-light);
+}
+
+.transactionPayment {
+    color: var(--danger);
+    background: var(--danger-light);
+}
+
+.transactionInfo {
+    min-width: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.transactionInfo strong {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.transactionInfo span {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.transactionAmount {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.amountPositive {
+    color: var(--success);
+}
+
+.amountNegative {
+    color: var(--danger);
+}
+
+.viewAllButton {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    color: var(--text-secondary);
+    background: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    transition:
+        color var(--transition),
+        background-color var(--transition);
+}
+
+.viewAllButton:hover {
+    color: var(--primary);
+    background: var(--background);
+}
+
+@media (max-width: 850px) {
+    .walletOverview {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .page {
+        padding: 24px 0 35px;
+    }
+
+    .container {
+        gap: 26px;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .header p {
+        font-size: 13px;
+    }
+
+    .primaryButton {
+        width: 100%;
+    }
+
+    .balanceCard,
+    .statsCard {
+        padding: 18px;
+    }
+
+    .balance {
+        margin: 25px 0 22px;
+    }
+
+    .balance strong {
+        font-size: 36px;
+    }
+
+    .transaction {
+        min-height: 70px;
+        padding: 10px 14px;
+    }
+
+    .transactionInfo strong {
+        font-size: 12px;
+    }
+
+    .transactionAmount {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .balanceBottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .balanceAction {
+        width: 100%;
+        justify-content: center;
+        min-height: 34px;
+        border-radius: 8px;
+        background: var(--primary-light);
+    }
+}

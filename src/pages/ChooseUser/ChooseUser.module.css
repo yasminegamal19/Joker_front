@@ -1,0 +1,155 @@
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    background: var(--background);
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.logoWrapper {
+    width: 88px;
+    height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px;
+
+    margin-bottom: 24px;
+
+    background: var(--primary-light);
+    border-radius: 50%;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.header h1 {
+    margin-bottom: 8px;
+
+    color: var(--text-primary);
+
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin-top: 36px;
+}
+
+.option {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 18px;
+
+    text-align: start;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+.option:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+    background: var(--primary-light);
+
+    border-radius: var(--radius-md);
+}
+
+.optionContent {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.optionContent strong {
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.optionContent small {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .page {
+        padding: 24px 16px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .options {
+        margin-top: 28px;
+    }
+
+    .option {
+        padding: 15px;
+    }
+
+    .icon {
+        width: 46px;
+        height: 46px;
+    }
+}
+
