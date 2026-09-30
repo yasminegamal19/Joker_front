@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import Splash from "./pages/Splash/Splash";
+import Home from "./pages/Home/Home";
 import ChooseUser from "./pages/ChooseUser/ChooseUser";
 
 import CustomerLogin from "./pages/Customer/Auth/CustomerLogin";
@@ -21,8 +21,8 @@ import MerchantPending from "./pages/Merchant/Auth/MerchantPending";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/splash" replace />} />
-      <Route path="/splash" element={<Splash />} />
+      {/* Public Website */}
+      <Route path="/" element={<Home />} />
       <Route path="/choose-user" element={<ChooseUser />} />
 
       {/* Customer */}
@@ -47,7 +47,9 @@ const App = () => {
       <Route path="/merchant/login" element={<MerchantLogin />} />
       <Route path="/merchant/register" element={<MerchantRegister />} />
       <Route path="/merchant/pending" element={<MerchantPending />} />
-      <Route path="*" element={<Navigate to="/splash" replace />} />
+
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

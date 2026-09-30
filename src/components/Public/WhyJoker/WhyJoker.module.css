@@ -1,0 +1,158 @@
+.why {
+    padding: 90px 0;
+    background: var(--background);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.intro {
+    max-width: 500px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 11px;
+    border-radius: 20px;
+    color: var(--primary);
+    background: var(--primary-light);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.intro h2 {
+    margin-top: 14px;
+    color: var(--text-primary);
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.25;
+}
+
+.intro h2 span {
+    color: var(--primary);
+}
+
+.intro>p {
+    margin-top: 14px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.highlight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+}
+
+.highlightIcon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.highlight strong,
+.highlight span {
+    display: block;
+}
+
+.highlight strong {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.highlight span {
+    margin-top: 2px;
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.feature:hover {
+    border-color: #bfdbfe;
+    box-shadow: var(--shadow-sm);
+}
+
+.icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.feature h3 {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.feature p {
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+@media (max-width: 950px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .intro {
+        max-width: 650px;
+    }
+}
+
+@media (max-width: 600px) {
+    .why {
+        padding: 65px 0;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .feature {
+        padding: 17px;
+    }
+}
+

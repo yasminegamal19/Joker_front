@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, MessageSquareText, UserRound } from "lucide-react";
+import { ArrowLeft, MessageSquareText, ShieldCheck, Wifi } from "lucide-react";
 
-import AuthLayout from "../../../components/Auth/AuthLayout";
 import styles from "./CustomerVerify.module.css";
 
 const CustomerVerify = () => {
@@ -60,66 +59,83 @@ const CustomerVerify = () => {
   };
 
   return (
-    <AuthLayout
-      badge="تأكيد رقم الهاتف"
-      badgeIcon={UserRound}
-      title="تأكيد حسابك"
-      description="أرسلنا رمز تحقق إلى رقم الهاتف الذي أدخلته. أدخل الرمز لإكمال إنشاء حسابك."
-    >
-      <div className={styles.header}>
-        <div className={styles.icon}>
-          <MessageSquareText size={25} />
+    <div className={styles.pageViewport}>
+      {/* المؤثرات الضوئية الخلفية الفاتحة */}
+      <div className={styles.glowOrb1}></div>
+      <div className={styles.glowOrb2}></div>
+
+      <div className={styles.verifyCard}>
+        {/* شارة الهوية للبراند */}
+        <div className={styles.brandHeader}>
+          <div className={styles.logoBadge}>
+            <Wifi className={styles.wifiIcon} size={22} />
+          </div>
+          <div className={styles.brandText}>
+            <span className={styles.brandTitle}>الجوكر للاتصالات</span>
+            <span className={styles.brandSub}>تأكيد الحساب</span>
+          </div>
         </div>
 
-        <span className={styles.eyebrow}>رمز التحقق</span>
-
-        <h2>تأكيد رقم الهاتف</h2>
-
-        <p>أدخل الرمز المكون من 6 أرقام المرسل إلى رقم هاتفك.</p>
-      </div>
-
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.otpGroup} dir="ltr">
-          {otp.map((digit, index) => (
-            <input
-              key={index}
-              ref={(element) => {
-                inputRefs.current[index] = element;
-              }}
-              type="text"
-              inputMode="numeric"
-              maxLength={1}
-              value={digit}
-              onChange={(e) => handleChange(index, e.target.value)}
-              onKeyDown={(e) => handleKeyDown(index, e)}
-              onPaste={handlePaste}
-              aria-label={`رقم ${index + 1}`}
-            />
-          ))}
+        <div className={styles.cardText}>
+          <div className={styles.iconCircle}>
+            <MessageSquareText size={22} />
+          </div>
+          <h2>تأكيد رقم الهاتف</h2>
+          <p>أدخل رمز التحقق المكون من 6 أرقام المرسل إلى رقم هاتفك</p>
         </div>
 
-        <div className={styles.resendRow}>
-          <span>لم يصلك الرمز؟</span>
+        <form onSubmit={handleSubmit} className={styles.mainForm}>
+          {/* مربعات إدخال الـ OTP */}
+          <div className={styles.otpGroup} dir="ltr">
+            {otp.map((digit, index) => (
+              <input
+                key={index}
+                ref={(element) => {
+                  inputRefs.current[index] = element;
+                }}
+                type="text"
+                inputMode="numeric"
+                maxLength={1}
+                value={digit}
+                onChange={(e) => handleChange(index, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(index, e)}
+                onPaste={handlePaste}
+                aria-label={`رقم ${index + 1}`}
+              />
+            ))}
+          </div>
 
-          <button type="button" className={styles.resendButton}>
-            إعادة إرسال
+          <div className={styles.resendRow}>
+            <span>لم يصلك الرمز؟</span>
+            <button type="button" className={styles.resendButton}>
+              إعادة إرسال
+            </button>
+          </div>
+
+          {/* زر التأكيد */}
+          <button
+            type="submit"
+            className={styles.primaryBtn}
+            disabled={otp.join("").length !== 6}
+          >
+            <span>تأكيد الحساب</span>
+            <ArrowLeft size={19} className={styles.btnArrow} />
           </button>
+        </form>
+
+        {/* الفوتر ورابط العودة */}
+        <div className={styles.cardFooter}>
+          <div className={styles.secureLine}>
+            <ShieldCheck size={15} />
+            <span>تأكيد مشفر وآمن</span>
+          </div>
+
+          <Link to="/customer/register" className={styles.backLink}>
+            تعديل بيانات التسجيل
+          </Link>
         </div>
-
-        <button
-          type="submit"
-          className={styles.submitButton}
-          disabled={otp.join("").length !== 6}
-        >
-          تأكيد الحساب
-        </button>
-      </form>
-
-      <Link to="/customer/register" className={styles.backLink}>
-        <ArrowRight size={17} />
-        تعديل بيانات التسجيل
-      </Link>
-    </AuthLayout>
+      </div>
+    </div>
   );
 };
 

@@ -1,0 +1,307 @@
+.packages {
+    padding: 90px 0;
+    background: var(--white);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    max-width: 650px;
+    margin-bottom: 42px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 11px;
+    border-radius: 20px;
+    color: var(--primary);
+    background: var(--primary-light);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.heading h2 {
+    margin-top: 14px;
+    color: var(--text-primary);
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.25;
+    letter-spacing: -0.7px;
+}
+
+.heading h2 span {
+    color: var(--primary);
+}
+
+.heading p {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    align-items: stretch;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+.card:hover {
+    border-color: #bfdbfe;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+.popular {
+    border-color: #93c5fd;
+    box-shadow: 0 8px 28px rgba(37, 99, 235, 0.1);
+}
+
+.popularBadge {
+    position: absolute;
+    top: -12px;
+    right: 22px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 20px;
+    color: var(--white);
+    background: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.cardTop {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.packageIcon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.card h3 {
+    color: var(--text-primary);
+    font-size: 19px;
+}
+
+.cardTop p {
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.stats div {
+    padding: 12px;
+    border-radius: var(--radius-md);
+    background: var(--background);
+}
+
+.stats span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.stats strong {
+    display: block;
+    margin-top: 3px;
+    color: var(--text-primary);
+    font-size: 18px;
+}
+
+.stats small {
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    margin-top: 22px;
+}
+
+.price strong {
+    color: var(--text-primary);
+    font-size: 30px;
+    line-height: 1;
+}
+
+.price span {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.features div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.features svg {
+    flex-shrink: 0;
+    color: var(--success);
+}
+
+.primaryButton,
+.outlineButton {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 700;
+    transition:
+        background-color var(--transition),
+        color var(--transition),
+        border-color var(--transition);
+}
+
+.primaryButton {
+    color: var(--white);
+    background: var(--primary);
+}
+
+.primaryButton:hover {
+    background: var(--primary-dark);
+}
+
+.outlineButton {
+    color: var(--primary);
+    border: 1px solid var(--border);
+    background: var(--white);
+}
+
+.outlineButton:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.primaryButton span,
+.outlineButton span {
+    font-size: 16px;
+}
+
+.bottomNote {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 28px;
+    padding: 17px 20px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    background: var(--background);
+}
+
+.noteIcon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: var(--primary);
+    background: var(--white);
+    border: 1px solid var(--border);
+}
+
+.bottomNote strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.bottomNote p {
+    margin-top: 2px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.routerIcon {
+    margin-inline-start: auto;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+
+@media (max-width: 950px) {
+    .grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin-inline: auto;
+        width: 100%;
+    }
+
+    .card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .packages {
+        padding: 65px 0;
+    }
+
+    .heading {
+        margin-bottom: 30px;
+    }
+
+    .bottomNote {
+        align-items: flex-start;
+    }
+
+    .routerIcon {
+        display: none;
+    }
+}

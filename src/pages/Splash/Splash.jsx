@@ -19,15 +19,13 @@ const Splash = () => {
       <div className={styles.content}>
         <div className={styles.logoWrapper}>
           <img
-            src="/src/assets/logo.png"
+            src="/src/assets/logo.jfif"
             alt="Joker"
             className={styles.logo}
           />
         </div>
 
-        <p className={styles.tagline}>
-          Internet services made easier.
-        </p>
+        <p className={styles.tagline}>Internet services made easier.</p>
       </div>
     </main>
   );

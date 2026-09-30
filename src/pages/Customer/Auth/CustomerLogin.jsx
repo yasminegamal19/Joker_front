@@ -1,121 +1,135 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Building2, Eye, EyeOff, LockKeyhole, UserRound } from "lucide-react";
-
-import AuthLayout from "../../../components/Auth/AuthLayout";
+import {
+  Wifi,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+  ArrowLeft,
+  KeyRound,
+  Sparkles,
+} from "lucide-react";
 import styles from "./CustomerLogin.module.css";
 
 const CustomerLogin = () => {
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
-  const [formData, setFormData] = useState({
-    serviceNumber: "",
-    password: "",
-  });
+  const [rememberMe, setRememberMe] = useState(false);
+  const [formData, setFormData] = useState({ serviceNumber: "", password: "" });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("Customer login:", formData);
-
     navigate("/customer/home");
   };
 
   return (
-    <AuthLayout
-      badge="حساب عميل"
-      badgeIcon={UserRound}
-      title="أهلاً بك في جوكر"
-      description="تحكم في خدمات الإنترنت الخاصة بك، تابع باقتك ومحفظتك واطلب الدعم بسهولة من مكان واحد."
-    >
-      <div className={styles.header}>
-        <span className={styles.eyebrow}>بوابة العميل</span>
+    <div className={styles.pageViewport}>
+      {/* خلفية ضوئية فاتحة وهادئة */}
+      <div className={styles.glowOrb1}></div>
+      <div className={styles.glowOrb2}></div>
 
-        <h2>تسجيل الدخول</h2>
-
-        <p>أدخل بياناتك للوصول إلى حسابك.</p>
-      </div>
-
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="serviceNumber">رقم الخدمة</label>
-
-          <div className={styles.inputWrapper}>
-            <Building2 size={19} />
-
-            <input
-              id="serviceNumber"
-              name="serviceNumber"
-              type="text"
-              value={formData.serviceNumber}
-              onChange={handleChange}
-              placeholder="رقم الكارت أو الهاتف أو الواي فاي"
-              autoComplete="username"
-              required
-            />
+      <div className={styles.loginCard}>
+        {/* الهيدر مع شارة البراند */}
+        <div className={styles.brandHeader}>
+          <div className={styles.logoBadge}>
+            <Wifi className={styles.wifiIcon} size={22} />
           </div>
-
-          <span className={styles.hint}>
-            يمكنك استخدام رقم الكارت أو رقم الهاتف أو رقم خدمة الواي فاي.
-          </span>
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="password">كلمة المرور</label>
-
-          <div className={styles.inputWrapper}>
-            <LockKeyhole size={19} />
-
-            <input
-              id="password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="أدخل كلمة المرور"
-              autoComplete="current-password"
-              required
-            />
-
-            <button
-              type="button"
-              className={styles.passwordToggle}
-              onClick={() => setShowPassword((prev) => !prev)}
-              aria-label={
-                showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"
-              }
-            >
-              {showPassword ? <EyeOff size={19} /> : <Eye size={19} />}
-            </button>
+          <div className={styles.brandText}>
+            <span className={styles.brandTitle}>الجوكر للاتصالات</span>
+            <span className={styles.brandSub}>بوابة خدمات العميل</span>
           </div>
         </div>
 
-        <div className={styles.options}>
-          <button type="button" className={styles.forgotPassword}>
-            نسيت كلمة المرور؟
+        <div className={styles.cardText}>
+          <h2>تسجيل الدخول</h2>
+          <p>أدخل بيانات الخط أو كارت الشحن للوصول لمحفظتك واشتراكك</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className={styles.mainForm}>
+          {/* حقل رقم الخدمة */}
+          <div className={styles.fieldBlock}>
+            <label>رقم الخدمة / الكارت</label>
+            <div className={styles.inputBox}>
+              <Wifi size={18} className={styles.fieldIcon} />
+              <input
+                type="text"
+                name="serviceNumber"
+                value={formData.serviceNumber}
+                onChange={handleChange}
+                placeholder="010XXXXXXXX أو رقم الكارت"
+                required
+              />
+            </div>
+          </div>
+
+          {/* حقل كلمة المرور */}
+          <div className={styles.fieldBlock}>
+            <div className={styles.labelRow}>
+              <label>كلمة المرور</label>
+              <a href="#forgot" className={styles.forgotPass}>
+                نسيت كلمة المرور؟
+              </a>
+            </div>
+            <div className={styles.inputBox}>
+              <KeyRound size={18} className={styles.fieldIcon} />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                className={styles.eyeToggle}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+          </div>
+
+          {/* خيار تذكرني */}
+          <div className={styles.rememberRow}>
+            <label className={styles.customCheckbox}>
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <span className={styles.checkmark}></span>
+              <span>تذكر بياناتي على هذا الجهاز</span>
+            </label>
+          </div>
+
+          {/* زر تسجيل الدخول */}
+          <button type="submit" className={styles.primaryBtn}>
+            <span>تسجيل الدخول</span>
+            <ArrowLeft size={19} className={styles.btnArrow} />
           </button>
+        </form>
+
+        {/* الفوتر */}
+        <div className={styles.cardFooter}>
+          <div className={styles.secureLine}>
+            <ShieldCheck size={15} />
+            <span>اتصال مشفر وآمن 100%</span>
+          </div>
+
+          <p className={styles.registerPrompt}>
+            ليس لديك حساب؟{" "}
+            <Link to="/customer/register" className={styles.regLink}>
+              إنشاء حساب جديد
+            </Link>
+          </p>
         </div>
-
-        <button type="submit" className={styles.submitButton}>
-          تسجيل الدخول
-        </button>
-      </form>
-
-      <p className={styles.footer}>
-        ليس لديك حساب؟ <Link to="/customer/register">إنشاء حساب جديد</Link>
-      </p>
-    </AuthLayout>
+      </div>
+    </div>
   );
 };
 
