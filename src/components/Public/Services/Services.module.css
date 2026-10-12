@@ -1,55 +1,55 @@
 .servicesSection {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-
-  padding: 105px 0;
-
+  padding: 100px 0;
   background: var(--bg-secondary);
-
   direction: rtl;
   transition: background-color var(--transition);
 }
 
 .servicesSection::before {
   content: "";
-
   position: absolute;
+  z-index: -1;
+  top: 10px;
+  left: -230px;
+  width: 430px;
+  height: 430px;
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+  background: var(--accent-light);
+  pointer-events: none;
+}
 
+.servicesSection::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -170px;
+  bottom: -280px;
   width: 420px;
   height: 420px;
-
-  top: 20px;
-  left: -250px;
-
+  border: 1px solid var(--border-light);
   border-radius: 50%;
-
-  background: var(--accent-light);
-
   pointer-events: none;
 }
 
 .container {
   position: relative;
-  z-index: 2;
-
-  width: min(100% - 48px, 1280px);
-
+  z-index: 1;
+  width: min(calc(100% - 48px), 1280px);
   margin: 0 auto;
 }
 
-/* =========================
-   Header
-========================= */
+/* Section heading */
 
 .sectionHeader {
   display: grid;
-  grid-template-columns: 1fr 0.75fr;
-
-  gap: 70px;
-
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
   align-items: end;
-
-  margin-bottom: 52px;
+  gap: 56px;
+  margin-bottom: 42px;
 }
 
 .headingSide {
@@ -57,40 +57,30 @@
 }
 
 .subTitle {
-  position: relative;
-
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-
+  gap: 10px;
   color: var(--color-primary);
-
   font-size: 13px;
   font-weight: 800;
 }
 
 .subTitle::before {
   content: "";
-
-  width: 25px;
+  width: 27px;
   height: 3px;
-
-  border-radius: 10px;
-
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
   background: var(--gradient-brand);
 }
 
 .sectionHeader h2 {
-  margin-top: 13px;
-
+  margin-top: 15px;
   color: var(--text-primary);
-
-  font-size: clamp(34px, 4vw, 46px);
+  font-size: clamp(34px, 4vw, 47px);
   font-weight: 850;
-
-  line-height: 1.2;
-
-  letter-spacing: -1.2px;
+  line-height: 1.35;
+  letter-spacing: -1px;
   transition: color var(--transition);
 }
 
@@ -100,115 +90,98 @@
 }
 
 .descriptionSide {
-  padding-bottom: 4px;
+  padding-bottom: 5px;
 }
 
 .descriptionSide p {
-  max-width: 430px;
-
+  max-width: 460px;
   color: var(--text-secondary);
-
-  font-size: 15px;
-  line-height: 1.9;
+  font-size: 14px;
+  line-height: 2;
   transition: color var(--transition);
 }
 
 .headerLine {
   display: flex;
-
-  gap: 5px;
-
-  margin-top: 18px;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
 }
 
 .headerLine span {
   display: block;
-
-  height: 3px;
-
-  border-radius: 10px;
-
+  height: 4px;
+  border-radius: var(--radius-full);
   background: var(--color-primary);
 }
 
 .headerLine span:first-child {
-  width: 45px;
+  width: 42px;
 }
 
 .headerLine span:last-child {
-  width: 12px;
+  width: 13px;
   background: var(--accent-hover);
 }
 
-/* =========================
-   Grid
-========================= */
+/* Services grid */
 
 .grid {
   display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-
-  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 17px;
 }
 
-/* =========================
-   Card
-========================= */
+/* Service card */
 
 .serviceCard {
   position: relative;
-
-  min-height: 330px;
-
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-
-  padding: 27px 25px;
-
+  min-width: 0;
+  min-height: 318px;
+  padding: 25px 23px 21px;
   overflow: hidden;
-
   background: var(--bg-card);
-
   border: 1px solid var(--border-color);
-  border-radius: 18px;
-
+  border-radius: 20px;
   box-shadow: var(--shadow-sm);
-
   transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
     background-color var(--transition);
 }
 
 .serviceCard:hover {
-  transform: translateY(-7px);
-
+  transform: translateY(-5px);
   border-color: var(--border-accent);
-
   box-shadow: var(--shadow-md);
 }
 
-/* =========================
-   Card Top
-========================= */
+.serviceCard:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-md);
+}
 
 .cardTop {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .number {
+  padding-top: 5px;
   color: var(--text-muted);
-
   font-size: 12px;
-  font-weight: 800;
-
+  font-weight: 850;
   letter-spacing: 1px;
-
-  transition: color 0.25s ease;
+  transition: color var(--transition);
 }
 
 .serviceCard:hover .number {
@@ -216,390 +189,438 @@
 }
 
 .iconWrapper {
-  width: 52px;
-  height: 52px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
   color: var(--color-primary);
-
   background: var(--bg-badge);
-
   border: 1px solid var(--border-accent);
-
-  border-radius: 14px;
-
+  border-radius: 15px;
   transition:
-    transform 0.3s ease,
-    color 0.3s ease,
-    background-color 0.3s ease;
+    transform 0.25s ease,
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .serviceCard:hover .iconWrapper {
   color: var(--text-on-accent);
-
   background: var(--gradient-brand);
-
-  transform: scale(1.04);
+  border-color: transparent;
+  transform: translateY(-2px);
 }
 
-/* =========================
-   Content
-========================= */
+/* Card content */
 
 .cardContent {
-  margin-top: auto;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  margin-top: 27px;
 }
 
 .cardContent h3 {
   margin-bottom: 10px;
-
   color: var(--text-primary);
-
-  font-size: 19px;
-  font-weight: 800;
-
-  line-height: 1.4;
+  font-size: 18px;
+  font-weight: 850;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
   transition: color var(--transition);
 }
 
 .cardContent p {
   color: var(--text-secondary);
-
-  font-size: 13px;
-  line-height: 1.8;
+  font-size: 12.5px;
+  line-height: 1.95;
   transition: color var(--transition);
 }
 
-/* =========================
-   Card Link
-========================= */
+/* Card link */
 
 .cardLink {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-
+  gap: 10px;
   width: 100%;
-
-  margin-top: 24px;
-  padding-top: 17px;
-
+  min-height: 43px;
+  margin-top: 21px;
+  padding-top: 12px;
   color: var(--color-primary);
-
   border-top: 1px solid var(--border-light);
-
   font-size: 12px;
   font-weight: 800;
-
   text-decoration: none;
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+}
 
-  transition: color 0.2s ease;
+.cardLink:focus-visible,
+.bannerLink:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .arrow {
-  width: 28px;
-  height: 28px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
   color: var(--color-primary);
-
   background: var(--bg-badge);
-
-  border-radius: 8px;
-
+  border: 1px solid var(--border-accent);
+  border-radius: 10px;
   transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.2s ease;
+    color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .cardLink:hover .arrow {
   color: var(--text-on-accent);
-
   background: var(--color-primary);
-
   transform: translateX(-3px);
 }
 
-/* =========================
-   Featured Card
-========================= */
+/* Featured internet card */
 
 .serviceCard.featured {
   color: var(--text-on-accent);
-
-  background: var(--gradient-brand);
-
+  background:
+    radial-gradient(circle at 100% 0%,
+      rgba(255, 255, 255, 0.13),
+      transparent 45%),
+    var(--gradient-brand);
   border-color: transparent;
-
   box-shadow: var(--shadow-md);
 }
 
 .serviceCard.featured:hover {
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-glow);
 }
 
 .featured .number {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.68);
 }
 
 .featured .iconWrapper {
-  color: var(--text-on-accent);
-
-  background: rgba(255, 255, 255, 0.15);
-
-  border-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.24);
 }
 
 .featured:hover .iconWrapper {
-  background: rgba(255, 255, 255, 0.25);
+  color: var(--color-primary);
+  background: #FFFFFF;
+  border-color: #FFFFFF;
 }
 
 .featured .cardContent h3 {
-  color: var(--text-on-accent);
+  color: #FFFFFF;
 }
 
 .featured .cardContent p {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.84);
 }
 
 .featured .cardLink {
-  color: var(--text-on-accent);
-
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.featured .cardLink span {
-  font-size: 16px;
-  font-weight: 800;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .featured .arrow {
   color: var(--color-primary);
-  background: var(--text-on-accent);
+  background: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .featured .cardLink:hover .arrow {
-  color: var(--text-on-accent);
-
-  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
 }
+
+.featured .cardLink:focus-visible {
+  outline-color: #FFFFFF;
+}
+
+/* Decorative card accent */
 
 .cardAccent {
   position: absolute;
-
-  width: 90px;
-  height: 90px;
-
-  left: -45px;
-  bottom: -45px;
-
+  z-index: 0;
+  left: -42px;
+  bottom: -42px;
+  width: 86px;
+  height: 86px;
+  border: 1px solid var(--border-accent);
   border-radius: 50%;
-
-  border: 1px solid var(--accent-light);
-
+  opacity: 0.7;
   pointer-events: none;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.serviceCard:hover .cardAccent {
+  opacity: 1;
+  transform: scale(1.15);
 }
 
 .featured .cardAccent {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* =========================
-   Bottom Banner
-========================= */
+/* Bottom banner */
 
 .bottomBanner {
-  min-height: 76px;
-
+  position: relative;
   display: flex;
   align-items: center;
-
   gap: 15px;
-
-  margin-top: 18px;
-  padding: 15px 18px;
-
+  min-height: 82px;
+  margin-top: 20px;
+  padding: 17px 20px;
   background: var(--bg-card);
-
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
   transition:
     background-color var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .bannerIcon {
-  width: 44px;
-  height: 44px;
-
-  flex-shrink: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
   color: var(--color-primary);
-
   background: var(--bg-badge);
-
   border: 1px solid var(--border-accent);
-  border-radius: 11px;
+  border-radius: 13px;
 }
 
 .bannerText {
   display: flex;
-  flex-direction: column;
-
-  gap: 1px;
-
   flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
 }
 
 .bannerText strong {
   color: var(--text-primary);
-
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 850;
   transition: color var(--transition);
 }
 
 .bannerText span {
   color: var(--text-secondary);
-
   font-size: 12px;
+  line-height: 1.8;
   transition: color var(--transition);
 }
 
 .bannerLink {
-  min-height: 38px;
-
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-
-  padding: 0 15px;
-
+  justify-content: center;
+  gap: 8px;
+  min-height: 41px;
+  flex-shrink: 0;
+  padding: 0 16px;
   color: var(--text-on-accent);
-
   background: var(--gradient-brand);
-
-  border-radius: 9px;
-
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
   font-size: 12px;
   font-weight: 800;
-
   text-decoration: none;
-
-  box-shadow: var(--shadow-sm);
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 .bannerLink:hover {
-  transform: translateY(-1px);
-
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
 }
 
-/* =========================
-   Tablet
-========================= */
+/* Tablet */
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   .sectionHeader {
-    gap: 40px;
+    gap: 35px;
   }
 
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 
   .serviceCard {
-    min-height: 300px;
+    min-height: 285px;
+    padding: 24px;
+  }
+
+  .cardContent {
+    margin-top: 22px;
+  }
+
+  .cardContent h3 {
+    font-size: 19px;
+  }
+
+  .cardContent p {
+    font-size: 13px;
   }
 }
 
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 700px) {
   .servicesSection {
-    padding: 75px 0;
+    padding: 72px 0;
   }
 
   .container {
-    width: calc(100% - 28px);
+    width: calc(100% - 30px);
   }
 
   .sectionHeader {
-    display: block;
-
-    margin-bottom: 32px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-bottom: 30px;
   }
 
   .sectionHeader h2 {
-    font-size: 32px;
+    margin-top: 12px;
+    font-size: clamp(30px, 7vw, 36px);
+    letter-spacing: -0.5px;
   }
 
   .descriptionSide {
-    margin-top: 16px;
+    padding-bottom: 0;
   }
 
   .descriptionSide p {
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.95;
+  }
+
+  .headerLine {
+    margin-top: 14px;
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
   }
 
   .serviceCard {
-    min-height: 255px;
+    min-height: 260px;
+    padding: 22px 21px 18px;
+    border-radius: 17px;
+  }
 
-    padding: 23px 21px;
+  .iconWrapper {
+    width: 48px;
+    height: 48px;
+  }
 
-    border-radius: 16px;
+  .cardContent {
+    margin-top: 20px;
   }
 
   .cardContent h3 {
     font-size: 18px;
   }
 
-  .bottomBanner {
-    align-items: flex-start;
-
-    padding: 14px;
-
-    flex-wrap: wrap;
+  .cardContent p {
+    font-size: 13px;
   }
 
-  .bannerText {
-    min-width: calc(100% - 60px);
+  .cardLink {
+    margin-top: 18px;
+  }
+
+  .bottomBanner {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .bannerIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .bannerText strong {
+    font-size: 12px;
+  }
+
+  .bannerText span {
+    font-size: 11px;
   }
 
   .bannerLink {
+    grid-column: 1 / -1;
     width: 100%;
-    justify-content: center;
+    min-height: 43px;
   }
 }
 
-@media (max-width: 430px) {
+/* Small phones */
+
+@media (max-width: 380px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .servicesSection {
+    padding: 60px 0;
+  }
+
   .sectionHeader h2 {
     font-size: 29px;
   }
 
-  .trustItem {
-    font-size: 10px;
+  .serviceCard {
+    padding: 20px 18px 17px;
+  }
+
+  .cardContent h3 {
+    font-size: 17px;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .servicesSection *,
+  .servicesSection *::before,
+  .servicesSection *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }

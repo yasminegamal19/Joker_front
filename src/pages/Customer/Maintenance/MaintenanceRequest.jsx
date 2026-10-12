@@ -3,51 +3,36 @@ import {
   Check,
   ChevronLeft,
   Clock3,
-  Droplets,
-  Home,
+  Gauge,
   MapPin,
-  Wifi,
+  MoreHorizontal,
+  Router,
+  Scissors,
+  WifiOff,
   Wrench,
-  Zap,
+  LoaderCircle,
+  AlertCircle,
 } from "lucide-react";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import apiClient from "../../../lib/apiClient";
 import AppLayout from "../../../components/AppLayout/AppLayout";
 import styles from "./MaintenanceRequest.module.css";
 
-const problems = [
-  {
-    id: "internet",
-    title: "انقطاع الإنترنت",
-    description: "الخدمة متوقفة تمامًا",
-    icon: Wifi,
-  },
-  {
-    id: "slow",
-    title: "بطء الإنترنت",
-    description: "السرعة أقل من المعتاد",
-    icon: Zap,
-  },
-  {
-    id: "router",
-    title: "مشكلة في الراوتر",
-    description: "الراوتر لا يعمل بشكل طبيعي",
-    icon: Wrench,
-  },
-  {
-    id: "connection",
-    title: "مشكلة في التوصيل",
-    description: "مشكلة في الكابلات أو التوصيلات",
-    icon: Home,
-  },
-  {
-    id: "other",
-    title: "مشكلة أخرى",
-    description: "لم تجد المشكلة المناسبة",
-    icon: Droplets,
-  },
-];
+const issueIcons = {
+  "wifi-off": WifiOff,
+  speed: Gauge,
+  location: MapPin,
+  scissors: Scissors,
+  router: Router,
+  more: MoreHorizontal,
+};
+
+const getIssueIcon = (iconName) => {
+  return issueIcons[iconName] || Wrench;
+};
 
 const periods = [
   {
@@ -85,12 +70,52 @@ const days = [
 const MaintenanceRequest = () => {
   const navigate = useNavigate();
 
+  const [problems, setProblems] = useState([]);
+  const [loadingProblems, setLoadingProblems] = useState(true);
+  const [problemsError, setProblemsError] = useState("");
+
   const [selectedProblem, setSelectedProblem] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const canSubmit = selectedProblem && selectedPeriod && selectedDay;
+  const fetchIssueTypes = async () => {
+    try {
+      setLoadingProblems(true);
+      setProblemsError("");
+
+      const response = await apiClient.get(
+        "/maintenance-requests/issue-types"
+      );
+
+      const issueTypes = response.data?.issue_types;
+
+      if (!Array.isArray(issueTypes)) {
+        throw new Error("صيغة البيانات المستلمة غير صحيحة.");
+      }
+
+      setProblems(issueTypes);
+    } catch (error) {
+      console.error("Failed to fetch maintenance issue types:", error);
+
+      setProblemsError(
+        error.response?.data?.message ||
+          error.message ||
+          "تعذر تحميل أنواع مشاكل الصيانة. حاول مرة أخرى."
+      );
+    } finally {
+      setLoadingProblems(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchIssueTypes();
+  }, []);
+
+  const canSubmit =
+    selectedProblem !== "" &&
+    selectedPeriod !== "" &&
+    selectedDay !== "";
 
   const handleSubmit = () => {
     if (!canSubmit) return;
@@ -115,8 +140,8 @@ const MaintenanceRequest = () => {
               <h1>طلب الصيانة قيد المراجعة</h1>
 
               <p>
-                تم استلام طلب الصيانة الخاص بك، وسيقوم فريق جوكر بمراجعة الطلب
-                وتحديد الفني المناسب.
+                تم استلام طلب الصيانة الخاص بك، وسيقوم فريق جوكر
+                بمراجعة الطلب وتحديد الفني المناسب.
               </p>
 
               <div className={styles.requestNumber}>
@@ -192,7 +217,9 @@ const MaintenanceRequest = () => {
             <div>
               <span className={styles.eyebrow}>الدعم والصيانة</span>
               <h1>طلب صيانة</h1>
-              <p>أخبرنا بالمشكلة وسنساعدك في تحديد موعد مناسب لزيارة الفني.</p>
+              <p>
+                أخبرنا بالمشكلة وسنساعدك في تحديد موعد مناسب لزيارة الفني.
+              </p>
             </div>
           </header>
 
@@ -207,34 +234,67 @@ const MaintenanceRequest = () => {
               </div>
 
               <div className={styles.problemsGrid}>
-                {problems.map((problem) => {
-                  const Icon = problem.icon;
-                  const isSelected = selectedProblem === problem.id;
+                {loadingProblems ? (
+                  <div className={styles.problemsStatus}>
+                    <LoaderCircle
+                      size={24}
+                      className={styles.loadingIcon}
+                    />
+                    <span>جاري تحميل أنواع مشاكل الصيانة...</span>
+                  </div>
+                ) : problemsError ? (
+                  <div
+                    className={styles.problemsStatus}
+                    role="alert"
+                  >
+                    <AlertCircle size={24} />
+                    <span>{problemsError}</span>
 
-                  return (
                     <button
-                      key={problem.id}
                       type="button"
-                      className={`${styles.problemCard} ${
-                        isSelected ? styles.selected : ""
-                      }`}
-                      onClick={() => setSelectedProblem(problem.id)}
+                      className="btn btn-outline"
+                      onClick={fetchIssueTypes}
+                      disabled={loadingProblems}
                     >
-                      <span className={styles.problemIcon}>
-                        <Icon size={21} />
-                      </span>
-
-                      <span className={styles.problemContent}>
-                        <strong>{problem.title}</strong>
-                        <small>{problem.description}</small>
-                      </span>
-
-                      <span className={styles.radio}>
-                        {isSelected && <Check size={12} />}
-                      </span>
+                      إعادة المحاولة
                     </button>
-                  );
-                })}
+                  </div>
+                ) : problems.length === 0 ? (
+                  <div className={styles.problemsStatus}>
+                    لا توجد أنواع مشاكل متاحة حاليًا.
+                  </div>
+                ) : (
+                  problems.map((problem) => {
+                    const Icon = getIssueIcon(problem.icon);
+                    const isSelected =
+                      String(selectedProblem) === String(problem.id);
+
+                    return (
+                      <button
+                        key={problem.id}
+                        type="button"
+                        className={`${styles.problemCard} ${
+                          isSelected ? styles.selected : ""
+                        }`}
+                        onClick={() => setSelectedProblem(problem.id)}
+                        aria-pressed={isSelected}
+                      >
+                        <span className={styles.problemIcon}>
+                          <Icon size={21} />
+                        </span>
+
+                        <span className={styles.problemContent}>
+                          <strong>{problem.label}</strong>
+                          <small>{problem.description}</small>
+                        </span>
+
+                        <span className={styles.radio}>
+                          {isSelected && <Check size={12} />}
+                        </span>
+                      </button>
+                    );
+                  })
+                )}
               </div>
 
               <div className={styles.divider} />
@@ -260,7 +320,9 @@ const MaintenanceRequest = () => {
                       }`}
                       onClick={() => setSelectedPeriod(period.id)}
                     >
-                      <span className={styles.periodIcon}>{period.icon}</span>
+                      <span className={styles.periodIcon}>
+                        {period.icon}
+                      </span>
 
                       <span>
                         <strong>{period.title}</strong>
@@ -322,7 +384,9 @@ const MaintenanceRequest = () => {
                   <ChevronLeft size={17} />
                 </button>
 
-                {!canSubmit && <span>اختر المشكلة والفترة واليوم أولًا.</span>}
+                {!canSubmit && (
+                  <span>اختر المشكلة والفترة واليوم أولًا.</span>
+                )}
               </div>
             </main>
 
@@ -365,7 +429,9 @@ const MaintenanceRequest = () => {
 
               <div className={styles.timeBox}>
                 <Clock3 size={17} />
-                <span>مواعيد الصيانة متاحة اليوم وغدًا وبعد غد فقط.</span>
+                <span>
+                  مواعيد الصيانة متاحة اليوم وغدًا وبعد غد فقط.
+                </span>
               </div>
             </aside>
           </div>
@@ -376,3 +442,4 @@ const MaintenanceRequest = () => {
 };
 
 export default MaintenanceRequest;
+

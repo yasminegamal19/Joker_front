@@ -1,171 +1,453 @@
+/* =========================================
+   JOKER NET — Shared Authentication Layout
+   Premium responsive brand experience
+   ========================================= */
+
 .authPage {
-  min-height: 100vh;
+  position: relative;
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  background: var(--bg-primary);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+
   direction: rtl;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: var(--font-family);
-  transition: background-color var(--transition);
+
+  transition:
+    background-color var(--theme-transition),
+    color var(--theme-transition);
 }
+
+/* =========================================
+   Brand panel
+   ========================================= */
 
 .brandSide {
   position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  min-width: 0;
   min-height: 100vh;
+  padding: clamp(36px, 5vw, 76px);
+
   overflow: hidden;
-  padding: 60px;
   color: var(--text-on-accent);
   background: var(--gradient-brand);
+}
+
+/* Ambient decorative lighting */
+
+.brandSide::before,
+.brandSide::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.brandSide::before {
+  top: -220px;
+  right: -170px;
+  width: 520px;
+  height: 520px;
+
+  background: radial-gradient(circle,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.035) 42%,
+      transparent 72%);
+}
+
+.brandSide::after {
+  bottom: -250px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+
+  background: radial-gradient(circle,
+      rgba(10, 47, 217, 0.24) 0%,
+      rgba(255, 255, 255, 0.035) 44%,
+      transparent 72%);
 }
 
 .brandContent {
   position: relative;
   z-index: 2;
   width: min(100%, 500px);
+  margin: auto;
+  animation: brandContentEnter 0.65s ease both;
 }
 
+/* Logo */
+
 .brandLogo {
-  width: 78px;
-  height: 78px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 28px;
-  padding: 12px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+
+  width: 84px;
+  height: 84px;
+  margin-bottom: 34px;
+  padding: 13px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  transition:
+    transform var(--transition),
+    background-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.brandLogo:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.17);
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .brandLogo img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
+/* Brand badge */
+
 .brandBadge {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 18px;
-  padding: 7px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 999px;
+  gap: 8px;
+
+  max-width: 100%;
+  margin-bottom: 21px;
+  padding: 8px 13px;
+
   color: var(--text-on-accent);
-  background: rgba(255, 255, 255, 0.12);
-  font-size: 13px;
-  font-weight: 600;
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.6;
+
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
+.brandBadge svg {
+  flex-shrink: 0;
+}
+
+/* Brand heading */
+
 .brandContent h1 {
-  margin-bottom: 16px;
+  max-width: 540px;
+  margin: 0 0 18px;
+
   color: var(--text-on-accent);
-  font-size: clamp(32px, 3.2vw, 48px);
-  line-height: 1.25;
-  font-weight: 750;
-  letter-spacing: -1px;
+  font-size: clamp(32px, 3.2vw, 49px);
+  font-weight: 850;
+  line-height: 1.35;
+  letter-spacing: -1.2px;
+  text-wrap: balance;
 }
 
 .brandContent p {
-  max-width: 470px;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 16px;
-  line-height: 1.9;
+  max-width: 440px;
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 2;
 }
+
+/* Decorative circles */
 
 .circleOne,
 .circleTwo {
   position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 50%;
   pointer-events: none;
 }
 
 .circleOne {
-  width: 440px;
-  height: 440px;
-  right: -220px;
-  bottom: -180px;
+  right: -210px;
+  bottom: -210px;
+
+  width: 530px;
+  height: 530px;
+
+  box-shadow:
+    0 0 0 42px rgba(255, 255, 255, 0.025),
+    0 0 0 84px rgba(255, 255, 255, 0.018);
 }
 
 .circleTwo {
-  width: 300px;
-  height: 300px;
+  top: -160px;
   left: -170px;
-  top: -130px;
+
+  width: 360px;
+  height: 360px;
+
+  box-shadow:
+    0 0 0 35px rgba(255, 255, 255, 0.025),
+    0 0 0 70px rgba(255, 255, 255, 0.018);
 }
 
+/* =========================================
+   Form panel
+   ========================================= */
+
 .formSide {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+
   min-width: 0;
-  padding: 48px;
+  min-height: 100vh;
+  padding: clamp(30px, 4vw, 64px);
+
   background: var(--bg-card);
-  transition: background-color var(--transition);
+
+  transition:
+    background-color var(--theme-transition),
+    color var(--theme-transition);
 }
 
 .content {
   width: min(100%, 500px);
+  min-width: 0;
+  margin: auto;
+  animation: formContentEnter 0.55s ease both;
 }
+
+/* Top navigation */
 
 .topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 34px;
+  gap: 14px;
+
+  width: 100%;
+  margin-bottom: 35px;
 }
+
+/* Back button */
 
 .backButton {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 39px;
+  padding: 7px 10px;
+
   color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 600;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.5;
+
   cursor: pointer;
-  transition: color var(--transition);
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.backButton svg {
+  flex-shrink: 0;
+  transition: transform var(--transition);
 }
 
 .backButton:hover {
   color: var(--color-primary);
+  background: var(--bg-hover);
+  border-color: var(--border-color);
 }
 
+.backButton:hover svg {
+  transform: translateX(3px);
+}
+
+[data-theme="dark"] .backButton:hover {
+  color: var(--accent-hover);
+}
+
+.backButton:active {
+  transform: translateY(1px);
+}
+
+.backButton:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+/* Theme toggle */
+
 .themeToggle {
-  width: 38px;
-  height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  background: var(--bg-card);
+  flex-shrink: 0;
+
+  width: 41px;
+  height: 41px;
+  padding: 0;
+
   color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+
   cursor: pointer;
+
   transition:
+    color var(--transition),
     background-color var(--transition),
     border-color var(--transition),
-    color var(--transition),
-    transform var(--transition);
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
 .themeToggle:hover {
+  transform: translateY(-2px);
+  color: var(--color-primary);
   background: var(--bg-hover);
   border-color: var(--border-accent);
-  color: var(--color-primary);
-  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
+
+[data-theme="dark"] .themeToggle:hover {
+  color: var(--accent-hover);
+}
+
+.themeToggle:active {
+  transform: translateY(0);
+}
+
+.themeToggle:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+.themeToggle svg {
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.themeToggle:hover svg {
+  transform: rotate(-8deg);
+}
+
+/* Mobile brand logo */
 
 .mobileLogo {
   display: none;
 }
 
+.mobileLogo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* =========================================
+   Motion
+   ========================================= */
+
+@keyframes brandContentEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes formContentEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   Medium screens
+   ========================================= */
+
+@media (max-width: 1100px) {
+  .authPage {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .brandSide {
+    padding: 38px;
+  }
+
+  .brandContent h1 {
+    font-size: clamp(30px, 3.5vw, 40px);
+  }
+
+  .brandContent p {
+    font-size: 14px;
+  }
+
+  .formSide {
+    padding: 38px;
+  }
+}
+
+/* =========================================
+   Tablet and mobile
+   ========================================= */
+
 @media (max-width: 900px) {
   .authPage {
     display: block;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: visible;
   }
 
   .brandSide {
@@ -173,41 +455,132 @@
   }
 
   .formSide {
-    min-height: 100vh;
-    padding: 32px 24px;
-  }
-
-  .mobileLogo {
-    width: 58px;
-    height: 58px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 30px;
-    padding: 9px;
-    border-radius: 16px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
+
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 34px 24px;
   }
 
-  .mobileLogo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  .content {
+    width: min(100%, 500px);
+  }
+
+  .mobileLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 27px;
+    padding: 10px;
+
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 19px;
+    box-shadow: var(--shadow-card);
+
+    transition:
+      background-color var(--transition),
+      border-color var(--transition),
+      transform var(--transition);
+  }
+
+  .mobileLogo:hover {
+    transform: translateY(-2px);
   }
 
   .topBar {
-    margin-bottom: 28px;
+    margin-bottom: 29px;
   }
 }
 
+/* =========================================
+   Small mobile
+   ========================================= */
+
 @media (max-width: 480px) {
   .formSide {
-    padding: 24px 16px;
+    align-items: flex-start;
+    padding: 24px 17px;
   }
 
   .content {
     width: 100%;
+    padding-bottom: 12px;
+  }
+
+  .mobileLogo {
+    width: 57px;
+    height: 57px;
+    margin-bottom: 23px;
+    padding: 9px;
+    border-radius: 16px;
+  }
+
+  .topBar {
+    margin-bottom: 25px;
+  }
+
+  .backButton {
+    min-height: 37px;
+    padding: 6px 8px;
+    font-size: 12.5px;
+  }
+
+  .themeToggle {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+  }
+}
+
+/* Short screens */
+
+@media (max-height: 720px) and (min-width: 901px) {
+
+  .brandSide,
+  .formSide {
+    min-height: 100vh;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .brandLogo {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 24px;
+    border-radius: 20px;
+  }
+
+  .brandContent h1 {
+    margin-bottom: 12px;
+    font-size: clamp(29px, 2.8vw, 40px);
+  }
+
+  .topBar {
+    margin-bottom: 24px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .brandContent,
+  .content {
+    animation: none;
+  }
+
+  .brandLogo,
+  .backButton,
+  .backButton svg,
+  .themeToggle,
+  .themeToggle svg,
+  .mobileLogo {
+    transition: none;
   }
 }
