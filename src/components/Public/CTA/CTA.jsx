@@ -1,32 +1,27 @@
-import { ArrowLeft, Wifi } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import styles from "./CTA.module.css";
 
 const CTA = () => {
-  const navigate = useNavigate();
-
   return (
-    <section className={styles.cta}>
+    <section className={styles.ctaSection}>
       <div className={`container ${styles.container}`}>
-        <div className={styles.icon}>
-          <Wifi size={24} />
-        </div>
+        <div className={styles.ctaBox}>
+          <div className={styles.textGroup}>
+            <span className={styles.eyebrow}>ابدأ مع الجوكر</span>
 
-        <div className={styles.content}>
-          <h2>جاهز تبدأ مع الجوكر؟</h2>
-          <p>
-            سجل حسابك واستمتع بإدارة باقتك وخدماتك بسهولة من مكان واحد.
-          </p>
-        </div>
+            <h2>جاهز لتجربة إنترنت أسرع وأفضل؟</h2>
 
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => navigate("/choose-user")}
-        >
-          ابدأ الآن
-          <ArrowLeft size={18} />
-        </button>
+            <p>
+              انضم الآن لشبكة الجوكر واستمتع بأقوى الباقات والخدمات الرقمية.
+            </p>
+          </div>
+
+          <Link to="/choose-user" className={styles.ctaBtn}>
+            <span>إنشاء حساب جديد</span>
+            <ArrowLeft size={18} />
+          </Link>
+        </div>
       </div>
     </section>
   );

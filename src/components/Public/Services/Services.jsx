@@ -1,116 +1,124 @@
-import {
-  CreditCard,
-  Headphones,
-  MapPin,
-  RefreshCcw,
-  Wallet,
-  Zap,
-} from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft, CreditCard, Headphones, Wallet, Wifi } from "lucide-react";
+import { Link } from "react-router-dom";
 import styles from "./Services.module.css";
 
+const servicesList = [
+  {
+    icon: Wifi,
+    number: "01",
+    title: "الإنترنت المنزلي",
+    desc: "باقات إنترنت بسرعات مختلفة واستقرار يساعدك على الاستمتاع بالتصفح والبث والعمل بدون انقطاع.",
+    link: "/packages",
+    featured: true,
+  },
+  {
+    icon: Wallet,
+    number: "02",
+    title: "محفظة الجوكر",
+    desc: "اشحن رصيدك، تابع معاملاتك وادفع خدماتك بسهولة من مكان واحد.",
+    link: "/choose-user",
+  },
+  {
+    icon: CreditCard,
+    number: "03",
+    title: "سداد الاشتراكات",
+    desc: "جدّد باقتك وسدد مستحقاتك بسرعة وأمان بدون خطوات معقدة.",
+    link: "/choose-user",
+  },
+  {
+    icon: Headphones,
+    number: "04",
+    title: "الدعم والصيانة",
+    desc: "اطلب الدعم أو الصيانة وتابع طلبك لحد ما المشكلة تتحل.",
+    link: "/choose-user",
+  },
+];
+
 const Services = () => {
-  const navigate = useNavigate();
-
-  const services = [
-    {
-      icon: Wallet,
-      title: "شحن المحفظة",
-      description: "اشحن رصيدك بسهولة واستخدمه في تجديد الباقات والخدمات.",
-      action: "اشحن الآن",
-      path: "/choose-user",
-    },
-    {
-      icon: RefreshCcw,
-      title: "تجديد الباقة",
-      description: "جدّد باقتك الحالية واستمر في استخدام الإنترنت بدون توقف.",
-      action: "جدّد باقتك",
-      path: "/choose-user",
-    },
-    {
-      icon: CreditCard,
-      title: "كروت الإنترنت",
-      description: "احصل على كروت الإنترنت المناسبة لك من أقرب متجر.",
-      action: "اعرف المزيد",
-      path: "#packages",
-    },
-    {
-      icon: Zap,
-      title: "اختبار السرعة",
-      description: "اختبر سرعة اتصالك بالإنترنت وتابع أداء الخدمة.",
-      action: "اختبر السرعة",
-      path: "/choose-user",
-    },
-    {
-      icon: Headphones,
-      title: "طلب صيانة",
-      description: "واجهتك مشكلة؟ اطلب فني صيانة في الوقت المناسب لك.",
-      action: "اطلب صيانة",
-      path: "/choose-user",
-    },
-    {
-      icon: MapPin,
-      title: "أقرب متجر",
-      description: "تعرف على المتاجر التي توفر خدمات وكروت الجوكر بالقرب منك.",
-      action: "اعثر على متجر",
-      path: "#stores",
-    },
-  ];
-
-  const handleClick = (path) => {
-    if (path.startsWith("#")) {
-      document.querySelector(path)?.scrollIntoView({
-        behavior: "smooth",
-      });
-      return;
-    }
-
-    navigate(path);
-  };
-
   return (
-    <section className={styles.services} id="services">
-      <div className={`container ${styles.container}`}>
-        <div className={styles.heading}>
-          <span className={styles.eyebrow}>خدمات الجوكر</span>
+    <section className={styles.servicesSection} id="services">
+      <div className={styles.container}>
+        {/* Section Header */}
+        <div className={styles.sectionHeader}>
+          <div className={styles.headingSide}>
+            <span className={styles.subTitle}>خدمات الجوكر</span>
 
-          <h2>
-            كل ما تحتاجه
-            <span> في مكان واحد</span>
-          </h2>
+            <h2>
+              كل خدماتك
+              <span> في مكان واحد</span>
+            </h2>
+          </div>
 
-          <p>
-            خدمات متكاملة تساعدك على إدارة الإنترنت والرصيد والصيانة بكل سهولة.
-          </p>
+          <div className={styles.descriptionSide}>
+            <p>
+              من الإنترنت المنزلي والشحن، لحد الدفع والصيانة. بنوفر لك كل اللي
+              تحتاجه عشان تفضل متصل بسهولة.
+            </p>
+
+            <div className={styles.headerLine}>
+              <span />
+              <span />
+            </div>
+          </div>
         </div>
 
+        {/* Services Grid */}
         <div className={styles.grid}>
-          {services.map((service) => {
+          {servicesList.map((service) => {
             const Icon = service.icon;
 
             return (
-              <article className={styles.card} key={service.title}>
-                <div className={styles.icon}>
-                  <Icon size={21} strokeWidth={2} />
+              <article
+                key={service.number}
+                className={`${styles.serviceCard} ${
+                  service.featured ? styles.featured : ""
+                }`}
+              >
+                <div className={styles.cardTop}>
+                  <span className={styles.number}>{service.number}</span>
+
+                  <div className={styles.iconWrapper}>
+                    <Icon size={23} strokeWidth={1.9} />
+                  </div>
                 </div>
 
                 <div className={styles.cardContent}>
                   <h3>{service.title}</h3>
 
-                  <p>{service.description}</p>
-
-                  <button
-                    type="button"
-                    className={styles.cardAction}
-                    onClick={() => handleClick(service.path)}
-                  >
-                    {service.action}
-                    <span>←</span>
-                  </button>
+                  <p>{service.desc}</p>
                 </div>
+
+                <Link to={service.link} className={styles.cardLink}>
+                  <span>اكتشف الخدمة</span>
+
+                  <span className={styles.arrow}>
+                    <ArrowLeft size={16} />
+                  </span>
+                </Link>
+
+                <div className={styles.cardAccent} />
               </article>
             );
           })}
+        </div>
+
+        {/* Bottom Highlight */}
+        <div className={styles.bottomBanner}>
+          <div className={styles.bannerIcon}>
+            <Wifi size={21} />
+          </div>
+
+          <div className={styles.bannerText}>
+            <strong>كل حاجة متوصلة ببعض</strong>
+            <span>
+              حساب واحد تقدر من خلاله تدير الإنترنت والخدمات الخاصة بيك.
+            </span>
+          </div>
+
+          <Link to="/choose-user" className={styles.bannerLink}>
+            ابدأ الآن
+            <ArrowLeft size={17} />
+          </Link>
         </div>
       </div>
     </section>

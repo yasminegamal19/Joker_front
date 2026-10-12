@@ -1,120 +1,325 @@
-import { ArrowLeft, CheckCircle2, Wifi } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+// src/components/Public/Hero/Hero.jsx
+import { useEffect, useState } from "react";
+import {
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle2,
+  Sparkles,
+  Zap,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAppConfig } from "../../../context/AppConfigContext";
 import styles from "./Hero.module.css";
 
-const Hero = () => {
-  const navigate = useNavigate();
+/* البانرات الافتراضية: تظهر لو الـ API رجّع قائمة فاضية أو حصل خطأ */
+const defaultBanners = [
+  {
+    id: "default-1",
+    tag: "عرض لفترة محدودة",
+    title: "ضعف الجيجات على باقات الإنترنت المنزلي",
+    highlight: "بنفس السعر",
+    description:
+      "اشترك الآن أو جدد باقتك واحصل على 100% جيجابايت إضافية مجانًا لفترة محدودة.",
+    buttonText: "اشترك في العرض",
+    buttonLink: "/choose-user",
+    badgeIcon: Zap,
+    theme: "blue",
+    offer: "2X",
+    offerLabel: "جيجات",
+    imageUrl: null,
+  },
+  {
+    id: "default-2",
+    tag: "خدمات الجوكر",
+    title: "إدارة الإنترنت أصبحت أسهل",
+    highlight: "من مكان واحد",
+    description: "تابع باقتك، اشحن رصيدك، جدد اشتراكك واطلب الصيانة بكل سهولة.",
+    buttonText: "اكتشف خدماتنا",
+    buttonLink: "/services",
+    badgeIcon: CheckCircle2,
+    theme: "light",
+    offer: "24/7",
+    offerLabel: "خدمة ودعم",
+    imageUrl: null,
+  },
+];
+
+/* تحويل شكل الـ API إلى شكل الـ Hero */
+const mapApiBanners = (apiBanners = []) =>
+  apiBanners.map((b, index) => ({
+    id: b.id,
+    tag: "عرض خاص",
+    title: b.title,
+    highlight: "",
+    description: "",
+    // لو مفيش link_url الزرار يوديه للاشتراك
+    buttonText: b.link_url ? "اعرف أكتر" : "اشترك الآن",
+    buttonLink: b.link_url || "/choose-user",
+    badgeIcon: Sparkles,
+    theme: index % 2 === 0 ? "blue" : "light",
+    offer: "",
+    offerLabel: "",
+    imageUrl: b.image_url || null,
+  }));
+
+const isExternal = (url) => /^https?:\/\//i.test(url);
+
+/* لينك ذكي: خارجي <a> وداخلي <Link> */
+const SmartLink = ({ to, className, children }) =>
+  isExternal(to) ? (
+    <a href={to} className={className} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  ) : (
+    <Link to={to} className={className}>
+      {children}
+    </Link>
+  );
+
+const Hero = ({ banners: bannersProp }) => {
+  const { config } = useAppConfig();
+
+  const apiBanners = mapApiBanners(config.banners);
+  const banners =
+    bannersProp ?? (apiBanners.length ? apiBanners : defaultBanners);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // لو عدد البانرات قلّ بعد التحميل، نرجع للأول
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [banners.length]);
+
+  useEffect(() => {
+    if (banners.length < 2) return;
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % banners.length);
+    }, 6500);
+
+    return () => clearInterval(timer);
+  }, [banners.length]);
+
+  if (!banners.length) return null;
+
+  const activeSlide = banners[currentSlide] ?? banners[0];
+  const BadgeIcon = activeSlide.badgeIcon || Sparkles;
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % banners.length);
+  };
+
+  const previousSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? banners.length - 1 : prev - 1));
+  };
 
   return (
-    <section className={styles.hero} id="home">
-      <div className={`container ${styles.container}`}>
-        <div className={styles.content}>
-          <span className={styles.badge}>
-            <Wifi size={16} />
-            إنترنت أسرع.. حياة أسهل
-          </span>
+    <section className={styles.hero}>
+      <div className={styles.backgroundShapeOne} />
+      <div className={styles.backgroundShapeTwo} />
 
-          <h1>
-            كل خدمات الإنترنت
-            <span> في مكان واحد</span>
-          </h1>
+      <div className={styles.container}>
+        <div className={styles.heroCard}>
+          {/* Main Content */}
+          <div className={styles.content}>
+            <div className={styles.badge}>
+              <span className={styles.badgeIcon}>
+                <BadgeIcon size={15} />
+              </span>
 
-          <p>
-            مع الجوكر، استمتع بباقات الإنترنت، شحن الرصيد، الكروت والعروض
-            وخدمات الصيانة بسهولة وسرعة.
-          </p>
+              <span>{activeSlide.tag}</span>
 
-          <div className={styles.actions}>
-            <button
-              type="button"
-              className={styles.primaryButton}
-              onClick={() => navigate("/choose-user")}
-            >
-              ابدأ الآن
-              <ArrowLeft size={18} />
-            </button>
+              <span className={styles.badgeDot} />
+            </div>
 
-            <a href="#packages" className={styles.secondaryButton}>
-              استعرض الباقات
-            </a>
+            <h1 className={styles.title}>
+              {activeSlide.title}
+              {activeSlide.highlight && <span>{activeSlide.highlight}</span>}
+            </h1>
+
+            {activeSlide.description && (
+              <p className={styles.description}>{activeSlide.description}</p>
+            )}
+
+            <div className={styles.actions}>
+              <SmartLink
+                to={activeSlide.buttonLink}
+                className={styles.primaryButton}
+              >
+                <span>{activeSlide.buttonText}</span>
+                <ArrowLeft size={18} />
+              </SmartLink>
+
+              <Link to="/packages" className={styles.secondaryButton}>
+                <span>استعرض الباقات</span>
+              </Link>
+            </div>
+
+            <div className={styles.trust}>
+              <div className={styles.trustItem}>
+                <CheckCircle2 size={17} />
+                <span>خدمة موثوقة</span>
+              </div>
+
+              <div className={styles.trustItem}>
+                <CheckCircle2 size={17} />
+                <span>دعم سريع</span>
+              </div>
+
+              <div className={styles.trustItem}>
+                <CheckCircle2 size={17} />
+                <span>أسعار مناسبة</span>
+              </div>
+            </div>
           </div>
 
-          <div className={styles.features}>
-            <div>
-              <CheckCircle2 size={18} />
-              <span>خدمة موثوقة</span>
+          {/* Offer Visual */}
+          <div className={`${styles.visual} ${styles[activeSlide.theme]}`}>
+            {activeSlide.imageUrl && (
+              <>
+                <img
+                  src={activeSlide.imageUrl}
+                  alt={activeSlide.title}
+                  className={styles.visualImage}
+                />
+                <div className={styles.visualImageOverlay} />
+              </>
+            )}
+
+            <div className={styles.visualGlow} />
+
+            <div className={styles.visualTop}>
+              <span>الجوكر</span>
+              <WifiIcon />
             </div>
 
-            <div>
-              <CheckCircle2 size={18} />
-              <span>دعم سريع</span>
-            </div>
+            {/* العرض الرقمي يظهر فقط لو مفيش صورة */}
+            {!activeSlide.imageUrl && activeSlide.offer && (
+              <div className={styles.offerVisual}>
+                <span className={styles.offerSmall}>عرض</span>
 
-            <div>
-              <CheckCircle2 size={18} />
-              <span>أسعار مناسبة</span>
-            </div>
-          </div>
-        </div>
+                <strong>{activeSlide.offer}</strong>
 
-        <div className={styles.visual}>
-          <div className={styles.visualCard}>
-            <div className={styles.visualHeader}>
-              <span>حسابك مع الجوكر</span>
-              <Wifi size={20} />
-            </div>
+                <span className={styles.offerLabel}>
+                  {activeSlide.offerLabel}
+                </span>
+              </div>
+            )}
 
-            <div className={styles.balance}>
-              <small>رصيد المحفظة</small>
-              <strong>250.00 <span>جنيه</span></strong>
-            </div>
-
-            <div className={styles.package}>
+            <div className={styles.visualBottom}>
               <div>
-                <span>الباقة الحالية</span>
-                <strong>Super 250</strong>
+                <span>استمتع بالخدمة</span>
+                <strong>بسرعة وبدون تعقيد</strong>
               </div>
 
-              <div className={styles.packageSpeed}>
-                <strong>30</strong>
-                <span>Mbps</span>
-              </div>
-            </div>
-
-            <div className={styles.progress}>
-              <div className={styles.progressTop}>
-                <span>استهلاك الباقة</span>
-                <span>67%</span>
-              </div>
-
-              <div className={styles.progressBar}>
+              <div className={styles.signal}>
+                <span />
+                <span />
+                <span />
                 <span />
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => navigate("/choose-user")}
-              className={styles.cardButton}
-            >
-              إدارة حسابك
-              <ArrowLeft size={16} />
-            </button>
+            <div className={styles.decorCircle} />
+            <div className={styles.decorCircleSmall} />
           </div>
-
-          <div className={styles.floatingCard}>
-            <CheckCircle2 size={20} />
-            <div>
-              <strong>الخدمة تعمل</strong>
-              <span>اتصال مستقر</span>
-            </div>
-          </div>
-
-          <div className={styles.circle} />
         </div>
+
+        {/* Slider Controls */}
+        {banners.length > 1 && (
+          <>
+            <div className={styles.sliderFooter}>
+              <div className={styles.slideInfo}>
+                <span>{String(currentSlide + 1).padStart(2, "0")}</span>
+
+                <div className={styles.progress}>
+                  <div
+                    className={styles.progressBar}
+                    style={{
+                      width: `${((currentSlide + 1) / banners.length) * 100}%`,
+                    }}
+                  />
+                </div>
+
+                <span className={styles.total}>
+                  {String(banners.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              <div className={styles.sliderText}>
+                عروض وخدمات مميزة من الجوكر
+              </div>
+
+              <div className={styles.controls}>
+                <button
+                  type="button"
+                  className={styles.arrowButton}
+                  onClick={previousSlide}
+                  aria-label="العرض السابق"
+                >
+                  <ChevronRight size={19} />
+                </button>
+
+                <button
+                  type="button"
+                  className={styles.arrowButton}
+                  onClick={nextSlide}
+                  aria-label="العرض التالي"
+                >
+                  <ChevronLeft size={19} />
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.dots}>
+              {banners.map((banner, index) => (
+                <button
+                  key={banner.id}
+                  type="button"
+                  aria-label={`العرض ${index + 1}`}
+                  className={`${styles.dot} ${
+                    index === currentSlide ? styles.activeDot : ""
+                  }`}
+                  onClick={() => setCurrentSlide(index)}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
 };
+
+const WifiIcon = () => (
+  <svg
+    width="25"
+    height="25"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M3 8.5C8.5 4 15.5 4 21 8.5"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+    <path
+      d="M6.5 12C10.2 9.2 13.8 9.2 17.5 12"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+    <path
+      d="M10 15.5C11.3 14.5 12.7 14.5 14 15.5"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+    <circle cx="12" cy="19" r="1.4" fill="currentColor" />
+  </svg>
+);
 
 export default Hero;

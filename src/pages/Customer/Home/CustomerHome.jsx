@@ -1,13 +1,8 @@
 import {
   ArrowLeft,
-  CalendarDays,
   Gauge,
   Headphones,
-  MapPin,
   RefreshCw,
-  Router,
-  Signal,
-  Sparkles,
   Wallet,
   Wifi,
 } from "lucide-react";
@@ -17,92 +12,64 @@ import styles from "./CustomerHome.module.css";
 
 const CustomerHome = () => {
   const navigate = useNavigate();
-  
+
   return (
     <AppLayout>
       <div className={styles.page}>
         <div className={`container ${styles.container}`}>
+          {/* =========================
+              Welcome
+          ========================= */}
           <section className={styles.welcome}>
             <div>
-              <span className={styles.eyebrow}>لوحة العميل</span>
-              <h1>أهلاً بك، ياسمين 👋</h1>
-              <p>
-                تابع خدمات الإنترنت الخاصة بك وتحكم في باقتك ومحفظتك بسهولة.
-              </p>
+              <span className={styles.eyebrow}>الرئيسية</span>
+
+              <h1>
+                أهلاً بك، ياسمين <span>👋</span>
+              </h1>
+
+              <p>تابع باقتك واستهلاكك وخدماتك من مكان واحد.</p>
             </div>
 
-            <div className={styles.serviceStatus}>
+            <div className={styles.connectionStatus}>
               <span className={styles.statusDot} />
-              <span>الخدمة تعمل بشكل طبيعي</span>
+              <span>الإنترنت متصل</span>
             </div>
           </section>
 
-          <section className={styles.overviewGrid}>
-            <div className={`${styles.card} ${styles.walletCard}`}>
-              <div className={styles.cardHeader}>
-                <div className={styles.cardTitle}>
-                  <span className={styles.iconBox}>
-                    <Wallet size={19} />
-                  </span>
+          {/* =========================
+              Current Package
+          ========================= */}
+          <section className={styles.packageCard}>
+            <div className={styles.packageGlow} />
 
-                  <div>
-                    <span>رصيد المحفظة</span>
-                    <small>الرصيد المتاح</small>
-                  </div>
+            <div className={styles.packageTop}>
+              <div className={styles.packageTitle}>
+                <div className={styles.packageIcon}>
+                  <Wifi size={20} strokeWidth={2} />
                 </div>
 
-                <button type="button" className={styles.cardAction}>
-                  إدارة المحفظة
-                  <ArrowLeft size={15} />
-                </button>
+                <div>
+                  <span>باقة الإنترنت الحالية</span>
+                  <strong>Super 250</strong>
+                </div>
               </div>
 
-              <div className={styles.balance}>
-                <strong>250.00</strong>
-                <span>جنيه</span>
-              </div>
-
-              <div className={styles.walletFooter}>
-                <span>آخر عملية شحن منذ يومين</span>
-
-                <button type="button" className={styles.rechargeButton}>
-                  شحن المحفظة
-                </button>
-              </div>
+              <span className={styles.activeBadge}>
+                <span />
+                نشطة
+              </span>
             </div>
 
-            <div className={`${styles.card} ${styles.packageCard}`}>
-              <div className={styles.cardHeader}>
-                <div className={styles.cardTitle}>
-                  <span className={styles.iconBox}>
-                    <Wifi size={19} />
-                  </span>
+            <div className={styles.packageMain}>
+              <div className={styles.usage}>
+                <div className={styles.usageHeader}>
+                  <span>استهلاك الباقة</span>
 
-                  <div>
-                    <span>الباقة الحالية</span>
-                    <small>باقة الإنترنت المنزلي</small>
-                  </div>
-                </div>
-
-                <span className={styles.packageActive}>نشطة</span>
-              </div>
-
-              <div className={styles.packageInfo}>
-                <div>
-                  <strong>Super 250</strong>
-                  <span>250 جيجابايت</span>
-                </div>
-
-                <div className={styles.packageSpeed}>
-                  <Signal size={17} />
-                  <span>30 Mbps</span>
-                </div>
-              </div>
-
-              <div className={styles.progressWrapper}>
-                <div className={styles.progressInfo}>
-                  <span>المستخدم</span>
-                  <strong>168 / 250 GB</strong>
+                  <strong>
+                    168
+                    <small> / 250 GB</small>
+                  </strong>
                 </div>
 
                 <div className={styles.progressTrack}>
@@ -111,156 +78,228 @@ const CustomerHome = () => {
                     style={{ width: "67%" }}
                   />
                 </div>
+
+                <div className={styles.usageFooter}>
+                  <span>متبقي 82 جيجابايت</span>
+                  <span>67% مستخدم</span>
+                </div>
               </div>
 
-              <div className={styles.packageFooter}>
-                <span>
-                  <CalendarDays size={15} />
-                  التجديد في 15 أكتوبر
-                </span>
+              <div className={styles.speed}>
+                <span>سرعة الباقة</span>
 
-                <button type="button" className={styles.renewButton}>
-                  تجديد الباقة
-                </button>
+                <strong>
+                  30
+                  <small> Mbps</small>
+                </strong>
               </div>
+            </div>
+
+            <div className={styles.packageBottom}>
+              <span>
+                التجديد القادم:
+                <strong> 15 أكتوبر 2026</strong>
+              </span>
+
+             <button
+  type="button"
+  onClick={() => navigate("/customer/package")}
+  className={styles.packageButton}
+>
+  تفاصيل الباقة
+  <ArrowLeft size={16} />
+</button>
             </div>
           </section>
 
-          <section className={styles.section}>
+          {/* =========================
+              Usage Summary
+          ========================= */}
+          <section className={styles.usageCard}>
             <div className={styles.sectionHeader}>
               <div>
-                <span className={styles.sectionEyebrow}>الخدمات</span>
-                <h2>ماذا تريد أن تفعل؟</h2>
+                <span className={styles.sectionEyebrow}>استهلاك الباقة</span>
+
+                <h2>استهلاكك الأساسي</h2>
+              </div>
+
+              <button
+                type="button"
+                className={styles.detailsButton}
+                onClick={() => navigate("/customer/offers")}
+              >
+                التفاصيل
+                <ArrowLeft size={15} />
+              </button>
+            </div>
+
+            <div className={styles.usageContent}>
+              <div className={styles.circleWrapper}>
+                <div className={styles.circle}>
+                  <div className={styles.circleInner}>
+                    <strong>168</strong>
+                    <span>جيجابايت</span>
+                    <small>من 250 GB</small>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.usageStats}>
+                <div className={styles.usageStat}>
+                  <span className={styles.blueDot} />
+                  <div>
+                    <small>المستخدم</small>
+                    <strong>168 GB</strong>
+                  </div>
+                </div>
+
+                <div className={styles.usageStat}>
+                  <span className={styles.greenDot} />
+                  <div>
+                    <small>المتبقي</small>
+                    <strong>82 GB</strong>
+                  </div>
+                </div>
+
+                <div className={styles.usageStat}>
+                  <span className={styles.grayDot} />
+                  <div>
+                    <small>نسبة الاستخدام</small>
+                    <strong>67%</strong>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className={styles.actionsGrid}>
-              <button type="button" className={styles.actionCard}>
-                <span className={styles.actionIcon}>
-                  <Wallet size={21} />
-                </span>
-
-                <span className={styles.actionContent}>
-                  <strong>شحن المحفظة</strong>
-                  <small>أضف رصيدًا لمحفظتك</small>
-                </span>
-
-                <ArrowLeft size={17} className={styles.actionArrow} />
-              </button>
-
-              <button type="button" className={styles.actionCard}>
-                <span className={styles.actionIcon}>
-                  <RefreshCw size={21} />
-                </span>
-
-                <span className={styles.actionContent}>
-                  <strong>تجديد الباقة</strong>
-                  <small>جدد باقتك الحالية</small>
-                </span>
-
-                <ArrowLeft size={17} className={styles.actionArrow} />
-              </button>
-
-              <button type="button" className={styles.actionCard}>
-                <span className={styles.actionIcon}>
-                  <Gauge size={21} />
-                </span>
-
-                <span className={styles.actionContent}>
-                  <strong>اختبار السرعة</strong>
-                  <small>اختبر سرعة الإنترنت</small>
-                </span>
-
-                <ArrowLeft size={17} className={styles.actionArrow} />
+            <div className={styles.usageActions}>
+              <button
+                type="button"
+                className={styles.secondaryAction}
+                onClick={() => navigate("/customer/offers")}
+              >
+                <RefreshCw size={16} />
+                تجديد الباقة
               </button>
 
               <button
                 type="button"
-                className={styles.actionCard}
-                onClick={() => navigate("/customer/maintenance")}
+                className={styles.primaryAction}
+                onClick={() => navigate("/customer/offers")}
               >
-                <span className={styles.actionIcon}>
-                  <Headphones size={21} />
-                </span>
-
-                <span className={styles.actionContent}>
-                  <strong>طلب صيانة</strong>
-                  <small>أرسل طلب دعم فني</small>
-                </span>
-
-                <ArrowLeft size={17} className={styles.actionArrow} />
+                <Wifi size={16} />
+                إضافة باقة
               </button>
             </div>
           </section>
 
-          <section className={styles.lowerGrid}>
-            <div className={`${styles.card} ${styles.trackingCard}`}>
-              <div className={styles.sectionCardHeader}>
-                <div>
-                  <span className={styles.sectionEyebrow}>الدعم الفني</span>
-                  <h2>متابعة طلب الصيانة</h2>
-                </div>
+          {/* =========================
+              Quick Services
+          ========================= */}
+          <section className={styles.servicesSection}>
+            <div className={styles.sectionHeader}>
+              <div>
+                <span className={styles.sectionEyebrow}>الخدمات</span>
 
-                <span className={styles.trackingStatus}>جاري المتابعة</span>
+                <h2>الخدمات السريعة</h2>
               </div>
 
-              <div className={styles.trackingBody}>
-                <div className={styles.mapPlaceholder}>
-                  <div className={styles.mapPattern} />
-
-                  <div className={styles.mapPin}>
-                    <MapPin size={22} />
-                  </div>
-
-                  <div className={styles.repLocation}>
-                    <span className={styles.repPulse} />
-                    <span>الفني في الطريق إليك</span>
-                  </div>
-                </div>
-
-                <div className={styles.trackingInfo}>
-                  <div className={styles.repAvatar}>
-                    <Router size={21} />
-                  </div>
-
-                  <div className={styles.repDetails}>
-                    <span>فني الصيانة</span>
-                    <strong>أحمد محمد</strong>
-                    <small>متوقع الوصول خلال 25 دقيقة</small>
-                  </div>
-
-                  <button
-                    type="button"
-                    className={styles.chatButton}
-                    onClick={() => navigate("/customer/maintenance/tracking")}
-                  >
-                    <Headphones size={17} />
-                    تواصل
-                  </button>
-                </div>
-              </div>
+              <span className={styles.sectionCount}>4 خدمات</span>
             </div>
 
-            <div className={`${styles.card} ${styles.offerCard}`}>
-              <div className={styles.offerGlow} />
-
-              <div className={styles.offerContent}>
-                <span className={styles.offerBadge}>
-                  <Sparkles size={14} />
-                  عرض خاص
+            <div className={styles.servicesGrid}>
+              <button
+                type="button"
+                className={styles.serviceCard}
+                onClick={() => navigate("/customer/wallet")}
+              >
+                <span className={styles.serviceIcon}>
+                  <Wallet size={21} />
                 </span>
 
-                <h2>اشحن محفظتك واحصل على مزايا إضافية</h2>
+                <span className={styles.serviceText}>
+                  <strong>شحن رصيد</strong>
+                  <small>اشحن محفظتك بسهولة</small>
+                </span>
 
-                <p>
-                  استفد من عروض جوكر الحصرية واحصل على قيمة إضافية عند الشحن.
-                </p>
+                <ArrowLeft size={16} className={styles.serviceArrow} />
+              </button>
 
-                <button type="button" className={styles.offerButton}>
-                  اكتشف العروض
-                  <ArrowLeft size={16} />
-                </button>
-              </div>
+              <button type="button" className={styles.serviceCard}>
+                <span className={styles.serviceIcon}>
+                  <Wifi size={21} />
+                </span>
+
+                <span className={styles.serviceText}>
+                  <strong>كروت Wi-Fi</strong>
+                  <small>شراء كارت إنترنت</small>
+                </span>
+
+                <ArrowLeft size={16} className={styles.serviceArrow} />
+              </button>
+
+              <button type="button" className={styles.serviceCard}>
+                <span className={styles.serviceIcon}>
+                  <Gauge size={21} />
+                </span>
+
+                <span className={styles.serviceText}>
+                  <strong>اختبار السرعة</strong>
+                  <small>اختبر سرعة الإنترنت</small>
+                </span>
+
+                <ArrowLeft size={16} className={styles.serviceArrow} />
+              </button>
+
+              <button
+                type="button"
+                className={styles.serviceCard}
+                onClick={() => navigate("/customer/maintenance")}
+              >
+                <span className={styles.serviceIcon}>
+                  <Headphones size={21} />
+                </span>
+
+                <span className={styles.serviceText}>
+                  <strong>طلب صيانة</strong>
+                  <small>اطلب الدعم الفني</small>
+                </span>
+
+                <ArrowLeft size={16} className={styles.serviceArrow} />
+              </button>
+            </div>
+          </section>
+
+          {/* =========================
+              Offer Banner
+          ========================= */}
+          <section className={styles.offer}>
+            <div className={styles.offerPattern} />
+
+            <div className={styles.offerContent}>
+              <span className={styles.offerBadge}>عرض مميز</span>
+
+              <h2>
+                ضاعف جيجاتك
+                <span> واستمتع أكتر</span>
+              </h2>
+
+              <p>
+                اشحن محفظتك واستفد من عروض الجوكر الحصرية واحصل على قيمة إضافية.
+              </p>
+
+              <button
+                type="button"
+                onClick={() => navigate("/customer/offers")}
+                className={styles.offerButton}
+              >
+                اكتشف العروض
+                <ArrowLeft size={16} />
+              </button>
+            </div>
+
+            <div className={styles.offerVisual}>
+              <strong>2X</strong>
+              <span>جيجات</span>
             </div>
           </section>
         </div>

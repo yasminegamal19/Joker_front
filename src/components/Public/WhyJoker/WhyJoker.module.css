@@ -1,158 +1,466 @@
 .why {
-    padding: 90px 0;
-    background: var(--background);
+  position: relative;
+  overflow: hidden;
+  padding: 105px 0;
+  background: var(--bg-secondary);
+  direction: rtl;
+  transition: background-color var(--transition);
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 80px;
-    align-items: center;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: center;
 }
 
-.intro {
-    max-width: 500px;
+/* ========================= VISUAL PANEL ========================= */
+.visual {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  padding: 42px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 24px;
+  background: var(--gradient-brand);
+  box-shadow: var(--shadow-lg);
+}
+
+.visualGlow {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  top: -130px;
+  right: -100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.visualContent {
+  position: relative;
+  z-index: 2;
+  max-width: 400px;
+  color: var(--text-on-accent);
+}
+
+.visualEyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.visualContent h2 {
+  margin-top: 20px;
+  font-size: clamp(34px, 4vw, 46px);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.visualContent h2 span {
+  display: block;
+  color: #bae6fd;
+}
+
+.visualContent p {
+  max-width: 360px;
+  margin-top: 17px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.visualStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 35px;
+}
+
+.visualStats div {
+  padding: 13px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.visualStats strong {
+  display: block;
+  color: var(--text-on-accent);
+  font-size: 18px;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.visualStats span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* ========================= CONNECTION CARD ========================= */
+.signalCard {
+  position: absolute;
+  z-index: 4;
+  top: 35px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 13px;
+  box-shadow: var(--shadow-md);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.signalIcon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  background: var(--bg-badge);
+  border-radius: 10px;
+}
+
+.signalCard > div:last-child > span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.signalCard strong {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.signalCard strong i {
+  width: 6px;
+  height: 6px;
+  display: block;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 0 3px var(--color-success-bg);
+}
+
+/* ========================= DECOR ========================= */
+.decor {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.decorOne {
+  width: 230px;
+  height: 230px;
+  right: -80px;
+  bottom: -90px;
+}
+
+.decorTwo {
+  width: 120px;
+  height: 120px;
+  right: 45px;
+  top: 125px;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ========================= CONTENT ========================= */
+.content {
+  max-width: 650px;
+}
+
+.heading {
+  max-width: 600px;
+  margin-bottom: 35px;
 }
 
 .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    min-height: 30px;
-    padding: 0 11px;
-    border-radius: 20px;
-    color: var(--primary);
-    background: var(--primary-light);
-    font-size: 12px;
-    font-weight: 700;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 800;
 }
 
-.intro h2 {
-    margin-top: 14px;
-    color: var(--text-primary);
-    font-size: clamp(30px, 4vw, 42px);
-    line-height: 1.25;
+.eyebrow::before {
+  content: "";
+  width: 25px;
+  height: 3px;
+  border-radius: 20px;
+  background: var(--gradient-brand);
 }
 
-.intro h2 span {
-    color: var(--primary);
+.heading h2 {
+  margin-top: 13px;
+  color: var(--text-primary);
+  font-size: clamp(34px, 4vw, 46px);
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  transition: color var(--transition);
 }
 
-.intro>p {
-    margin-top: 14px;
-    color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.9;
+.heading h2 span {
+  display: block;
+  color: var(--color-primary);
 }
 
-.highlight {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 28px;
-    padding: 15px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--white);
+.heading p {
+  max-width: 550px;
+  margin-top: 14px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.9;
+  transition: color var(--transition);
 }
 
-.highlightIcon {
-    width: 42px;
-    height: 42px;
-    flex: 0 0 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 11px;
-    color: var(--primary);
-    background: var(--primary-light);
-}
-
-.highlight strong,
-.highlight span {
-    display: block;
-}
-
-.highlight strong {
-    color: var(--text-primary);
-    font-size: 13px;
-}
-
-.highlight span {
-    margin-top: 2px;
-    color: var(--text-secondary);
-    font-size: 11px;
-}
-
+/* ========================= FEATURES ========================= */
 .features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
 .feature {
-    display: flex;
-    align-items: flex-start;
-    gap: 13px;
-    padding: 20px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--white);
-    transition:
-        border-color var(--transition),
-        box-shadow var(--transition);
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  min-height: 125px;
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color var(--transition);
 }
 
 .feature:hover {
-    border-color: #bfdbfe;
-    box-shadow: var(--shadow-sm);
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.featureWide {
+  grid-column: 1 / -1;
 }
 
 .icon {
-    width: 42px;
-    height: 42px;
-    flex: 0 0 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 11px;
-    color: var(--primary);
-    background: var(--primary-light);
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  background: var(--bg-badge);
+  border: 1px solid var(--border-accent);
+  border-radius: 11px;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.feature:hover .icon {
+  color: var(--text-on-accent);
+  background: var(--color-primary);
+}
+
+.featureContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.featureTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .feature h3 {
-    color: var(--text-primary);
-    font-size: 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 800;
+  transition: color var(--transition);
+}
+
+.featureTop > span {
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 .feature p {
-    margin-top: 5px;
-    color: var(--text-secondary);
-    font-size: 12px;
-    line-height: 1.8;
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 1.8;
+  transition: color var(--transition);
 }
 
-@media (max-width: 950px) {
-    .container {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
+/* ========================= RESPONSIVE ========================= */
+@media (max-width: 1050px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
 
-    .intro {
-        max-width: 650px;
-    }
+  .visual {
+    min-height: 470px;
+    padding: 30px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .featureWide {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .why {
+    padding: 80px 0;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .visual {
+    min-height: 430px;
+    max-width: 650px;
+  }
+
+  .content {
+    max-width: 650px;
+  }
 }
 
 @media (max-width: 600px) {
-    .why {
-        padding: 65px 0;
-    }
+  .why {
+    padding: 70px 0;
+  }
 
-    .features {
-        grid-template-columns: 1fr;
-    }
+  .visual {
+    min-height: 410px;
+    padding: 25px;
+    border-radius: 19px;
+  }
 
-    .feature {
-        padding: 17px;
-    }
+  .visualContent h2 {
+    font-size: 34px;
+  }
+
+  .visualContent p {
+    font-size: 12px;
+  }
+
+  .visualStats {
+    margin-top: 25px;
+  }
+
+  .visualStats div {
+    padding: 11px 8px;
+  }
+
+  .visualStats strong {
+    font-size: 16px;
+  }
+
+  .visualStats span {
+    font-size: 8px;
+  }
+
+  .signalCard {
+    top: 20px;
+    left: 18px;
+    padding: 9px 11px;
+  }
+
+  .signalIcon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .heading {
+    margin-bottom: 28px;
+  }
+
+  .heading h2 {
+    font-size: 31px;
+  }
+
+  .heading p {
+    font-size: 13px;
+  }
+
+  .feature {
+    min-height: auto;
+    padding: 16px;
+  }
 }
 
+@media (max-width: 400px) {
+  .visual {
+    min-height: 390px;
+    padding: 21px;
+  }
+
+  .visualContent h2 {
+    font-size: 30px;
+  }
+
+  .visualStats {
+    gap: 5px;
+  }
+
+  .visualStats strong {
+    font-size: 14px;
+  }
+
+  .feature {
+    gap: 10px;
+  }
+
+  .icon {
+    width: 39px;
+    height: 39px;
+    flex-basis: 39px;
+  }
+}

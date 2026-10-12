@@ -1,80 +1,160 @@
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, Moon, Sun, UserRound, X } from "lucide-react";
+import { useTheme } from "../../../context/ThemeContext";
+import logoLight from "../../../assets/logo-light.png";
+import logoDark from "../../../assets/logo-dark.png";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme, isDark } = useTheme();
 
-  const handleServiceClick = (path) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     setMenuOpen(false);
-    navigate(path);
+  }, [location.pathname]);
+
+  const scrollToSection = (id) => {
+    setMenuOpen(false);
+
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+      return;
+    }
+
+    if (id === "home") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
+  const handleLogin = () => {
+    setMenuOpen(false);
+    navigate("/choose-user");
+  };
+
+  const logoSrc = isDark ? logoDark : logoLight;
+
   return (
-    <header className={styles.navbar}>
-      <div className={`container ${styles.container}`}>
-        <Link to="/" className={styles.logo} onClick={() => setMenuOpen(false)}>
-          <img src="/src/assets/logo.png" alt="الجوكر" />
-        </Link>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+      <div className={styles.container}>
+        <button
+          type="button"
+          className={styles.brand}
+          onClick={() => scrollToSection("home")}
+          aria-label="الجوكر - الرئيسية"
+        >
+          <img
+            src={logoSrc}
+            alt="الجوكر"
+            className={styles.logo}
+          />
+        </button>
 
-        <nav className={styles.desktopNav}>
-          <a href="#home">الرئيسية</a>
-          <a href="#services">خدماتنا</a>
-          <a href="#packages">الباقات</a>
-          <a href="#why-joker">لماذا الجوكر؟</a>
-        </nav>
-
-        <div className={styles.actions}>
+        <nav className={`${styles.navLinks} ${menuOpen ? styles.navOpen : ""}`}>
           <button
             type="button"
-            className={styles.loginButton}
-            onClick={() => navigate("/choose-user")}
+            className={styles.navLink}
+            onClick={() => scrollToSection("home")}
           >
-            تسجيل الدخول
+            الرئيسية
           </button>
 
           <button
             type="button"
-            className={styles.menuButton}
+            className={styles.navLink}
+            onClick={() => scrollToSection("services")}
+          >
+            خدماتنا
+          </button>
+
+          <button
+            type="button"
+            className={styles.navLink}
+            onClick={() => scrollToSection("packages")}
+          >
+            الباقات والإنترنت
+          </button>
+
+          <button
+            type="button"
+            className={styles.navLink}
+            onClick={() => scrollToSection("why-joker")}
+          >
+            ليه الجوكر؟
+          </button>
+
+          <button
+            type="button"
+            className={styles.navLink}
+            onClick={() => scrollToSection("contact")}
+          >
+            تواصل معنا
+          </button>
+        </nav>
+
+        {/* Actions */}
+        <div className={styles.actions}>
+          <button
+            type="button"
+            className={styles.themeToggle}
+            onClick={toggleTheme}
+            aria-label={isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
+            title={isDark ? "الوضع الفاتح" : "الوضع الداكن"}
+          >
+            {isDark ? (
+              <Sun size={19} className={styles.themeIcon} strokeWidth={2} />
+            ) : (
+              <Moon size={19} className={styles.themeIcon} strokeWidth={2} />
+            )}
+          </button>
+
+          <button
+            type="button"
+            className={styles.loginBtn}
+            onClick={handleLogin}
+          >
+            <UserRound size={17} strokeWidth={2} />
+            <span>تسجيل الدخول</span>
+          </button>
+
+          <button
+            type="button"
+            className={styles.hamburger}
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"}
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
-
-      {menuOpen && (
-        <div className={styles.mobileMenu}>
-          <nav>
-            <a href="#home" onClick={() => setMenuOpen(false)}>
-              الرئيسية
-            </a>
-
-            <a href="#services" onClick={() => setMenuOpen(false)}>
-              خدماتنا
-            </a>
-
-            <a href="#packages" onClick={() => setMenuOpen(false)}>
-              الباقات
-            </a>
-
-            <a href="#why-joker" onClick={() => setMenuOpen(false)}>
-              لماذا الجوكر؟
-            </a>
-          </nav>
-
-          <button
-            type="button"
-            className={styles.mobileLogin}
-            onClick={() => handleServiceClick("/choose-user")}
-          >
-            تسجيل الدخول
-          </button>
-        </div>
-      )}
     </header>
   );
 };

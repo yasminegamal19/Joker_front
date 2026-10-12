@@ -1,356 +1,403 @@
 .app {
-    min-height: 100vh;
-    background: var(--background);
+  min-height: 100vh;
+  background: var(--bg-primary);
+  direction: rtl;
+  font-family: var(--font-family);
+  transition: background-color var(--transition);
 }
 
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    height: 76px;
-    background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid var(--border-light);
-    backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 76px;
+  background: var(--bg-glass);
+  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
 }
 
 .headerInner {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
 }
 
 .logo {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 7px;
-    border-radius: 13px;
-    background: var(--primary-light);
-    transition: transform var(--transition);
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 13px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
 }
 
 .logo:hover {
-    transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .desktopNav {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-inline: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-inline: auto;
 }
 
 .navLink {
-    position: relative;
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 0 14px;
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 600;
-    transition: color var(--transition);
+  position: relative;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color var(--transition);
 }
 
 .navLink:hover {
-    color: var(--primary);
+  color: var(--color-primary);
 }
 
 .navLink.active {
-    color: var(--primary);
+  color: var(--color-primary);
 }
 
 .navLink.active::after {
-    content: "";
-    position: absolute;
-    right: 14px;
-    left: 14px;
-    bottom: -1px;
-    height: 2px;
-    border-radius: 4px 4px 0 0;
-    background: var(--primary);
+  content: "";
+  position: absolute;
+  right: 14px;
+  left: 14px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 4px 4px 0 0;
+  background: var(--color-primary);
 }
 
 .headerActions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.themeToggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 11px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    border-color var(--transition),
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.themeToggle:hover {
+  color: var(--color-primary);
+  border-color: var(--border-accent);
+  background: var(--bg-hover);
+  transform: translateY(-1px);
 }
 
 .notificationButton {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
-    border-radius: 11px;
-    color: var(--text-secondary);
-    background: var(--white);
-    transition:
-        color var(--transition),
-        border-color var(--transition),
-        background-color var(--transition);
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  transition:
+    color var(--transition),
+    border-color var(--transition),
+    background-color var(--transition);
 }
 
 .notificationButton:hover {
-    color: var(--primary);
-    border-color: #bfdbfe;
-    background: var(--primary-light);
+  color: var(--color-primary);
+  border-color: var(--border-accent);
+  background: var(--bg-hover);
 }
 
 .notificationDot {
-    position: absolute;
-    top: 8px;
-    right: 9px;
-    width: 6px;
-    height: 6px;
-    border: 1.5px solid var(--white);
-    border-radius: 50%;
-    background: var(--danger);
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid var(--bg-card);
+  border-radius: 50%;
+  background: var(--color-danger);
 }
 
 .profileButton {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 4px 6px 4px 10px;
-    border-radius: 12px;
-    transition: background-color var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 6px 4px 10px;
+  border-radius: 12px;
+  transition: background-color var(--transition);
 }
 
 .profileButton:hover {
-    background: var(--background);
+  background: var(--bg-hover);
 }
 
 .avatar,
 .mobileAvatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  background: var(--bg-badge);
 }
 
 .avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
 }
 
 .profileText {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.3;
 }
 
 .profileText strong {
-    color: var(--text-primary);
-    font-size: 13px;
-    font-weight: 650;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 650;
+  transition: color var(--transition);
 }
 
 .profileText small {
-    color: var(--text-muted);
-    font-size: 11px;
+  color: var(--text-muted);
+  font-size: 11px;
 }
 
 .menuButton {
-    display: none;
-    width: 40px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
-    border-radius: 11px;
-    color: var(--text-primary);
-    background: var(--white);
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 11px;
+  color: var(--text-primary);
+  background: var(--bg-card);
 }
 
 .main {
-    min-height: calc(100vh - 76px);
+  min-height: calc(100vh - 76px);
 }
 
 .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 150;
-    background: rgba(15, 23, 42, 0.35);
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: var(--bg-overlay);
 }
 
 .mobileMenu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 200;
-    width: min(86vw, 340px);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--white);
-    box-shadow: -12px 0 35px rgba(15, 23, 42, 0.12);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+  width: min(86vw, 340px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-lg);
+  border-inline-start: 1px solid var(--border-color);
 }
 
 .mobileMenuHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 18px;
-    border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 18px;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .mobileUser {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .mobileAvatar {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 12px;
 }
 
 .mobileUser div {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
 }
 
 .mobileUser strong {
-    color: var(--text-primary);
-    font-size: 14px;
+  color: var(--text-primary);
+  font-size: 14px;
 }
 
 .mobileUser span {
-    color: var(--text-muted);
-    font-size: 12px;
+  color: var(--text-muted);
+  font-size: 12px;
 }
 
 .closeButton {
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text-secondary);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  background: var(--bg-card);
 }
 
 .mobileNav {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 18px 14px;
 }
 
 .mobileNavLink {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-height: 48px;
-    padding: 0 12px;
-    border-radius: 11px;
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 600;
-    transition:
-        color var(--transition),
-        background-color var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 11px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    color var(--transition),
+    background-color var(--transition);
 }
 
 .mobileNavLink:hover,
 .mobileActive {
-    color: var(--primary);
-    background: var(--primary-light);
+  color: var(--color-primary);
+  background: var(--bg-hover);
 }
 
 .mobileNavIcon {
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9px;
-    background: rgba(37, 99, 235, 0.08);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--bg-badge);
 }
 
 .mobileMenuFooter {
-    margin-top: auto;
-    padding: 16px 14px;
-    border-top: 1px solid var(--border-light);
+  margin-top: auto;
+  padding: 16px 14px;
+  border-top: 1px solid var(--border-light);
 }
 
 .logoutButton {
-    width: 100%;
-    min-height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border: 1px solid #fecaca;
-    border-radius: 10px;
-    color: var(--danger);
-    background: var(--danger-light);
-    font-size: 14px;
-    font-weight: 600;
+  width: 100%;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-danger);
+  border-radius: 10px;
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+.logoutButton:hover {
+  background: var(--color-danger);
+  color: var(--text-on-accent);
 }
 
 @media (max-width: 900px) {
+  .desktopNav,
+  .profileButton {
+    display: none;
+  }
 
-    .desktopNav,
-    .profileButton {
-        display: none;
-    }
+  .menuButton {
+    display: flex;
+  }
 
-    .menuButton {
-        display: flex;
-    }
+  .headerInner {
+    gap: 12px;
+  }
 
-    .headerInner {
-        gap: 12px;
-    }
-
-    .headerActions {
-        margin-inline-start: auto;
-    }
+  .headerActions {
+    margin-inline-start: auto;
+  }
 }
 
 @media (max-width: 480px) {
-    .header {
-        height: 68px;
-    }
+  .header {
+    height: 68px;
+  }
 
-    .logo {
-        width: 43px;
-        height: 43px;
-        border-radius: 11px;
-    }
+  .logo {
+    width: 43px;
+    height: 43px;
+    border-radius: 11px;
+  }
 
-    .notificationButton,
-    .menuButton {
-        width: 38px;
-        height: 38px;
-    }
+  .notificationButton,
+  .menuButton,
+  .themeToggle {
+    width: 38px;
+    height: 38px;
+  }
 
-    .main {
-        min-height: calc(100vh - 68px);
-    }
+  .main {
+    min-height: calc(100vh - 68px);
+  }
 }

@@ -1,174 +1,213 @@
 .authPage {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    background: var(--white);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  background: var(--bg-primary);
+  direction: rtl;
+  font-family: var(--font-family);
+  transition: background-color var(--transition);
 }
 
 .brandSide {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    overflow: hidden;
-    padding: 60px;
-    color: var(--white);
-    background: linear-gradient(145deg,
-            var(--primary),
-            var(--primary-dark));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 60px;
+  color: var(--text-on-accent);
+  background: var(--gradient-brand);
 }
 
 .brandContent {
-    position: relative;
-    z-index: 2;
-    width: min(100%, 500px);
+  position: relative;
+  z-index: 2;
+  width: min(100%, 500px);
 }
 
 .brandLogo {
-    width: 78px;
-    height: 78px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 28px;
-    padding: 12px;
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
+  width: 78px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  padding: 12px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
 }
 
 .brandLogo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .brandBadge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 18px;
-    padding: 7px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 999px;
-    color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.1);
-    font-size: 13px;
-    font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 18px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  color: var(--text-on-accent);
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .brandContent h1 {
-    margin-bottom: 16px;
-    font-size: clamp(32px, 3.2vw, 48px);
-    line-height: 1.25;
-    font-weight: 750;
-    letter-spacing: -1px;
+  margin-bottom: 16px;
+  color: var(--text-on-accent);
+  font-size: clamp(32px, 3.2vw, 48px);
+  line-height: 1.25;
+  font-weight: 750;
+  letter-spacing: -1px;
 }
 
 .brandContent p {
-    max-width: 470px;
-    color: rgba(255, 255, 255, 0.78);
-    font-size: 16px;
-    line-height: 1.9;
+  max-width: 470px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  line-height: 1.9;
 }
 
 .circleOne,
 .circleTwo {
-    position: absolute;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .circleOne {
-    width: 440px;
-    height: 440px;
-    right: -220px;
-    bottom: -180px;
+  width: 440px;
+  height: 440px;
+  right: -220px;
+  bottom: -180px;
 }
 
 .circleTwo {
-    width: 300px;
-    height: 300px;
-    left: -170px;
-    top: -130px;
+  width: 300px;
+  height: 300px;
+  left: -170px;
+  top: -130px;
 }
 
 .formSide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 0;
-    padding: 48px;
-    background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 48px;
+  background: var(--bg-card);
+  transition: background-color var(--transition);
 }
 
 .content {
-    width: min(100%, 500px);
+  width: min(100%, 500px);
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 34px;
 }
 
 .backButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 34px;
-    color: var(--text-secondary);
-    font-size: 14px;
-    transition: color var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--transition);
 }
 
 .backButton:hover {
-    color: var(--primary);
+  color: var(--color-primary);
+}
+
+.themeToggle {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.themeToggle:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-accent);
+  color: var(--color-primary);
+  transform: translateY(-1px);
 }
 
 .mobileLogo {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 900px) {
-    .authPage {
-        display: block;
-    }
+  .authPage {
+    display: block;
+  }
 
-    .brandSide {
-        display: none;
-    }
+  .brandSide {
+    display: none;
+  }
 
-    .formSide {
-        min-height: 100vh;
-        padding: 32px 24px;
-    }
+  .formSide {
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
 
-    .mobileLogo {
-        width: 58px;
-        height: 58px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 30px;
-        padding: 9px;
-        border-radius: 16px;
-        background: var(--primary-light);
-    }
+  .mobileLogo {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    padding: 9px;
+    border-radius: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+  }
 
-    .mobileLogo img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
+  .mobileLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
-    .backButton {
-        margin-bottom: 28px;
-    }
+  .topBar {
+    margin-bottom: 28px;
+  }
 }
 
 @media (max-width: 480px) {
-    .formSide {
-        padding: 24px 16px;
-    }
+  .formSide {
+    padding: 24px 16px;
+  }
 
-    .content {
-        width: 100%;
-    }
+  .content {
+    width: 100%;
+  }
 }

@@ -1,21 +1,29 @@
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   Bell,
   Home,
   LogOut,
   Menu,
+  Moon,
+  Package,
+  Sun,
   UserRound,
   Wallet,
+  Wrench,
   X,
-  Tag,
 } from "lucide-react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
-
+import { useTheme } from "../../context/ThemeContext";
+import logoLight from "../../assets/logo-light.png";
+import logoDark from "../../assets/logo-dark.png";
 import styles from "./AppLayout.module.css";
 
 const AppLayout = ({ children }) => {
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { theme, toggleTheme, isDark } = useTheme();
+
+  const logoSrc = isDark ? logoDark : logoLight;
 
   const navItems = [
     {
@@ -24,19 +32,19 @@ const AppLayout = ({ children }) => {
       icon: Home,
     },
     {
-      label: "محفظتي",
+      label: "باقتي",
+      path: "/customer/package",
+      icon: Package,
+    },
+    {
+      label: "المحفظة",
       path: "/customer/wallet",
       icon: Wallet,
     },
     {
-      label: "العروض",
-      path: "/customer/offers",
-      icon: Tag,
-    },
-    {
-      label: "الإشعارات",
-      path: "/customer/notifications",
-      icon: Bell,
+      label: "الصيانة",
+      path: "/customer/maintenance",
+      icon: Wrench,
     },
     {
       label: "البروفايل",
@@ -60,7 +68,7 @@ const AppLayout = ({ children }) => {
             onClick={() => handleNavigate("/customer/home")}
             aria-label="جوكر"
           >
-            <img src="/src/assets/logo.png" alt="جوكر" />
+            <img src={logoSrc} alt="جوكر" />
           </button>
 
           <nav className={styles.desktopNav}>
@@ -83,6 +91,16 @@ const AppLayout = ({ children }) => {
           </nav>
 
           <div className={styles.headerActions}>
+            <button
+              type="button"
+              className={styles.themeToggle}
+              onClick={toggleTheme}
+              aria-label={isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
+              title={isDark ? "الوضع الفاتح" : "الوضع الداكن"}
+            >
+              {isDark ? <Sun size={19} /> : <Moon size={19} />}
+            </button>
+
             <button
               type="button"
               className={styles.notificationButton}
@@ -140,14 +158,26 @@ const AppLayout = ({ children }) => {
                 </div>
               </div>
 
-              <button
-                type="button"
-                className={styles.closeButton}
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="إغلاق القائمة"
-              >
-                <X size={20} />
-              </button>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <button
+                  type="button"
+                  className={styles.themeToggle}
+                  onClick={toggleTheme}
+                  aria-label={isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
+                  title={isDark ? "الوضع الفاتح" : "الوضع الداكن"}
+                >
+                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+
+                <button
+                  type="button"
+                  className={styles.closeButton}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="إغلاق القائمة"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
             <nav className={styles.mobileNav}>

@@ -1,0 +1,299 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  min-height: 250px;
+  background: var(--gradient-brand);
+  color: var(--text-on-accent);
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: -140px;
+  right: 15%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(10px);
+}
+
+.container {
+  position: relative;
+  min-height: 250px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 50px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.badge {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge svg {
+  color: #dbeafe;
+}
+
+.content h2 {
+  max-width: 620px;
+  margin-top: 14px;
+  color: var(--text-on-accent);
+  font-size: clamp(27px, 3vw, 42px);
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+.content p {
+  max-width: 550px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.button {
+  width: fit-content;
+  min-height: 42px;
+  margin-top: 18px;
+  padding: 0 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 10px;
+  color: var(--color-primary);
+  background: var(--text-on-accent);
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  color: var(--color-primary-dark);
+  background: var(--color-surface-light);
+  box-shadow: var(--shadow-md);
+}
+
+.visual {
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual::before,
+.visual::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.visual::before {
+  width: 240px;
+  height: 240px;
+}
+
+.visual::after {
+  width: 175px;
+  height: 175px;
+}
+
+.image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 390px;
+  max-height: 210px;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+.visualPlaceholder {
+  position: relative;
+  z-index: 2;
+  width: 205px;
+  height: 145px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.visualPlaceholder strong {
+  margin-top: 10px;
+  font-size: 25px;
+  letter-spacing: 4px;
+}
+
+.visualPlaceholder small {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+}
+
+.signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 28px;
+}
+
+.signal span {
+  width: 6px;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.signal span:nth-child(1) {
+  height: 9px;
+  opacity: 0.5;
+}
+
+.signal span:nth-child(2) {
+  height: 17px;
+  opacity: 0.75;
+}
+
+.signal span:nth-child(3) {
+  height: 27px;
+}
+
+.controls {
+  position: absolute;
+  left: 0;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls > button {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.2s ease;
+}
+
+.controls > button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dots button {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  transition:
+    width 0.2s ease,
+    background 0.2s ease;
+}
+
+.dots button.activeDot {
+  width: 20px;
+  background: #ffffff;
+}
+
+@media (max-width: 800px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-top: 30px;
+    padding-bottom: 65px;
+  }
+
+  .content {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .badge {
+    margin-inline: auto;
+  }
+
+  .content p {
+    margin-inline: auto;
+  }
+
+  .button {
+    margin-inline: auto;
+  }
+
+  .visual {
+    min-height: 150px;
+  }
+
+  .controls {
+    right: 0;
+    left: auto;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .banner {
+    min-height: 420px;
+  }
+
+  .content h2 {
+    font-size: 28px;
+  }
+
+  .content p {
+    font-size: 14px;
+  }
+
+  .visual {
+    min-height: 140px;
+  }
+
+  .visualPlaceholder {
+    width: 180px;
+    height: 125px;
+  }
+}
