@@ -275,6 +275,23 @@
   .actions {
     gap: 8px;
   }
+    .container {
+      gap: 6px;
+    }
+  
+    .actions {
+      flex-shrink: 0;
+    }
+  
+    .brand {
+      min-width: 0;
+      padding: 2px;
+    }
+  
+    .logo {
+      width: 35px;
+      height: 35px;
+    }
 }
 
 /* Mobile navigation */
@@ -313,9 +330,14 @@
     height: 40px;
   }
 
-  .loginBtn {
-    display: none;
-  }
+ .loginBtn {
+   display: inline-flex;
+   min-height: 36px;
+   padding: 0 9px;
+   gap: 5px;
+   font-size: 10px;
+   white-space: normal;
+ }
 
   .hamburger {
     display: inline-flex;
@@ -380,6 +402,36 @@
   .navLink::after {
     display: none;
   }
+    .desktopAction {
+      display: none;
+    }
+  
+    .mobileAction {
+      display: flex;
+      width: 100%;
+      min-height: 46px;
+      height: auto;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 0 14px;
+      color: var(--text-primary);
+      background: transparent;
+      border: 0;
+      border-radius: var(--radius-md);
+      box-shadow: none;
+      font-size: 14px;
+      font-weight: 650;
+      white-space: normal;
+      text-align: right;
+    }
+  
+    .mobileAction:hover {
+      color: var(--color-primary);
+      background: var(--bg-hover);
+      box-shadow: none;
+      transform: none;
+      filter: none;
+    }
 }
 
 /* Small mobile */
@@ -427,4 +479,31 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+
+/* Actions visibility */
+.mobileAction {
+  display: none;
+}
+
+.desktopAction {
+  display: inline-flex;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+/* Prevent horizontal overflow */
+.header,
+.container,
+.actions {
+  min-width: 0;
+}
+
+.container {
+  box-sizing: border-box;
+}
+
+.logo {
+  max-width: 100%;
 }

@@ -137,7 +137,7 @@ const Navbar = () => {
 
           <button
             type="button"
-            className={styles.loginBtn}
+            className={`${styles.loginBtn} ${styles.desktopAction}`}
             onClick={handleLogin}
           >
             <UserRound size={17} strokeWidth={2} />
@@ -146,13 +146,12 @@ const Navbar = () => {
 
           <button
             type="button"
-            className={styles.loginBtn}
+            className={`${styles.loginBtn} ${styles.desktopAction}`}
             onClick={handleJoin}
           >
             <UserRound size={17} strokeWidth={2} />
-            <span> أنضم لعملاء JOKER NET</span>
+            <span>انضم لعملاء JOKER NET</span>
           </button>
-
           <button
             type="button"
             className={styles.hamburger}
