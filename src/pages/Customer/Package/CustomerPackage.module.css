@@ -820,3 +820,21 @@
     flex: 1;
   }
 }
+
+.spin {
+  display: block;
+  margin: 0 auto 12px;
+  animation: package-spin 1s linear infinite;
+}
+
+@keyframes package-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+}

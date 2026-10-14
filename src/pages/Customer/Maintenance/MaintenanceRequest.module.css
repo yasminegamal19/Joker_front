@@ -628,3 +628,233 @@
     }
 }
 
+
+.descriptionField {
+    position: relative;
+    margin-top: 16px;
+}
+
+.fieldLabel {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.descriptionInput {
+    display: block;
+    width: 100%;
+    min-height: 110px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    outline: none;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.8;
+    resize: vertical;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.descriptionInput::placeholder {
+    color: var(--text-muted);
+}
+
+.descriptionInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.descriptionCounter {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 11px;
+    text-align: left;
+    direction: ltr;
+}
+
+.submitError {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 12px;
+    margin-top: 18px;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-md);
+    color: #b91c1c;
+    background: #fef2f2;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.submitError svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.submitButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.submitButton:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+    .descriptionInput {
+        min-height: 100px;
+    }
+}
+
+.latestRequestCard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.latestRequestIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.latestRequestInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.latestRequestEyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.latestRequestInfo h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.latestRequestInfo p {
+    margin: 6px 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.latestRequestStatus {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 9px;
+    border-radius: 7px;
+    color: var(--primary);
+    background: var(--primary-light);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.latestRequestButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    flex-shrink: 0;
+    min-height: 42px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    background: var(--gradient-brand);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.latestRequestButton:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.latestRequestLoading,
+.latestRequestNotice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.latestRequestNotice {
+    flex-wrap: wrap;
+    color: #b91c1c;
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
+.latestRequestNotice span {
+    flex: 1;
+}
+
+.latestRequestNotice button {
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .latestRequestCard {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .latestRequestIcon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .latestRequestInfo {
+        width: calc(100% - 58px);
+        flex: initial;
+    }
+
+    .latestRequestButton {
+        width: 100%;
+    }
+}

@@ -62,7 +62,6 @@ const NAV_GROUPS = [
         label: "المحفظة",
         path: "/customer/wallet",
         icon: Wallet,
-        flag: "wallet_enabled",
         tab: true,
       },
       { label: "العروض", path: "/customer/offers", icon: Gift },

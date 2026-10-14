@@ -443,3 +443,264 @@
         background: var(--primary-light);
     }
 }
+ .errorMessage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 16px 0;
+    padding: 14px 16px;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.errorMessage p {
+    margin: 0;
+}
+
+.errorMessage button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 36px 16px;
+    color: #64748b;
+    text-align: center;
+}
+
+.emptyState strong {
+    color: #334155;
+}
+
+.spin {
+    animation: walletSpin 1s linear infinite;
+}
+
+@keyframes walletSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Top-up form */
+.topUpCard {
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+}
+
+.topUpHeading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.topUpHeading h2 {
+    margin-bottom: 4px;
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.topUpHeading p {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.topUpForm label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.topUpControls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topUpControls input {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    color: var(--text-primary);
+    background: var(--white);
+    font: inherit;
+    font-size: 14px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.topUpControls input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.topUpControls .primaryButton {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.paymentHint {
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.inlineError {
+    margin-top: 10px;
+    color: var(--danger);
+    font-size: 13px;
+}
+
+/* Payments and invoices */
+.financialRecord {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 78px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.recordIcon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: var(--color-info);
+    background: var(--primary-light);
+}
+
+.recordInfo {
+    min-width: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.recordInfo strong {
+    overflow-wrap: anywhere;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.recordInfo span {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.recordEnd {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.recordEnd>strong {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.statusSuccess {
+    color: var(--success);
+    background: var(--success-light);
+}
+
+.statusPending {
+    color: #a16207;
+    background: #fef9c3;
+}
+
+.statusFailed {
+    color: var(--danger);
+    background: var(--danger-light);
+}
+
+.primaryButton:disabled,
+.balanceAction:disabled,
+.filterButton:disabled,
+.viewAllButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .topUpCard {
+        padding: 17px;
+    }
+
+    .topUpControls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .topUpControls .primaryButton {
+        width: 100%;
+    }
+
+    .financialRecord {
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .recordIcon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .recordInfo strong,
+    .recordEnd>strong {
+        font-size: 12px;
+    }
+
+    .recordInfo span {
+        font-size: 11px;
+    }
+
+    .statusBadge {
+        font-size: 10px;
+    }
+}
+
