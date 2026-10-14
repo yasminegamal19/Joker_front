@@ -1,0 +1,590 @@
+/* صفحات: تغيير الباقة + تجديد الباقة (نفس نمط CustomerPackage داخل AppLayout) */
+
+.page {
+    min-height: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+/* ===== Header ===== */
+
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding: 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.backButton:hover {
+    color: var(--color-info, var(--accent));
+}
+
+.header {
+    margin-bottom: 22px;
+}
+
+.eyebrow {
+    display: block;
+    color: var(--color-info, var(--accent));
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.header h1 {
+    margin-top: 4px;
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.header p {
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+/* ===== Grid ===== */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+/* ===== Card ===== */
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+}
+
+.cardCurrent {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+}
+
+.cardLarge {
+    padding: 26px;
+}
+
+.currentBadge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 26px;
+    padding: 0 10px;
+    color: var(--color-success);
+    background: var(--color-success-bg);
+    border-radius: 20px;
+    font-size: 10.5px;
+    font-weight: 800;
+}
+
+.currentBadge span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-success);
+}
+
+.cardHeader {
+    padding-bottom: 16px;
+}
+
+.cardIconRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+}
+
+.cardIcon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-info, var(--accent));
+    background: var(--accent-light);
+    border-radius: 12px;
+}
+
+.cardDays {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.cardHeader h3 {
+    margin-top: 16px;
+    color: var(--text-primary);
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.cardHeader p {
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* ===== Stats ===== */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.stat {
+    padding: 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+}
+
+.stat span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 10.5px;
+}
+
+.stat strong {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-primary);
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.stat small {
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* ===== Price ===== */
+
+.priceRow {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 18px;
+}
+
+.priceRow strong {
+    color: var(--color-info, var(--accent));
+    font-size: 30px;
+    font-weight: 850;
+    line-height: 1;
+}
+
+.priceRow span {
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.priceRow small {
+    margin-right: 4px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+/* ===== Features ===== */
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+}
+
+.features li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+
+.check {
+    width: 19px;
+    height: 19px;
+    flex: 0 0 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
+    background: var(--color-success-bg);
+    border-radius: 50%;
+}
+
+/* ===== Buttons ===== */
+
+.btnPrimary,
+.btnOutline {
+    width: 100%;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-md);
+    font-size: 12.5px;
+    font-weight: 750;
+    transition:
+        background-color var(--transition),
+        color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+/* مسافة مرنة قبل الزرار عشان يثبت في آخر الكارت */
+.spacer {
+    flex: 1;
+    min-height: 20px;
+}
+
+.btnPrimary {
+    color: var(--text-on-accent);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.btnPrimary:hover {
+    background: var(--accent-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.btnOutline {
+    color: var(--color-info, var(--accent));
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
+}
+
+.btnOutline:hover:not(:disabled) {
+    color: var(--text-on-accent);
+    background: var(--accent);
+}
+
+.btnOutline:disabled {
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    cursor: default;
+}
+
+/* ===== States ===== */
+
+.state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-lg);
+    font-size: 13px;
+}
+
+.retry {
+    min-height: 38px;
+    padding: 0 18px;
+    color: var(--color-info, var(--accent));
+    background: var(--accent-light);
+    border-radius: var(--radius-md);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.retry:hover {
+    color: var(--text-on-accent);
+    background: var(--accent);
+}
+
+/* ===== Renew page ===== */
+
+.renewLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 420px) 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.renewSide {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.infoRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.infoIcon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-info, var(--accent));
+    background: var(--accent-light);
+    border-radius: 10px;
+}
+
+.infoRow div span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11.5px;
+}
+
+.infoRow div strong {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.notice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    color: var(--text-secondary);
+    background: var(--color-warning-bg);
+    border-radius: var(--radius-md);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.notice button {
+    color: var(--color-info, var(--accent));
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.linkButton {
+    min-height: 42px;
+    color: var(--color-info, var(--accent));
+    background: var(--accent-light);
+    border-radius: var(--radius-md);
+    font-size: 12px;
+    font-weight: 700;
+    transition: background-color var(--transition);
+}
+
+.linkButton:hover {
+    background: var(--bg-active);
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1000px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .renewLayout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .header h1 {
+        font-size: 23px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .card,
+    .cardLarge {
+        padding: 18px;
+        border-radius: 18px;
+    }
+}
+
+/* ===== Additional packages ===== */
+
+.addCard {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.addCard:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+}
+
+.addIcon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: var(--color-info, var(--accent));
+    background: var(--accent-light);
+    border-radius: 12px;
+}
+
+.addCard h3 {
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.addCard p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.addQuota {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 16px;
+}
+
+.addQuota strong {
+    color: var(--color-info, var(--accent));
+    font-size: 30px;
+    line-height: 1;
+}
+
+.addQuota span {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.addFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+}
+
+.addPrice {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.addPrice strong {
+    color: var(--text-primary);
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.addPrice span {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.addButton {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 14px;
+    color: var(--text-on-accent);
+    background: var(--accent);
+    border-radius: var(--radius-md);
+    font-size: 12.5px;
+    font-weight: 700;
+    transition:
+        background-color var(--transition),
+        transform var(--transition);
+}
+
+.addButton:hover {
+    background: var(--accent-hover);
+}
+
+.addButton:active {
+    transform: translateY(1px);
+}
+
+@media (max-width: 650px) {
+    .addFooter {
+        align-items: stretch;
+    }
+
+    .addButton {
+        flex: 1;
+    }
+}

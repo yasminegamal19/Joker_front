@@ -1,10 +1,12 @@
 .page {
-    min-height: calc(100vh - 72px);
-    padding: 36px 0 56px;
+    min-height: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 1000px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
 }
 
 .header {
@@ -19,7 +21,7 @@
 .sectionEyebrow {
     display: block;
     margin-bottom: 5px;
-    color: var(--primary);
+    color: var(--color-info);
     font-size: 13px;
     font-weight: 700;
 }
@@ -49,7 +51,7 @@
     min-height: 25px;
     padding: 0 9px;
     border-radius: 20px;
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
     font-size: 12px;
     font-weight: 700;
@@ -64,7 +66,7 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     color: var(--text-secondary);
-    background: var(--white);
+    background: var(--bg-card);
     font-size: 13px;
     font-weight: 600;
     transition: all var(--transition);
@@ -72,7 +74,7 @@
 
 .markAllButton:hover {
     border-color: var(--primary);
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -84,7 +86,7 @@
     margin-bottom: 20px;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: var(--white);
+    background: var(--bg-card);
     box-shadow: var(--shadow-sm);
 }
 
@@ -96,7 +98,7 @@
     width: 42px;
     height: 42px;
     border-radius: 11px;
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -143,7 +145,7 @@
     margin-bottom: 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: var(--white);
+    background: var(--bg-card);
 }
 
 .filters button {
@@ -160,11 +162,11 @@
 }
 
 .filters button:hover {
-    color: var(--primary);
+    color: var(--color-info);
 }
 
 .filters .filterActive {
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -176,9 +178,9 @@
     height: 18px;
     padding: 0 4px;
     border-radius: 10px;
-    color: var(--primary);
-    background: var(--white);
-    font-size: 10px;
+    color: var(--color-info);
+    background: var(--bg-card);
+    font-size: 12px;
 }
 
 
@@ -194,19 +196,19 @@
     padding: 17px;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: var(--white);
+    background: var(--bg-card);
     box-shadow: var(--shadow-sm);
     transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .notificationCard:hover {
-    border-color: #cbd5e1;
+    border-color: var(--border-color);
     box-shadow: var(--shadow-md);
 }
 
 .notificationCard.unread {
-    border-color: #dbeafe;
-    background: #fbfdff;
+    border-color: var(--border-accent);
+    background: var(--bg-card-subtle);
 }
 
 .notificationIcon {
@@ -220,28 +222,28 @@
 }
 
 .maintenance {
-    color: #2563eb;
-    background: #eff6ff;
+    color: var(--color-info);
+    background: var(--color-info-bg);
 }
 
 .payment {
-    color: #16a34a;
-    background: #f0fdf4;
+    color: var(--color-success);
+    background: var(--color-success-bg);
 }
 
 .offer {
-    color: #d97706;
-    background: #fffbeb;
+    color: var(--color-warning);
+    background: var(--color-warning-bg);
 }
 
 .package {
-    color: #7c3aed;
-    background: #f5f3ff;
+    color: var(--secondary);
+    background: var(--secondary-light);
 }
 
 .service {
-    color: #475569;
-    background: #f1f5f9;
+    color: var(--text-secondary);
+    background: var(--bg-hover);
 }
 
 .notificationContent {
@@ -275,9 +277,9 @@
     min-height: 20px;
     padding: 0 7px;
     border-radius: 10px;
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
 }
 
@@ -287,7 +289,7 @@
     gap: 5px;
     flex-shrink: 0;
     color: var(--text-muted);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .notificationContent>p {
@@ -306,9 +308,9 @@
     max-width: 500px;
     padding: 10px 11px;
     margin-top: 12px;
-    border: 1px solid #dbeafe;
+    border: 1px solid var(--border-accent);
     border-radius: 9px;
-    background: #f8fbff;
+    background: var(--bg-card-subtle);
 }
 
 .appointmentIcon {
@@ -319,7 +321,7 @@
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -331,7 +333,7 @@
 
 .appointment span {
     color: var(--text-muted);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .appointment strong {
@@ -358,13 +360,13 @@
     align-items: center;
     gap: 5px;
     color: var(--text-muted);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     transition: color var(--transition);
 }
 
 .notificationFooter button:hover {
-    color: var(--primary);
+    color: var(--color-info);
 }
 
 .readStatus {
@@ -372,7 +374,7 @@
     align-items: center;
     gap: 5px;
     color: var(--text-muted);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 
@@ -446,7 +448,7 @@
     }
 
     .date {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .notificationContent>p {

@@ -1,225 +1,387 @@
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Bell,
+  Gift,
   Home,
+  LayoutGrid,
   LogOut,
-  Menu,
   Moon,
   Package,
+  PanelRightClose,
+  PanelRightOpen,
   Sun,
   UserRound,
   Wallet,
   Wrench,
   X,
+  Gauge,
+  Layers,
 } from "lucide-react";
+
+import { useFeature } from "../../hooks/useFeature";
 import { useTheme } from "../../context/ThemeContext";
+import { clearToken } from "../../lib/auth";
 import logoLight from "../../assets/logo-light.png";
 import logoDark from "../../assets/logo-dark.png";
 import styles from "./AppLayout.module.css";
 
+const COLLAPSE_KEY = "joker_sidebar_collapsed";
+
+/* ------------------------------------------------------------------
+   خريطة التنقل — مصدر واحد للـ Sidebar والـ Tab bar وقائمة "المزيد".
+   flag: اسم الـ feature flag اللي جاي من السيرفر (لو مقفول القسم بيختفي).
+   tab:  يظهر في شريط الموبايل السفلي.
+------------------------------------------------------------------ */
+const NAV_GROUPS = [
+  {
+    id: "main",
+    items: [
+      { label: "الرئيسية", path: "/customer/home", icon: Home, tab: true },
+    ],
+  },
+  {
+    id: "services",
+    title: "خدماتي",
+    items: [
+      {
+        label: "باقتي",
+        path: "/customer/package",
+        icon: Package,
+        end: true,
+        tab: true,
+      },
+      { label: "الباقات", path: "/customer/packages", icon: Layers },
+      {
+        label: "الباقات الإضافية",
+        path: "/customer/additional-packages",
+        icon: Gauge,
+      },
+    
+      {
+        label: "المحفظة",
+        path: "/customer/wallet",
+        icon: Wallet,
+        flag: "wallet_enabled",
+        tab: true,
+      },
+      { label: "العروض", path: "/customer/offers", icon: Gift },
+      {
+        label: "الصيانة",
+        path: "/customer/maintenance",
+        icon: Wrench,
+        tab: true,
+      },
+    ],
+  },
+  {
+    id: "account",
+    title: "حسابي",
+    items: [
+      {
+        label: "الإشعارات",
+        path: "/customer/notifications",
+        icon: Bell,
+        dot: true,
+      },
+      { label: "الملف الشخصي", path: "/customer/profile", icon: UserRound },
+    ],
+  },
+];
+
+const readCollapsed = () => {
+  try {
+    return localStorage.getItem(COLLAPSE_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
+
 const AppLayout = ({ children }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { theme, toggleTheme, isDark } = useTheme();
+  const location = useLocation();
+  const { toggleTheme, isDark } = useTheme();
+  const isEnabled = useFeature();
 
-  const logoSrc = isDark ? logoDark : logoLight;
+  const [collapsed, setCollapsed] = useState(readCollapsed);
+  const [moreOpen, setMoreOpen] = useState(false);
 
-  const navItems = [
-    {
-      label: "الرئيسية",
-      path: "/customer/home",
-      icon: Home,
-    },
-    {
-      label: "باقتي",
-      path: "/customer/package",
-      icon: Package,
-    },
-    {
-      label: "المحفظة",
-      path: "/customer/wallet",
-      icon: Wallet,
-    },
-    {
-      label: "الصيانة",
-      path: "/customer/maintenance",
-      icon: Wrench,
-    },
-    {
-      label: "البروفايل",
-      path: "/customer/profile",
-      icon: UserRound,
-    },
-  ];
+  const groups = NAV_GROUPS.map((group) => ({
+    ...group,
+    items: group.items.filter((item) => isEnabled(item.flag)),
+  })).filter((group) => group.items.length > 0);
 
-  const handleNavigate = (path) => {
-    navigate(path);
-    setMobileMenuOpen(false);
+  const allItems = groups.flatMap((group) => group.items);
+  const tabItems = allItems.filter((item) => item.tab);
+  const moreItems = allItems.filter((item) => !item.tab);
+
+  // تقفل قائمة "المزيد" مع أي تنقل، وتقفل بزر Esc
+  useEffect(() => {
+    setMoreOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!moreOpen) return undefined;
+    const onKey = (e) => e.key === "Escape" && setMoreOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [moreOpen]);
+
+  const toggleCollapsed = () => {
+    setCollapsed((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem(COLLAPSE_KEY, next ? "1" : "0");
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
   };
 
+  const handleLogout = () => {
+    clearToken();
+    navigate("/customer/login", { replace: true });
+  };
+
+  const moreActive = moreItems.some((item) =>
+    location.pathname.startsWith(item.path),
+  );
+
+  const themeLabel = isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن";
+
   return (
-    <div className={styles.app}>
-      <header className={styles.header}>
-        <div className={`container ${styles.headerInner}`}>
+    <div
+      className={`${styles.shell} ${collapsed ? styles.collapsed : ""}`}
+    >
+      {/* =====================  Sidebar (desktop)  ===================== */}
+      <aside className={styles.sidebar} aria-label="القائمة الرئيسية">
+        <div className={styles.brand}>
           <button
             type="button"
-            className={styles.logo}
-            onClick={() => handleNavigate("/customer/home")}
-            aria-label="جوكر"
+            className={styles.brandLogo}
+            onClick={() => navigate("/customer/home")}
+            aria-label="الرئيسية"
           >
-            <img src={logoSrc} alt="جوكر" />
+            <img src={logoDark} alt="" />
           </button>
 
-          <nav className={styles.desktopNav}>
-            {navItems.map((item) => {
-              const Icon = item.icon;
+          <div className={styles.brandText}>
+            <strong>الجوكر</strong>
+            <span>بوابة العميل</span>
+          </div>
+        </div>
 
-              return (
+        <nav className={styles.sideNav}>
+          {groups.map((group) => (
+            <div className={styles.group} key={group.id}>
+              {group.title && (
+                <span className={styles.groupTitle}>{group.title}</span>
+              )}
+
+              {group.items.map(({ label, path, icon: Icon, end, dot }) => (
                 <NavLink
-                  key={item.path}
-                  to={item.path}
+                  key={path}
+                  to={path}
+                  end={end}
+                  title={collapsed ? label : undefined}
                   className={({ isActive }) =>
-                    `${styles.navLink} ${isActive ? styles.active : ""}`
+                    `${styles.sideLink} ${isActive ? styles.sideActive : ""}`
                   }
                 >
-                  <Icon size={18} />
-                  <span>{item.label}</span>
+                  <span className={styles.sideIcon}>
+                    <Icon size={19} />
+                    {dot && <span className={styles.dot} />}
+                  </span>
+                  <span className={styles.sideLabel}>{label}</span>
                 </NavLink>
-              );
-            })}
-          </nav>
+              ))}
+            </div>
+          ))}
+        </nav>
 
-          <div className={styles.headerActions}>
+        <div className={styles.sideFooter}>
+          <button
+            type="button"
+            className={styles.sideAction}
+            onClick={handleLogout}
+            title={collapsed ? "تسجيل الخروج" : undefined}
+          >
+            <span className={styles.sideIcon}>
+              <LogOut size={19} />
+            </span>
+            <span className={styles.sideLabel}>تسجيل الخروج</span>
+          </button>
+        </div>
+      </aside>
+
+      {/* =====================  Body  ===================== */}
+      <div className={styles.body}>
+        <header className={styles.topbar}>
+          <div className={styles.topStart}>
             <button
               type="button"
-              className={styles.themeToggle}
+              className={styles.collapseButton}
+              onClick={toggleCollapsed}
+              aria-label={collapsed ? "توسيع القائمة" : "تصغير القائمة"}
+              aria-pressed={collapsed}
+            >
+              {collapsed ? (
+                <PanelRightOpen size={20} />
+              ) : (
+                <PanelRightClose size={20} />
+              )}
+            </button>
+
+            <button
+              type="button"
+              className={styles.mobileLogo}
+              onClick={() => navigate("/customer/home")}
+              aria-label="الرئيسية"
+            >
+              <img src={isDark ? logoDark : logoLight} alt="" />
+              <span>الجوكر</span>
+            </button>
+          </div>
+
+          <div className={styles.topActions}>
+            <button
+              type="button"
+              className={styles.iconButton}
               onClick={toggleTheme}
-              aria-label={isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
-              title={isDark ? "الوضع الفاتح" : "الوضع الداكن"}
+              aria-label={themeLabel}
+              title={themeLabel}
             >
               {isDark ? <Sun size={19} /> : <Moon size={19} />}
             </button>
 
             <button
               type="button"
-              className={styles.notificationButton}
-              onClick={() => handleNavigate("/customer/notifications")}
+              className={styles.iconButton}
+              onClick={() => navigate("/customer/notifications")}
               aria-label="الإشعارات"
             >
               <Bell size={20} />
-              <span className={styles.notificationDot} />
+              <span className={styles.dot} />
             </button>
 
             <button
               type="button"
-              className={styles.profileButton}
-              onClick={() => handleNavigate("/customer/profile")}
+              className={styles.profileChip}
+              onClick={() => navigate("/customer/profile")}
             >
               <span className={styles.avatar}>
                 <UserRound size={18} />
               </span>
-
               <span className={styles.profileText}>
                 <strong>حسابي</strong>
                 <small>العميل</small>
               </span>
             </button>
-
-            <button
-              type="button"
-              className={styles.menuButton}
-              onClick={() => setMobileMenuOpen((prev) => !prev)}
-              aria-label={mobileMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
-            >
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {mobileMenuOpen && (
+        <main className={styles.main}>
+          <div className={styles.content}>{children}</div>
+        </main>
+      </div>
+
+      {/* =====================  Tab bar (mobile)  ===================== */}
+      <nav className={styles.tabBar} aria-label="التنقل السريع">
+        {tabItems.map(({ label, path, icon: Icon, end }) => (
+          <NavLink
+            key={path}
+            to={path}
+            end={end}
+            className={({ isActive }) =>
+              `${styles.tab} ${isActive ? styles.tabActive : ""}`
+            }
+          >
+            <Icon size={21} />
+            <span>{label}</span>
+          </NavLink>
+        ))}
+
+        <button
+          type="button"
+          className={`${styles.tab} ${moreActive || moreOpen ? styles.tabActive : ""}`}
+          onClick={() => setMoreOpen((prev) => !prev)}
+          aria-expanded={moreOpen}
+          aria-haspopup="dialog"
+        >
+          <LayoutGrid size={21} />
+          <span>المزيد</span>
+        </button>
+      </nav>
+
+      {moreOpen && (
         <>
           <div
             className={styles.overlay}
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={() => setMoreOpen(false)}
+            aria-hidden="true"
           />
 
-          <aside className={styles.mobileMenu}>
-            <div className={styles.mobileMenuHeader}>
-              <div className={styles.mobileUser}>
-                <span className={styles.mobileAvatar}>
-                  <UserRound size={19} />
-                </span>
+          <div
+            className={styles.sheet}
+            role="dialog"
+            aria-modal="true"
+            aria-label="المزيد"
+          >
+            <div className={styles.sheetHandle} />
 
-                <div>
-                  <strong>مرحباً بك</strong>
-                  <span>حساب العميل</span>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <button
-                  type="button"
-                  className={styles.themeToggle}
-                  onClick={toggleTheme}
-                  aria-label={isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
-                  title={isDark ? "الوضع الفاتح" : "الوضع الداكن"}
-                >
-                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
-                </button>
-
-                <button
-                  type="button"
-                  className={styles.closeButton}
-                  onClick={() => setMobileMenuOpen(false)}
-                  aria-label="إغلاق القائمة"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-            </div>
-
-            <nav className={styles.mobileNav}>
-              {navItems.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <NavLink
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      `${styles.mobileNavLink} ${
-                        isActive ? styles.mobileActive : ""
-                      }`
-                    }
-                  >
-                    <span className={styles.mobileNavIcon}>
-                      <Icon size={19} />
-                    </span>
-
-                    <span>{item.label}</span>
-                  </NavLink>
-                );
-              })}
-            </nav>
-
-            <div className={styles.mobileMenuFooter}>
+            <div className={styles.sheetHeader}>
+              <strong>المزيد</strong>
               <button
                 type="button"
-                className={styles.logoutButton}
-                onClick={() => handleNavigate("/customer/login")}
+                className={styles.iconButton}
+                onClick={() => setMoreOpen(false)}
+                aria-label="إغلاق"
               >
-                <LogOut size={18} />
-                تسجيل الخروج
+                <X size={18} />
               </button>
             </div>
-          </aside>
+
+            <div className={styles.sheetGrid}>
+              {moreItems.map(({ label, path, icon: Icon, dot }) => (
+                <NavLink
+                  key={path}
+                  to={path}
+                  className={({ isActive }) =>
+                    `${styles.sheetItem} ${isActive ? styles.sheetActive : ""}`
+                  }
+                >
+                  <span className={styles.sheetIcon}>
+                    <Icon size={21} />
+                    {dot && <span className={styles.dot} />}
+                  </span>
+                  <span>{label}</span>
+                </NavLink>
+              ))}
+
+              <button
+                type="button"
+                className={styles.sheetItem}
+                onClick={toggleTheme}
+              >
+                <span className={styles.sheetIcon}>
+                  {isDark ? <Sun size={21} /> : <Moon size={21} />}
+                </span>
+                <span>{isDark ? "الوضع الفاتح" : "الوضع الداكن"}</span>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              className={styles.sheetLogout}
+              onClick={handleLogout}
+            >
+              <LogOut size={18} />
+              تسجيل الخروج
+            </button>
+          </div>
         </>
       )}
-
-      <main className={styles.main}>{children}</main>
     </div>
   );
 };

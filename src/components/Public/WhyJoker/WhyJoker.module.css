@@ -70,7 +70,7 @@
 
 .visualContent h2 span {
   display: block;
-  color: #bae6fd;
+  color: rgba(242, 242, 242, 0.85);
 }
 
 .visualContent p {

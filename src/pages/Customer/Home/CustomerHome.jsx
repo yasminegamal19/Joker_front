@@ -1,5 +1,7 @@
 import {
   ArrowLeft,
+  CalendarClock,
+  Database,
   Gauge,
   Headphones,
   RefreshCw,
@@ -7,11 +9,68 @@ import {
   Wifi,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
 import AppLayout from "../../../components/AppLayout/AppLayout";
+import { customerMock } from "../../../data/customerMock";
+import { useFeature } from "../../../hooks/useFeature";
 import styles from "./CustomerHome.module.css";
+
+const { firstName, walletBalance, package: pkg } = customerMock;
 
 const CustomerHome = () => {
   const navigate = useNavigate();
+  const isEnabled = useFeature();
+
+  const kpis = [
+    isEnabled("wallet_enabled") && {
+      icon: Wallet,
+      label: "رصيد المحفظة",
+      value: `${walletBalance.toFixed(2)}`,
+      unit: "جنيه",
+      onClick: () => navigate("/customer/wallet"),
+    },
+    {
+      icon: Database,
+      label: "المتبقي من الباقة",
+      value: pkg.remainingGb,
+      unit: "GB",
+      onClick: () => navigate("/customer/package"),
+    },
+    {
+      icon: CalendarClock,
+      label: "التجديد بعد",
+      value: pkg.daysLeft,
+      unit: "يوم",
+      onClick: () => navigate("/customer/package"),
+    },
+  ].filter(Boolean);
+
+  const services = [
+    isEnabled("wallet_enabled") && {
+      icon: Wallet,
+      title: "شحن رصيد",
+      text: "اشحن محفظتك بسهولة",
+      onClick: () => navigate("/customer/wallet"),
+    },
+    {
+      icon: Wifi,
+      title: "كروت Wi-Fi",
+      text: "شراء كارت إنترنت",
+      soon: true,
+    },
+    {
+      icon: Gauge,
+      title: "اختبار السرعة",
+      text: "اختبر سرعة الإنترنت",
+      href: "https://fast.com",
+    },
+    {
+      icon: Headphones,
+      title: "طلب صيانة",
+      text: "اطلب الدعم الفني",
+      onClick: () => navigate("/customer/maintenance"),
+    },
+  ].filter(Boolean);
 
   return (
     <AppLayout>
@@ -25,7 +84,7 @@ const CustomerHome = () => {
               <span className={styles.eyebrow}>الرئيسية</span>
 
               <h1>
-                أهلاً بك، ياسمين <span>👋</span>
+                أهلاً بك، {firstName} <span>👋</span>
               </h1>
 
               <p>تابع باقتك واستهلاكك وخدماتك من مكان واحد.</p>
@@ -51,7 +110,7 @@ const CustomerHome = () => {
 
                 <div>
                   <span>باقة الإنترنت الحالية</span>
-                  <strong>Super 250</strong>
+                  <strong>{pkg.name}</strong>
                 </div>
               </div>
 
@@ -67,21 +126,28 @@ const CustomerHome = () => {
                   <span>استهلاك الباقة</span>
 
                   <strong>
-                    168
-                    <small> / 250 GB</small>
+                    {pkg.usedGb}
+                    <small> / {pkg.totalGb} GB</small>
                   </strong>
                 </div>
 
-                <div className={styles.progressTrack}>
+                <div
+                  className={styles.progressTrack}
+                  role="progressbar"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={pkg.usedPercent}
+                  aria-label="نسبة استهلاك الباقة"
+                >
                   <div
                     className={styles.progressBar}
-                    style={{ width: "67%" }}
+                    style={{ width: `${pkg.usedPercent}%` }}
                   />
                 </div>
 
                 <div className={styles.usageFooter}>
-                  <span>متبقي 82 جيجابايت</span>
-                  <span>67% مستخدم</span>
+                  <span>متبقي {pkg.remainingGb} جيجابايت</span>
+                  <span>{pkg.usedPercent}% مستخدم</span>
                 </div>
               </div>
 
@@ -89,7 +155,7 @@ const CustomerHome = () => {
                 <span>سرعة الباقة</span>
 
                 <strong>
-                  30
+                  {pkg.speedMbps}
                   <small> Mbps</small>
                 </strong>
               </div>
@@ -98,98 +164,54 @@ const CustomerHome = () => {
             <div className={styles.packageBottom}>
               <span>
                 التجديد القادم:
-                <strong> 15 أكتوبر 2026</strong>
+                <strong> {pkg.endDate}</strong>
               </span>
 
-             <button
-  type="button"
-  onClick={() => navigate("/customer/package")}
-  className={styles.packageButton}
->
-  تفاصيل الباقة
-  <ArrowLeft size={16} />
-</button>
+              <div className={styles.packageActions}>
+                <button
+                  type="button"
+                  onClick={() => navigate("/customer/offers")}
+                  className={styles.ghostButton}
+                >
+                  <RefreshCw size={15} />
+                  تجديد الباقة
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => navigate("/customer/package")}
+                  className={styles.packageButton}
+                >
+                  تفاصيل الباقة
+                  <ArrowLeft size={16} />
+                </button>
+              </div>
             </div>
           </section>
 
           {/* =========================
-              Usage Summary
+              KPIs
           ========================= */}
-          <section className={styles.usageCard}>
-            <div className={styles.sectionHeader}>
-              <div>
-                <span className={styles.sectionEyebrow}>استهلاك الباقة</span>
-
-                <h2>استهلاكك الأساسي</h2>
-              </div>
-
+          <section className={styles.kpis} aria-label="ملخص سريع">
+            {kpis.map(({ icon: Icon, label, value, unit, onClick }) => (
               <button
+                key={label}
                 type="button"
-                className={styles.detailsButton}
-                onClick={() => navigate("/customer/offers")}
+                className={styles.kpi}
+                onClick={onClick}
               >
-                التفاصيل
-                <ArrowLeft size={15} />
+                <span className={styles.kpiIcon}>
+                  <Icon size={20} />
+                </span>
+
+                <span className={styles.kpiText}>
+                  <small>{label}</small>
+                  <strong>
+                    {value} <em>{unit}</em>
+                  </strong>
+                </span>
               </button>
-            </div>
-
-            <div className={styles.usageContent}>
-              <div className={styles.circleWrapper}>
-                <div className={styles.circle}>
-                  <div className={styles.circleInner}>
-                    <strong>168</strong>
-                    <span>جيجابايت</span>
-                    <small>من 250 GB</small>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.usageStats}>
-                <div className={styles.usageStat}>
-                  <span className={styles.blueDot} />
-                  <div>
-                    <small>المستخدم</small>
-                    <strong>168 GB</strong>
-                  </div>
-                </div>
-
-                <div className={styles.usageStat}>
-                  <span className={styles.greenDot} />
-                  <div>
-                    <small>المتبقي</small>
-                    <strong>82 GB</strong>
-                  </div>
-                </div>
-
-                <div className={styles.usageStat}>
-                  <span className={styles.grayDot} />
-                  <div>
-                    <small>نسبة الاستخدام</small>
-                    <strong>67%</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.usageActions}>
-              <button
-                type="button"
-                className={styles.secondaryAction}
-                onClick={() => navigate("/customer/offers")}
-              >
-                <RefreshCw size={16} />
-                تجديد الباقة
-              </button>
-
-              <button
-                type="button"
-                className={styles.primaryAction}
-                onClick={() => navigate("/customer/offers")}
-              >
-                <Wifi size={16} />
-                إضافة باقة
-              </button>
-            </div>
+            ))}
           </section>
 
           {/* =========================
@@ -202,70 +224,57 @@ const CustomerHome = () => {
 
                 <h2>الخدمات السريعة</h2>
               </div>
-
-              <span className={styles.sectionCount}>4 خدمات</span>
             </div>
 
             <div className={styles.servicesGrid}>
-              <button
-                type="button"
-                className={styles.serviceCard}
-                onClick={() => navigate("/customer/wallet")}
-              >
-                <span className={styles.serviceIcon}>
-                  <Wallet size={21} />
-                </span>
+              {services.map(
+                ({ icon: Icon, title, text, onClick, href, soon }) => {
+                  const content = (
+                    <>
+                      <span className={styles.serviceIcon}>
+                        <Icon size={21} />
+                      </span>
 
-                <span className={styles.serviceText}>
-                  <strong>شحن رصيد</strong>
-                  <small>اشحن محفظتك بسهولة</small>
-                </span>
+                      <span className={styles.serviceText}>
+                        <strong>{title}</strong>
+                        <small>{text}</small>
+                      </span>
 
-                <ArrowLeft size={16} className={styles.serviceArrow} />
-              </button>
+                      {soon ? (
+                        <span className={styles.soonBadge}>قريباً</span>
+                      ) : (
+                        <ArrowLeft size={16} className={styles.serviceArrow} />
+                      )}
+                    </>
+                  );
 
-              <button type="button" className={styles.serviceCard}>
-                <span className={styles.serviceIcon}>
-                  <Wifi size={21} />
-                </span>
+                  if (href) {
+                    return (
+                      <a
+                        key={title}
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.serviceCard}
+                      >
+                        {content}
+                      </a>
+                    );
+                  }
 
-                <span className={styles.serviceText}>
-                  <strong>كروت Wi-Fi</strong>
-                  <small>شراء كارت إنترنت</small>
-                </span>
-
-                <ArrowLeft size={16} className={styles.serviceArrow} />
-              </button>
-
-              <button type="button" className={styles.serviceCard}>
-                <span className={styles.serviceIcon}>
-                  <Gauge size={21} />
-                </span>
-
-                <span className={styles.serviceText}>
-                  <strong>اختبار السرعة</strong>
-                  <small>اختبر سرعة الإنترنت</small>
-                </span>
-
-                <ArrowLeft size={16} className={styles.serviceArrow} />
-              </button>
-
-              <button
-                type="button"
-                className={styles.serviceCard}
-                onClick={() => navigate("/customer/maintenance")}
-              >
-                <span className={styles.serviceIcon}>
-                  <Headphones size={21} />
-                </span>
-
-                <span className={styles.serviceText}>
-                  <strong>طلب صيانة</strong>
-                  <small>اطلب الدعم الفني</small>
-                </span>
-
-                <ArrowLeft size={16} className={styles.serviceArrow} />
-              </button>
+                  return (
+                    <button
+                      key={title}
+                      type="button"
+                      className={styles.serviceCard}
+                      onClick={onClick}
+                      disabled={soon}
+                    >
+                      {content}
+                    </button>
+                  );
+                },
+              )}
             </div>
           </section>
 

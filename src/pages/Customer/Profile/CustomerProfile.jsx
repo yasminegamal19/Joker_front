@@ -14,6 +14,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import AppLayout from "../../../components/AppLayout/AppLayout";
+import { clearToken } from "../../../lib/auth";
 import styles from "./CustomerProfile.module.css";
 
 const CustomerProfile = () => {
@@ -199,7 +200,10 @@ const CustomerProfile = () => {
           <button
             type="button"
             className={styles.logoutButton}
-            onClick={() => navigate("/customer/login")}
+            onClick={() => {
+              clearToken();
+              navigate("/customer/login", { replace: true });
+            }}
           >
             <LogOut size={17} />
             تسجيل الخروج

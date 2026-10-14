@@ -14,7 +14,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import apiClient from "../../../lib/apiClient";
@@ -49,27 +49,27 @@ const periods = [
   },
 ];
 
-const days = [
-  {
-    id: "today",
-    label: "اليوم",
-    date: "29 سبتمبر",
-  },
-  {
-    id: "tomorrow",
-    label: "غدًا",
-    date: "30 سبتمبر",
-  },
-  {
-    id: "after",
-    label: "بعد غد",
-    date: "1 أكتوبر",
-  },
-];
+// الأيام المتاحة للحجز: اليوم + اليومين القادمين (بتتحسب من تاريخ النهاردة)
+const dateFormatter = new Intl.DateTimeFormat("ar-EG-u-nu-latn", {
+  day: "numeric",
+  month: "long",
+});
+
+const buildDays = () =>
+  [
+    { id: "today", label: "اليوم" },
+    { id: "tomorrow", label: "غدًا" },
+    { id: "after", label: "بعد غد" },
+  ].map((day, index) => {
+    const date = new Date();
+    date.setDate(date.getDate() + index);
+    return { ...day, date: dateFormatter.format(date) };
+  });
 
 const MaintenanceRequest = () => {
   const navigate = useNavigate();
 
+  const days = useMemo(buildDays, []);
   const [problems, setProblems] = useState([]);
   const [loadingProblems, setLoadingProblems] = useState(true);
   const [problemsError, setProblemsError] = useState("");
@@ -98,9 +98,9 @@ const MaintenanceRequest = () => {
     } catch (error) {
       console.error("Failed to fetch maintenance issue types:", error);
 
+      // رسالة السيرفر (لو موجودة) أو رسالة عربية ثابتة — مش بنعرض رسائل الشبكة الإنجليزية للعميل
       setProblemsError(
         error.response?.data?.message ||
-          error.message ||
           "تعذر تحميل أنواع مشاكل الصيانة. حاول مرة أخرى."
       );
     } finally {

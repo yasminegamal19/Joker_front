@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+
 /* ==================================================
    JOKER NET GLOBAL DESIGN SYSTEM & TOKENS
    Brand Colors:
@@ -69,6 +71,8 @@
   --color-warning-bg: rgba(245, 158, 11, 0.10);
   --color-danger: #DC2626;
   --color-danger-bg: rgba(220, 38, 38, 0.10);
+  --color-info: #0A2FD9;
+  --color-info-bg: rgba(10, 47, 217, 0.09);
 
   /* Legacy & Utility Aliases */
   --primary: var(--color-primary);
@@ -91,6 +95,7 @@
 
   /* Typography & Layout Spacing */
   --font-family:
+    "Cairo",
     Inter,
     system-ui,
     -apple-system,
@@ -171,6 +176,8 @@
   --color-warning-bg: rgba(251, 191, 36, 0.16);
   --color-danger: #EF4444;
   --color-danger-bg: rgba(239, 68, 68, 0.16);
+  --color-info: #7C97FF;
+  --color-info-bg: rgba(124, 151, 255, 0.16);
 
   /* Legacy & Utility Aliases (Dark Mode) */
   --primary-dark: #061D8F;

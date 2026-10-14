@@ -1,12 +1,12 @@
 .page {
-  min-height: 100vh;
-  padding: 32px 0 60px;
-  background: var(--background);
-  direction: rtl;
+    min-height: 0;
+    padding: 0;
 }
 
 .container {
-  max-width: 980px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
 }
 
 .header {
@@ -19,7 +19,7 @@
 
 .eyebrow {
   display: block;
-  color: var(--primary);
+  color: var(--color-info);
   font-size: 12px;
   font-weight: 750;
 }
@@ -45,9 +45,9 @@
   padding: 8px 12px;
   color: var(--success);
   background: var(--success-light);
-  border: 1px solid #dcfce7;
+  border: 1px solid var(--color-success-bg);
   border-radius: 30px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -91,7 +91,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
+  color: var(--color-info);
   background: var(--primary-light);
   border-radius: 12px;
 }
@@ -103,7 +103,7 @@
 
 .packageName span {
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .packageName h2 {
@@ -121,7 +121,7 @@
   color: var(--success);
   background: var(--success-light);
   border-radius: 20px;
-  font-size: 9px;
+  font-size: 11.5px;
   font-weight: 700;
 }
 
@@ -152,10 +152,10 @@
   border-radius: 50%;
   background:
     radial-gradient(circle,
-      var(--white) 61%,
+      var(--bg-card) 61%,
       transparent 62%),
-    conic-gradient(var(--primary) 0deg 230deg,
-      var(--primary-light) 230deg 360deg);
+    conic-gradient(var(--color-info) 0deg calc(var(--pct, 0) * 3.6deg),
+      var(--primary-light) calc(var(--pct, 0) * 3.6deg) 360deg);
 }
 
 .circleCenter {
@@ -174,13 +174,13 @@
 .circleCenter span {
   margin-top: 5px;
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .circleCenter small {
   margin-top: 3px;
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .usageCaption {
@@ -189,7 +189,7 @@
   gap: 6px;
   margin-top: 11px;
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -223,7 +223,7 @@
 
 .statCard span {
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 11.5px;
 }
 
 .statCard strong {
@@ -241,7 +241,7 @@
 .statCard small {
   margin-top: 4px;
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 /* =========================
@@ -265,12 +265,12 @@
 
 .linearHeader {
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .linearHeader strong {
   color: var(--text-primary);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 750;
 }
 
@@ -278,7 +278,7 @@
   height: 8px;
   margin-top: 10px;
   overflow: hidden;
-  background: #e7edf6;
+  background: var(--border-color);
   border-radius: 20px;
 }
 
@@ -294,7 +294,7 @@
 .linearFooter {
   margin-top: 7px;
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .detailsButton {
@@ -309,7 +309,7 @@
   background: var(--white);
   border: 1px solid var(--primary);
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   transition:
     color var(--transition),
@@ -334,8 +334,8 @@
 }
 
 .sectionTitle span {
-  color: var(--primary);
-  font-size: 11px;
+  color: var(--color-info);
+  font-size: 12px;
   font-weight: 750;
 }
 
@@ -370,7 +370,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
+  color: var(--color-info);
   background: var(--primary-light);
   border-radius: 10px;
 }
@@ -383,13 +383,13 @@
 
 .infoCard span {
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 11.5px;
 }
 
 .infoCard strong {
   margin-top: 3px;
   color: var(--text-primary);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 750;
 }
 
@@ -412,7 +412,7 @@
   justify-content: center;
   gap: 7px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 750;
   transition:
     background-color var(--transition),
@@ -434,8 +434,8 @@
 }
 
 .secondaryButton {
-  color: var(--primary);
-  background: var(--white);
+  color: var(--color-info);
+  background: var(--bg-card);
   border: 1px solid var(--primary);
 }
 
@@ -452,16 +452,16 @@
   justify-content: center;
   gap: 7px;
   margin-top: 9px;
-  color: var(--primary);
+  color: var(--color-info);
   background: var(--primary-light);
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   transition: background-color var(--transition);
 }
 
 .extraButton:hover {
-  background: #dceaff;
+  background: var(--bg-active);
 }
 
 /* =========================
@@ -505,12 +505,12 @@
   }
 
   .header p {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .status {
     padding: 7px 10px;
-    font-size: 9px;
+    font-size: 11.5px;
   }
 
   .mainCard {
@@ -528,7 +528,7 @@
   }
 
   .packageName span {
-    font-size: 8px;
+    font-size: 11.5px;
   }
 
   .packageName h2 {
@@ -537,7 +537,7 @@
 
   .active {
     padding: 6px 8px;
-    font-size: 8px;
+    font-size: 11.5px;
   }
 
   .usageArea {
@@ -612,7 +612,7 @@
   .primaryButton,
   .secondaryButton {
     min-height: 42px;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
@@ -643,7 +643,7 @@
   }
 
   .infoCard strong {
-    font-size: 9px;
+    font-size: 11.5px;
   }
 }
 
@@ -686,7 +686,7 @@
 
 .additionalCard:hover {
   transform: translateY(-3px);
-  border-color: #bfdbfe;
+  border-color: var(--border-accent);
   box-shadow: var(--shadow-md);
 }
 
@@ -696,7 +696,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
+  color: var(--color-info);
   background: var(--primary-light);
   border-radius: 12px;
   margin-bottom: 16px;
@@ -724,7 +724,7 @@
 }
 
 .additionalQuota strong {
-  color: var(--primary);
+  color: var(--color-info);
   font-size: 30px;
   line-height: 1;
 }

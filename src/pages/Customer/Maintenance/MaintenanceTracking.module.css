@@ -1,10 +1,12 @@
 .page {
-    min-height: calc(100vh - 72px);
-    padding: 32px 0 56px;
+    min-height: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 1100px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
 }
 
 .header {
@@ -23,7 +25,7 @@
 }
 
 .backButton:hover {
-    color: var(--primary);
+    color: var(--color-info);
 }
 
 .titleRow {
@@ -37,7 +39,7 @@
 .sectionEyebrow {
     display: block;
     margin-bottom: 5px;
-    color: var(--primary);
+    color: var(--color-info);
     font-size: 12px;
     font-weight: 700;
 }
@@ -61,11 +63,11 @@
     gap: 7px;
     min-height: 35px;
     padding: 0 11px;
-    border: 1px solid #bbf7d0;
+    border: 1px solid var(--color-success-bg);
     border-radius: 20px;
     color: var(--success);
     background: var(--success-light);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -91,7 +93,7 @@
 .problemCard {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: var(--white);
+    background: var(--bg-card);
     box-shadow: var(--shadow-sm);
 }
 
@@ -113,7 +115,7 @@
 
 .mapHeader span {
     color: var(--text-muted);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .mapHeader strong {
@@ -127,7 +129,7 @@
     align-items: center;
     gap: 6px;
     color: var(--success);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
 }
 
@@ -138,15 +140,15 @@
     background:
         linear-gradient(35deg,
             transparent 46%,
-            rgba(203, 213, 225, 0.8) 47%,
-            rgba(203, 213, 225, 0.8) 48%,
+            var(--border-color) 47%,
+            var(--border-color) 48%,
             transparent 49%),
         linear-gradient(125deg,
             transparent 44%,
-            rgba(203, 213, 225, 0.7) 45%,
-            rgba(203, 213, 225, 0.7) 46%,
+            var(--border-color) 45%,
+            var(--border-color) 46%,
             transparent 47%),
-        #f1f5f9;
+        var(--bg-card-subtle);
 }
 
 .mapGrid {
@@ -154,8 +156,8 @@
     inset: 0;
     opacity: 0.45;
     background-image:
-        linear-gradient(#cbd5e1 1px, transparent 1px),
-        linear-gradient(90deg, #cbd5e1 1px, transparent 1px);
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
     background-size: 65px 65px;
 }
 
@@ -168,7 +170,7 @@
     transform: rotate(-17deg);
     border-radius: 20px;
     background: var(--primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+    box-shadow: 0 0 0 3px rgba(10, 47, 217, 0.08);
 }
 
 .homeMarker {
@@ -189,7 +191,7 @@
     border-radius: 50%;
     color: var(--white);
     background: var(--primary);
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 5px 15px rgba(10, 47, 217, 0.25);
 }
 
 .homeMarker span {
@@ -201,9 +203,9 @@
     padding: 2px 7px;
     border-radius: 5px;
     color: var(--text-primary);
-    background: var(--white);
+    background: var(--bg-card);
     box-shadow: var(--shadow-sm);
-    font-size: 9px;
+    font-size: 11.5px;
 }
 
 .technicianMarker {
@@ -216,7 +218,7 @@
     padding: 6px 8px 6px 6px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: var(--white);
+    background: var(--bg-card);
     box-shadow: var(--shadow-md);
 }
 
@@ -232,12 +234,12 @@
 
 .technicianMarker strong {
     color: var(--text-primary);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .technicianMarker small {
     color: var(--text-muted);
-    font-size: 8px;
+    font-size: 11.5px;
 }
 
 .mapControls {
@@ -249,7 +251,7 @@
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: var(--white);
+    background: var(--bg-card);
     box-shadow: var(--shadow-sm);
 }
 
@@ -265,7 +267,7 @@
 }
 
 .mapControls button:hover {
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -279,8 +281,8 @@
     padding: 10px 12px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    color: var(--primary);
-    background: var(--white);
+    color: var(--color-info);
+    background: var(--bg-card);
     box-shadow: var(--shadow-md);
 }
 
@@ -291,7 +293,7 @@
 
 .eta span {
     color: var(--text-muted);
-    font-size: 9px;
+    font-size: 11.5px;
 }
 
 .eta strong {
@@ -321,7 +323,7 @@
 
 .requestId {
     color: var(--text-muted);
-    font-size: 10px;
+    font-size: 12px;
     direction: ltr;
 }
 
@@ -346,8 +348,8 @@
     border: 1px solid var(--border);
     border-radius: 50%;
     color: var(--text-muted);
-    background: var(--white);
-    font-size: 10px;
+    background: var(--bg-card);
+    font-size: 12px;
     font-weight: 700;
 }
 
@@ -373,8 +375,8 @@
 }
 
 .timelineItem:not(:last-child) .timelineIndicator {
-    color: var(--primary);
-    border-color: #bfdbfe;
+    color: var(--color-info);
+    border-color: var(--border-accent);
     background: var(--primary-light);
 }
 
@@ -393,14 +395,14 @@
 
 .timelineContent strong {
     color: var(--text-primary);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
 }
 
 .timelineContent span {
     margin-top: 3px;
     color: var(--text-muted);
-    font-size: 9px;
+    font-size: 11.5px;
     line-height: 1.6;
 }
 
@@ -430,7 +432,7 @@
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -447,7 +449,7 @@
 
 .technicianInfo>div:nth-child(2) span {
     color: var(--text-muted);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .verified {
@@ -472,7 +474,7 @@
     display: flex;
     align-items: flex-start;
     gap: 9px;
-    color: var(--primary);
+    color: var(--color-info);
 }
 
 .visitInfo>div>span {
@@ -482,13 +484,13 @@
 
 .visitInfo small {
     color: var(--text-muted);
-    font-size: 9px;
+    font-size: 11.5px;
 }
 
 .visitInfo strong {
     margin-top: 2px;
     color: var(--text-primary);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .contactActions {
@@ -497,7 +499,8 @@
     gap: 7px;
 }
 
-.contactActions button {
+.contactActions button,
+.contactActions a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -506,15 +509,21 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text-secondary);
-    background: var(--white);
-    font-size: 11px;
+    background: var(--bg-card);
+    font-size: 12px;
     font-weight: 650;
 }
 
-.contactActions button:hover {
-    color: var(--primary);
+.contactActions button:hover:not(:disabled),
+.contactActions a:hover {
+    color: var(--color-info);
     border-color: var(--primary);
     background: var(--primary-light);
+}
+
+.contactActions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .contactActions .chatButton {
@@ -542,7 +551,7 @@
     width: 36px;
     height: 36px;
     border-radius: 9px;
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -553,13 +562,13 @@
 
 .problemCard span {
     color: var(--text-muted);
-    font-size: 9px;
+    font-size: 11.5px;
 }
 
 .problemCard strong {
     margin-top: 2px;
     color: var(--text-primary);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .homeButton {
@@ -571,13 +580,13 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text-secondary);
-    background: var(--white);
-    font-size: 11px;
+    background: var(--bg-card);
+    font-size: 12px;
     font-weight: 650;
 }
 
 .homeButton:hover {
-    color: var(--primary);
+    color: var(--color-info);
     border-color: var(--primary);
 }
 

@@ -1,9 +1,12 @@
 .page {
-    min-height: calc(100vh - 76px);
-    padding: 34px 0 50px;
+    min-height: 0;
+    padding: 0;
 }
 
 .container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -20,7 +23,7 @@
 .sectionEyebrow {
     display: block;
     margin-bottom: 6px;
-    color: var(--primary);
+    color: var(--color-info);
     font-size: 12px;
     font-weight: 700;
 }
@@ -77,7 +80,7 @@
 .transactionsCard {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: var(--white);
+    background: var(--bg-card);
     box-shadow: var(--shadow-sm);
 }
 
@@ -85,7 +88,7 @@
     padding: 24px;
     background:
         radial-gradient(circle at 100% 0%,
-            rgba(37, 99, 235, 0.08),
+            rgba(10, 47, 217, 0.08),
             transparent 35%),
         var(--white);
 }
@@ -110,7 +113,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 11px;
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--primary-light);
 }
 
@@ -127,7 +130,7 @@
 
 .balanceTitle small {
     color: var(--text-muted);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .activeBadge {
@@ -136,9 +139,9 @@
     align-items: center;
     padding: 0 9px;
     border-radius: 7px;
-    color: #15803d;
-    background: #f0fdf4;
-    font-size: 11px;
+    color: var(--color-success);
+    background: var(--color-success-bg);
+    font-size: 12px;
     font-weight: 700;
 }
 
@@ -174,15 +177,15 @@
 
 .balanceBottom>span {
     color: var(--text-muted);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .balanceAction {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: var(--primary);
-    font-size: 11px;
+    color: var(--color-info);
+    font-size: 12px;
     font-weight: 650;
 }
 
@@ -232,7 +235,7 @@
 
 .stat small {
     color: var(--text-muted);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .stat strong {
@@ -271,7 +274,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    color: var(--primary);
+    color: var(--color-info);
     font-size: 12px;
     font-weight: 650;
 }
@@ -329,7 +332,7 @@
 
 .transactionInfo span {
     color: var(--text-muted);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .transactionAmount {
@@ -354,7 +357,7 @@
     gap: 7px;
     width: 100%;
     color: var(--text-secondary);
-    background: var(--white);
+    background: var(--bg-card);
     font-size: 12px;
     font-weight: 600;
     transition:
@@ -363,7 +366,7 @@
 }
 
 .viewAllButton:hover {
-    color: var(--primary);
+    color: var(--color-info);
     background: var(--background);
 }
 

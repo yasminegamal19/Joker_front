@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import logo from "../../assets/logo.png";
 import styles from "./Splash.module.css";
 
 const Splash = () => {
@@ -19,7 +20,7 @@ const Splash = () => {
       <div className={styles.content}>
         <div className={styles.logoWrapper}>
           <img
-            src="/src/assets/logo.jfif"
+            src={logo}
             alt="Joker"
             className={styles.logo}
           />

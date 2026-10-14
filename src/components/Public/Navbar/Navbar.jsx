@@ -58,6 +58,10 @@ const Navbar = () => {
     setMenuOpen(false);
     navigate("/choose-user");
   };
+  const handleJoin = () => {
+    setMenuOpen(false);
+    navigate("/join");
+  };
 
   const logoSrc = isDark ? logoDark : logoLight;
 
@@ -70,11 +74,7 @@ const Navbar = () => {
           onClick={() => scrollToSection("home")}
           aria-label="الجوكر - الرئيسية"
         >
-          <img
-            src={logoSrc}
-            alt="الجوكر"
-            className={styles.logo}
-          />
+          <img src={logoSrc} alt="الجوكر" className={styles.logo} />
         </button>
 
         <nav className={`${styles.navLinks} ${menuOpen ? styles.navOpen : ""}`}>
@@ -142,6 +142,15 @@ const Navbar = () => {
           >
             <UserRound size={17} strokeWidth={2} />
             <span>تسجيل الدخول</span>
+          </button>
+
+          <button
+            type="button"
+            className={styles.loginBtn}
+            onClick={handleJoin}
+          >
+            <UserRound size={17} strokeWidth={2} />
+            <span> أنضم لعملاء JOKER NET</span>
           </button>
 
           <button

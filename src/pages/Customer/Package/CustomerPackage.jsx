@@ -3,16 +3,20 @@ import {
   CalendarDays,
   CheckCircle2,
   Clock3,
-  Gauge,
   RefreshCw,
   Wifi,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AppLayout from "../../../components/AppLayout/AppLayout";
+import { customerMock } from "../../../data/customerMock";
+import { useCanChangePackage } from "../../../hooks/useCanChangePackage";
 import styles from "./CustomerPackage.module.css";
+
+const { package: pkg } = customerMock;
 
 const CustomerPackage = () => {
   const navigate = useNavigate();
+  const { enabled: canChangePackage } = useCanChangePackage();
 
   return (
     <AppLayout>
@@ -42,7 +46,7 @@ const CustomerPackage = () => {
 
                 <div>
                   <span>الباقة الحالية</span>
-                  <h2>Turbo 200</h2>
+                  <h2>{pkg.name}</h2>
                 </div>
               </div>
 
@@ -55,11 +59,14 @@ const CustomerPackage = () => {
             <div className={styles.usageArea}>
               {/* Circle */}
               <div className={styles.usageVisual}>
-                <div className={styles.progressCircle}>
+                <div
+                  className={styles.progressCircle}
+                  style={{ "--pct": pkg.usedPercent }}
+                >
                   <div className={styles.circleCenter}>
-                    <strong>128</strong>
+                    <strong>{pkg.usedGb}</strong>
                     <span>GB مستخدمة</span>
-                    <small>من 200 GB</small>
+                    <small>من {pkg.totalGb} GB</small>
                   </div>
                 </div>
 
@@ -73,25 +80,27 @@ const CustomerPackage = () => {
               <div className={styles.stats}>
                 <div className={styles.statCard}>
                   <span>السرعة</span>
-                  <strong>30</strong>
+                  <strong>{pkg.speedMbps}</strong>
                   <small>Mbps</small>
                 </div>
 
                 <div className={styles.statCard}>
                   <span>المستخدم</span>
-                  <strong>128</strong>
+                  <strong>{pkg.usedGb}</strong>
                   <small>GB</small>
                 </div>
 
                 <div className={styles.statCard}>
                   <span>المتبقي</span>
-                  <strong className={styles.remaining}>72</strong>
+                  <strong className={styles.remaining}>
+                    {pkg.remainingGb}
+                  </strong>
                   <small>GB</small>
                 </div>
 
                 <div className={styles.statCard}>
                   <span>الاستخدام</span>
-                  <strong>64%</strong>
+                  <strong>{pkg.usedPercent}%</strong>
                   <small>من الباقة</small>
                 </div>
               </div>
@@ -101,24 +110,23 @@ const CustomerPackage = () => {
             <div className={styles.linearUsage}>
               <div className={styles.linearHeader}>
                 <span>استهلاك الباقة</span>
-                <strong>128 / 200 GB</strong>
+                <strong>
+                  {pkg.usedGb} / {pkg.totalGb} GB
+                </strong>
               </div>
 
               <div className={styles.track}>
-                <div className={styles.bar} style={{ width: "64%" }} />
+                <div
+                  className={styles.bar}
+                  style={{ width: `${pkg.usedPercent}%` }}
+                />
               </div>
 
               <div className={styles.linearFooter}>
-                <span>المستخدم 64%</span>
-                <span>المتبقي 72 GB</span>
+                <span>المستخدم {pkg.usedPercent}%</span>
+                <span>المتبقي {pkg.remainingGb} GB</span>
               </div>
             </div>
-
-            <button type="button" className={styles.detailsButton}>
-              <Gauge size={16} />
-              عرض تفاصيل الاستهلاك
-              <ArrowLeft size={15} />
-            </button>
           </section>
 
           {/* Subscription Info */}
@@ -138,7 +146,7 @@ const CustomerPackage = () => {
 
                 <div>
                   <span>بداية الباقة</span>
-                  <strong>28 سبتمبر 2026</strong>
+                  <strong>{pkg.startDate}</strong>
                 </div>
               </div>
 
@@ -149,7 +157,7 @@ const CustomerPackage = () => {
 
                 <div>
                   <span>انتهاء الباقة</span>
-                  <strong>28 أكتوبر 2026</strong>
+                  <strong>{pkg.endDate}</strong>
                 </div>
               </div>
 
@@ -160,7 +168,7 @@ const CustomerPackage = () => {
 
                 <div>
                   <span>التجديد</span>
-                  <strong>تلقائي</strong>
+                  <strong>{pkg.autoRenew ? "تلقائي" : "يدوي"}</strong>
                 </div>
               </div>
 
@@ -171,26 +179,33 @@ const CustomerPackage = () => {
 
                 <div>
                   <span>نوع الخدمة</span>
-                  <strong>إنترنت منزلي</strong>
+                  <strong>{pkg.serviceType}</strong>
                 </div>
               </div>
             </div>
           </section>
           {/* Actions */}
-          <section className={styles.actions}>
-            <button
-              type="button"
-              className={styles.secondaryButton}
-              onClick={() => navigate("/customer/offers")}
-            >
-              <RefreshCw size={16} />
-              تغيير الباقة
-            </button>
+          <section
+            className={styles.actions}
+            style={
+              canChangePackage ? undefined : { gridTemplateColumns: "1fr" }
+            }
+          >
+            {canChangePackage && (
+              <button
+                type="button"
+                className={styles.secondaryButton}
+                onClick={() => navigate("/customer/packages")}
+              >
+                <RefreshCw size={16} />
+                تغيير الباقة
+              </button>
+            )}
 
             <button
               type="button"
               className={styles.primaryButton}
-              onClick={() => navigate("/customer/offers")}
+              onClick={() => navigate("/customer/package/renew")}
             >
               تجديد الباقة
               <ArrowLeft size={16} />
@@ -200,7 +215,7 @@ const CustomerPackage = () => {
           <button
             type="button"
             className={styles.extraButton}
-            onClick={() => navigate("/customer/package/additional")}
+            onClick={() => navigate("/customer/additional-packages")}
           >
             إضافة باقة إضافية
             <ArrowLeft size={15} />

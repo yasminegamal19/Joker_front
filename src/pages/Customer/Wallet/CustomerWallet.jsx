@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import AppLayout from "../../../components/AppLayout/AppLayout";
+import { customerMock } from "../../../data/customerMock";
 import styles from "./CustomerWallet.module.css";
 
 const transactions = [
@@ -78,7 +79,7 @@ const CustomerWallet = () => {
               </div>
 
               <div className={styles.balance}>
-                <strong>250.00</strong>
+                <strong>{customerMock.walletBalance.toFixed(2)}</strong>
                 <span>جنيه</span>
               </div>
 

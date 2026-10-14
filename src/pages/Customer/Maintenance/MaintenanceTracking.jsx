@@ -12,6 +12,10 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import AppLayout from "../../../components/AppLayout/AppLayout";
+import {
+  supportTelHref,
+  supportWhatsAppHref,
+} from "../../../lib/support";
 import styles from "./MaintenanceTracking.module.css";
 
 const steps = [
@@ -207,19 +211,39 @@ const MaintenanceTracking = () => {
                 </div>
 
                 <div className={styles.contactActions}>
-                  <button type="button">
-                    <Phone size={16} />
-                    اتصال
-                  </button>
+                  {supportTelHref ? (
+                    <a href={supportTelHref}>
+                      <Phone size={16} />
+                      اتصال
+                    </a>
+                  ) : (
+                    <button type="button" disabled title="رقم الدعم غير مُعد">
+                      <Phone size={16} />
+                      اتصال
+                    </button>
+                  )}
 
-                  <button
-                    type="button"
-                    className={styles.chatButton}
-                    onClick={() => navigate("/customer/chat")}
-                  >
-                    <MessageCircle size={16} />
-                    محادثة
-                  </button>
+                  {supportWhatsAppHref ? (
+                    <a
+                      href={supportWhatsAppHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.chatButton}
+                    >
+                      <MessageCircle size={16} />
+                      واتساب
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      className={styles.chatButton}
+                      disabled
+                      title="رقم الدعم غير مُعد"
+                    >
+                      <MessageCircle size={16} />
+                      واتساب
+                    </button>
+                  )}
                 </div>
               </section>
 
