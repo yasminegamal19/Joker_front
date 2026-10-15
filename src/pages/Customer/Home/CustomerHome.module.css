@@ -9,9 +9,6 @@
     margin: 0;
 }
 
-/* =========================
-   Welcome
-========================= */
 
 .welcome {
     display: flex;
@@ -83,9 +80,6 @@
     box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
 }
 
-/* =========================
-   Current Package
-========================= */
 
 .packageCard {
     position: relative;
@@ -201,9 +195,6 @@
     background: #4ade80;
 }
 
-/* =========================
-   Package Main
-========================= */
 
 .packageMain {
     display: grid;
@@ -310,9 +301,7 @@
     font-weight: 500;
 }
 
-/* =========================
-   Package Bottom
-========================= */
+
 
 .packageBottom {
     display: flex;
@@ -365,9 +354,7 @@
     box-shadow: var(--shadow-md);
 }
 
-/* =========================
-   Package actions + KPIs
-========================= */
+
 
 .packageActions {
     display: flex;
@@ -554,9 +541,6 @@ a.serviceCard {
     }
 }
 
-/* =========================
-   Generic Section Header
-========================= */
 
 .sectionHeader {
     display: flex;
@@ -594,9 +578,6 @@ a.serviceCard {
     color: var(--primary-dark);
 }
 
-/* =========================
-   Services
-========================= */
 
 .servicesSection {
     margin-top: 30px;
@@ -697,10 +678,6 @@ a.serviceCard {
 
     transform: translateX(-2px);
 }
-
-/* =========================
-   Offer
-========================= */
 
 .offer {
     position: relative;
@@ -874,10 +851,6 @@ a.serviceCard {
     font-size: 12px;
 }
 
-/* =========================
-   Tablet
-========================= */
-
 @media (max-width: 900px) {
     .container {
         max-width: 760px;
@@ -889,10 +862,6 @@ a.serviceCard {
 
 
 }
-
-/* =========================
-   Mobile
-========================= */
 
 @media (max-width: 650px) {
     .page {
@@ -1084,9 +1053,6 @@ a.serviceCard {
     }
 }
 
-/* =========================
-   Small Mobile
-========================= */
 
 @media (max-width: 400px) {
     .packageCard {
@@ -1128,4 +1094,24 @@ a.serviceCard {
     .offerVisual span {
         font-size: 11.5px;
     }
+}
+
+.profileLoadError {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    color: #b42318;
+    font-size: 13px;
+}
+
+.profileLoadError button {
+    padding: 0;
+    color: var(--primary, #0052d1);
+    background: transparent;
+    border: 0;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
 }

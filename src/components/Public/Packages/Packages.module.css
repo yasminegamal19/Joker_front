@@ -38,10 +38,6 @@
   z-index: 2;
 }
 
-/* =========================
-   HEADER
-========================= */
-
 .sectionHeader {
   display: flex;
   align-items: flex-end;
@@ -117,9 +113,6 @@
   box-shadow: 0 0 0 4px var(--accent-light);
 }
 
-/* =========================
-   CARDS
-========================= */
 
 .grid {
   display: grid;
@@ -152,7 +145,6 @@
   box-shadow: var(--shadow-card);
 }
 
-/* subtle top line */
 .card::before {
   content: "";
   position: absolute;
@@ -166,11 +158,6 @@
 .card:hover::before {
   background: var(--gradient-brand);
 }
-
-/* =========================
-   POPULAR CARD
-========================= */
-
 .popular {
   border-color: var(--color-primary);
   box-shadow: var(--shadow-md);
@@ -208,10 +195,6 @@
   border-radius: 50%;
   background: var(--color-primary);
 }
-
-/* =========================
-   CARD HEADER
-========================= */
 
 .cardHeader {
   padding-bottom: 20px;
@@ -270,10 +253,6 @@
   transition: color var(--transition);
 }
 
-/* =========================
-   STATS
-========================= */
-
 .packageStats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -314,9 +293,6 @@
   font-weight: 600;
 }
 
-/* =========================
-   PRICE
-========================= */
 
 .priceRow {
   display: flex;
@@ -354,7 +330,6 @@
   color: var(--color-primary);
 }
 
-/* ========================= FEATURES ========================= */
 .divider {
   height: 1px;
   margin: 21px 0 17px;
@@ -389,7 +364,6 @@
   border-radius: 50%;
 }
 
-/* ========================= BUTTONS ========================= */
 .primaryButton,
 .outlineButton {
   width: 100%;
@@ -447,7 +421,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* ========================= BOTTOM NOTE ========================= */
 .bottomNote {
   display: flex;
   align-items: center;
@@ -522,7 +495,6 @@
   transform: translateY(-1px);
 }
 
-/* ========================= RESPONSIVE ========================= */
 @media (max-width: 1000px) {
   .sectionHeader {
     gap: 35px;
@@ -622,7 +594,6 @@
   }
 }
 
-/* State (Loading / Error / Empty) */
 .state {
   display: flex;
   flex-direction: column;

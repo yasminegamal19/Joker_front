@@ -12,17 +12,16 @@ import {
 } from "lucide-react";
 
 import AppLayout from "../../../components/AppLayout/AppLayout";
-import { customerMock } from "../../../data/customerMock";
 import { useFeature } from "../../../hooks/useFeature";
 import apiClient from "../../../lib/apiClient";
 import styles from "./CustomerHome.module.css";
 
-const { firstName, walletBalance } = customerMock;
-
 const formatDate = (date) => {
   if (!date) return "—";
 
-  const parsedDate = new Date(`${date}T00:00:00`);
+  const parsedDate = new Date(
+    /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00` : date,
+  );
 
   if (Number.isNaN(parsedDate.getTime())) return date;
 
@@ -34,7 +33,12 @@ const formatDate = (date) => {
 };
 
 const formatNumber = (value, maximumFractionDigits = 1) => {
-  if (value === null || value === undefined || !Number.isFinite(Number(value))) {
+  if (
+    value === null ||
+    value === undefined ||
+    value === "" ||
+    !Number.isFinite(Number(value))
+  ) {
     return "—";
   }
 
@@ -54,11 +58,57 @@ const CustomerHome = () => {
   const navigate = useNavigate();
   const isEnabled = useFeature();
 
+  const [customer, setCustomer] = useState(null);
+  const [profileLoading, setProfileLoading] = useState(true);
+  const [profileError, setProfileError] = useState("");
+  const [profileRetryKey, setProfileRetryKey] = useState(0);
+
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [retryKey, setRetryKey] = useState(0);
 
+  // Customer profile
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchCustomer = async () => {
+      setProfileLoading(true);
+      setProfileError("");
+
+      try {
+        const response = await apiClient.get("/me");
+        const data = response?.data ?? response;
+
+        if (!data?.customer) {
+          throw new Error("لم نتمكن من تحميل بيانات حسابك.");
+        }
+
+        if (mounted) {
+          setCustomer(data.customer);
+        }
+      } catch (requestError) {
+        if (mounted) {
+          setProfileError(
+            requestError.response?.data?.message ||
+              "تعذر تحميل بياناتك الشخصية حاليًا.",
+          );
+        }
+      } finally {
+        if (mounted) {
+          setProfileLoading(false);
+        }
+      }
+    };
+
+    fetchCustomer();
+
+    return () => {
+      mounted = false;
+    };
+  }, [profileRetryKey]);
+
+  // Current subscription
   useEffect(() => {
     let mounted = true;
 
@@ -80,7 +130,9 @@ const CustomerHome = () => {
           );
         }
       } finally {
-        if (mounted) setLoading(false);
+        if (mounted) {
+          setLoading(false);
+        }
       }
     };
 
@@ -90,6 +142,10 @@ const CustomerHome = () => {
       mounted = false;
     };
   }, [retryKey]);
+
+  const firstName = customer?.name?.trim()?.split(/\s+/)[0] || "عميلنا";
+
+  const walletBalance = customer?.wallet_balance;
 
   const packageInfo = useMemo(() => {
     if (!subscription) return null;
@@ -122,7 +178,11 @@ const CustomerHome = () => {
     isEnabled("wallet_enabled") && {
       icon: Wallet,
       label: "رصيد المحفظة",
-      value: formatNumber(walletBalance, 2),
+      value: profileLoading
+        ? "..."
+        : profileError
+          ? "—"
+          : formatNumber(walletBalance, 2),
       unit: "جنيه",
       onClick: () => navigate("/customer/wallet"),
     },
@@ -173,7 +233,6 @@ const CustomerHome = () => {
     <AppLayout>
       <div className={styles.page}>
         <div className={`container ${styles.container}`}>
-          {/* Welcome */}
           <section className={styles.welcome}>
             <div>
               <span className={styles.eyebrow}>الرئيسية</span>
@@ -183,17 +242,31 @@ const CustomerHome = () => {
               </h1>
 
               <p>تابع باقتك واستهلاكك وخدماتك من مكان واحد.</p>
+
+              {profileError && (
+                <div className={styles.profileLoadError} role="status">
+                  <span>تعذر تحميل بياناتك الشخصية.</span>
+                  <button
+                    type="button"
+                    onClick={() => setProfileRetryKey((key) => key + 1)}
+                  >
+                    إعادة المحاولة
+                  </button>
+                </div>
+              )}
             </div>
 
             {!loading && packageInfo && (
               <div className={styles.connectionStatus}>
                 <span className={styles.statusDot} />
-                <span>حالة الاشتراك: {statusLabels[packageInfo.status] || packageInfo.status}</span>
+                <span>
+                  حالة الاشتراك:{" "}
+                  {statusLabels[packageInfo.status] || packageInfo.status}
+                </span>
               </div>
             )}
           </section>
 
-          {/* Current Package */}
           <section className={styles.packageCard}>
             <div className={styles.packageGlow} />
 
@@ -283,9 +356,7 @@ const CustomerHome = () => {
                       </strong>
                     </div>
 
-                    <p>
-                      إجمالي سعة الباقة غير متاح حاليًا من بيانات الاشتراك.
-                    </p>
+                    <p>إجمالي سعة الباقة غير متاح حاليًا من بيانات الاشتراك.</p>
                   </div>
 
                   <div className={styles.speed}>
@@ -336,7 +407,6 @@ const CustomerHome = () => {
             )}
           </section>
 
-          {/* KPIs */}
           <section className={styles.kpis} aria-label="ملخص سريع">
             {kpis.map(({ icon: Icon, label, value, unit, onClick }) => (
               <button
@@ -359,7 +429,6 @@ const CustomerHome = () => {
             ))}
           </section>
 
-          {/* Quick Services */}
           <section className={styles.servicesSection}>
             <div className={styles.sectionHeader}>
               <div>
@@ -385,10 +454,7 @@ const CustomerHome = () => {
                       {soon ? (
                         <span className={styles.soonBadge}>قريباً</span>
                       ) : (
-                        <ArrowLeft
-                          size={16}
-                          className={styles.serviceArrow}
-                        />
+                        <ArrowLeft size={16} className={styles.serviceArrow} />
                       )}
                     </>
                   );
@@ -423,7 +489,6 @@ const CustomerHome = () => {
             </div>
           </section>
 
-          {/* Offer Banner */}
           <section className={styles.offer}>
             <div className={styles.offerPattern} />
 

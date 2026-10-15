@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import apiClient from "../../lib/apiClient";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Bell,
@@ -28,11 +29,6 @@ import styles from "./AppLayout.module.css";
 
 const COLLAPSE_KEY = "joker_sidebar_collapsed";
 
-/* ------------------------------------------------------------------
-   خريطة التنقل — مصدر واحد للـ Sidebar والـ Tab bar وقائمة "المزيد".
-   flag: اسم الـ feature flag اللي جاي من السيرفر (لو مقفول القسم بيختفي).
-   tab:  يظهر في شريط الموبايل السفلي.
------------------------------------------------------------------- */
 const NAV_GROUPS = [
   {
     id: "main",
@@ -57,7 +53,7 @@ const NAV_GROUPS = [
         path: "/customer/additional-packages",
         icon: Gauge,
       },
-    
+
       {
         label: "المحفظة",
         path: "/customer/wallet",
@@ -104,6 +100,32 @@ const AppLayout = ({ children }) => {
 
   const [collapsed, setCollapsed] = useState(readCollapsed);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchCustomer = async () => {
+      try {
+        const response = await apiClient.get("/me");
+        const data = response?.data ?? response;
+
+        if (mounted) {
+          setCustomerName(data?.customer?.name?.trim() || "");
+        }
+      } catch {
+        if (mounted) {
+          setCustomerName("");
+        }
+      }
+    };
+
+    fetchCustomer();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const groups = NAV_GROUPS.map((group) => ({
     ...group,
@@ -132,7 +154,6 @@ const AppLayout = ({ children }) => {
       try {
         localStorage.setItem(COLLAPSE_KEY, next ? "1" : "0");
       } catch {
-        /* ignore */
       }
       return next;
     });
@@ -150,10 +171,7 @@ const AppLayout = ({ children }) => {
   const themeLabel = isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن";
 
   return (
-    <div
-      className={`${styles.shell} ${collapsed ? styles.collapsed : ""}`}
-    >
-      {/* =====================  Sidebar (desktop)  ===================== */}
+    <div className={`${styles.shell} ${collapsed ? styles.collapsed : ""}`}>
       <aside className={styles.sidebar} aria-label="القائمة الرئيسية">
         <div className={styles.brand}>
           <button
@@ -214,7 +232,6 @@ const AppLayout = ({ children }) => {
         </div>
       </aside>
 
-      {/* =====================  Body  ===================== */}
       <div className={styles.body}>
         <header className={styles.topbar}>
           <div className={styles.topStart}>
@@ -274,7 +291,9 @@ const AppLayout = ({ children }) => {
               </span>
               <span className={styles.profileText}>
                 <strong>حسابي</strong>
-                <small>العميل</small>
+                <small title={customerName || "العميل"}>
+                  {customerName || "العميل"}
+                </small>
               </span>
             </button>
           </div>
@@ -285,7 +304,6 @@ const AppLayout = ({ children }) => {
         </main>
       </div>
 
-      {/* =====================  Tab bar (mobile)  ===================== */}
       <nav className={styles.tabBar} aria-label="التنقل السريع">
         {tabItems.map(({ label, path, icon: Icon, end }) => (
           <NavLink

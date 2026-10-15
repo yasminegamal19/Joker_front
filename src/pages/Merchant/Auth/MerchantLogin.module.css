@@ -1,6 +1,4 @@
-/* =========================================
-   JOKER NET — Merchant Login
-   ========================================= */
+
 
 .header {
     position: relative;
@@ -44,7 +42,6 @@
     line-height: 1.9;
 }
 
-/* Form */
 
 .form {
     display: flex;
@@ -66,7 +63,6 @@
     line-height: 1.7;
 }
 
-/* Inputs */
 
 .inputWrapper {
     position: relative;
@@ -133,7 +129,6 @@
     color: var(--accent-hover);
 }
 
-/* Password visibility */
 
 .passwordToggle {
     position: absolute;
@@ -171,7 +166,6 @@
     outline-offset: 2px;
 }
 
-/* Forgot password */
 
 .options {
     display: flex;
@@ -211,7 +205,6 @@
     outline-offset: 3px;
 }
 
-/* Main action */
 
 .submitButton {
     position: relative;
@@ -281,7 +274,6 @@
     outline-offset: 4px;
 }
 
-/* Footer */
 
 .footer {
     margin: 25px 0 0;
@@ -322,7 +314,6 @@
     border-radius: 3px;
 }
 
-/* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -335,7 +326,6 @@
     }
 }
 
-/* Responsive */
 
 @media (max-width: 480px) {
     .header {

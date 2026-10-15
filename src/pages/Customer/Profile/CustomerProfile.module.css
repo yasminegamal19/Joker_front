@@ -117,7 +117,6 @@
     background: var(--primary-light);
 }
 
-/* Grid */
 
 .grid {
     display: grid;
@@ -148,7 +147,6 @@
     font-size: 12px;
 }
 
-/* Information */
 
 .infoList {
     display: flex;
@@ -206,7 +204,6 @@
     color: var(--text-muted);
 }
 
-/* Settings */
 
 .settingsList {
     display: flex;
@@ -279,7 +276,6 @@
     color: var(--color-info);
 }
 
-/* Help */
 
 .helpCard {
     display: flex;
@@ -333,7 +329,6 @@
     color: var(--primary-dark);
 }
 
-/* Logout */
 
 .logoutButton {
     display: flex;
@@ -356,7 +351,6 @@
     background: var(--danger-light);
 }
 
-/* Responsive */
 
 @media (max-width: 800px) {
     .page {
@@ -434,5 +428,189 @@
         align-items: flex-start;
         flex-direction: column;
         gap: 1px;
+    }
+}
+
+.profileState {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    background: var(--bg-card, #fff);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+}
+
+.loadingIcon {
+    color: var(--primary, #0052d1);
+    animation: profile-spin 1s linear infinite;
+}
+
+.profileError {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 22px;
+    color: #b42318;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-lg, 16px);
+}
+
+.profileErrorContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.profileErrorContent strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.profileErrorContent p {
+    margin: 0 0 14px;
+    color: #7f1d1d;
+    overflow-wrap: anywhere;
+}
+
+.retryButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 14px;
+    color: #fff;
+    background: var(--gradient-brand, linear-gradient(135deg, #0b3d91, #0052d1));
+    border: 0;
+    border-radius: 10px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.profileActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.accountStatus {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 11px;
+    color: #64748b;
+    background: #f1f5f9;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.activeStatus {
+    color: #15803d;
+    background: #f0fdf4;
+}
+
+.statusDot {
+    width: 7px;
+    height: 7px;
+    background: currentColor;
+    border-radius: 50%;
+}
+
+.balanceCard {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 22px 24px;
+    background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+    border: 1px solid #dbeafe;
+    border-radius: var(--radius-lg, 16px);
+}
+
+.balanceIcon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    color: #fff;
+    background: var(--gradient-brand, linear-gradient(135deg, #0b3d91, #0052d1));
+    border-radius: 14px;
+}
+
+.balanceInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.balanceInfo>span {
+    color: var(--text-secondary, #64748b);
+    font-size: 13px;
+}
+
+.balanceInfo>strong {
+    color: var(--primary-dark, #0b3d91);
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.balanceInfo small {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.infoText {
+    flex: 1;
+    min-width: 0;
+}
+
+.infoText span,
+.infoText strong {
+    display: block;
+}
+
+.infoText strong {
+    overflow-wrap: anywhere;
+}
+
+.profileCard button:disabled,
+.settingItem:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+@keyframes profile-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .profileCard {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .profileActions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .balanceCard {
+        padding: 17px;
+    }
+
+    .balanceInfo>strong {
+        font-size: 20px;
+    }
+
+    .profileError {
+        padding: 16px;
     }
 }

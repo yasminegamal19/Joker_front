@@ -1,7 +1,4 @@
-/* =========================================
-   JOKER NET — Merchant Pending
-   Premium application status page
-   ========================================= */
+
 
 .container {
     position: relative;
@@ -12,7 +9,6 @@
     animation: pendingEnter 0.55s ease both;
 }
 
-/* Success / pending status icon */
 
 .successIcon {
     position: relative;
@@ -53,7 +49,6 @@
     box-shadow: var(--shadow-glow);
 }
 
-/* Status label */
 
 .eyebrow {
     display: inline-flex;
@@ -74,7 +69,6 @@
     line-height: 1.6;
 }
 
-/* Main heading */
 
 .container h2 {
     margin: 0 0 12px;
@@ -85,7 +79,6 @@
     letter-spacing: -0.6px;
 }
 
-/* Supporting message */
 
 .description {
     max-width: 410px;
@@ -97,7 +90,6 @@
     line-height: 2;
 }
 
-/* Important information card */
 
 .infoBox {
     position: relative;
@@ -168,7 +160,6 @@
     line-height: 1.9;
 }
 
-/* Application progress */
 
 .nextSteps {
     position: relative;
@@ -182,7 +173,6 @@
     text-align: start;
 }
 
-/* Vertical timeline */
 
 .step {
     position: relative;
@@ -224,7 +214,6 @@
         border-color var(--transition);
 }
 
-/* Connector between the steps */
 
 .step:not(:last-child)::after {
     content: "";
@@ -266,7 +255,6 @@
     border-color: transparent;
 }
 
-/* Main action */
 
 .submitButton {
     position: relative;
@@ -335,7 +323,6 @@
     outline-offset: 4px;
 }
 
-/* Secondary navigation */
 
 .backLink {
     display: inline-flex;
@@ -382,7 +369,6 @@
     outline-offset: 3px;
 }
 
-/* Entrance animation */
 
 @keyframes pendingEnter {
     from {
@@ -396,7 +382,6 @@
     }
 }
 
-/* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
     .container {
@@ -413,7 +398,6 @@
     }
 }
 
-/* Responsive */
 
 @media (max-width: 480px) {
     .container {

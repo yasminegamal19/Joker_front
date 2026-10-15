@@ -42,7 +42,6 @@
   margin: 0 auto;
 }
 
-/* Section heading */
 
 .sectionHeader {
   display: grid;
@@ -124,7 +123,6 @@
   background: var(--accent-hover);
 }
 
-/* Services grid */
 
 .grid {
   display: grid;
@@ -133,7 +131,6 @@
   gap: 17px;
 }
 
-/* Service card */
 
 .serviceCard {
   position: relative;
@@ -213,7 +210,6 @@
   transform: translateY(-2px);
 }
 
-/* Card content */
 
 .cardContent {
   position: relative;
@@ -239,7 +235,6 @@
   transition: color var(--transition);
 }
 
-/* Card link */
 
 .cardLink {
   position: relative;
@@ -292,7 +287,6 @@
   transform: translateX(-3px);
 }
 
-/* Featured internet card */
 
 .serviceCard.featured {
   color: var(--text-on-accent);
@@ -354,7 +348,6 @@
   outline-color: #FFFFFF;
 }
 
-/* Decorative card accent */
 
 .cardAccent {
   position: absolute;
@@ -381,7 +374,6 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Bottom banner */
 
 .bottomBanner {
   position: relative;
@@ -462,7 +454,6 @@
   box-shadow: var(--shadow-glow);
 }
 
-/* Tablet */
 
 @media (max-width: 1100px) {
   .sectionHeader {
@@ -492,7 +483,6 @@
   }
 }
 
-/* Mobile */
 
 @media (max-width: 700px) {
   .servicesSection {
@@ -589,7 +579,6 @@
   }
 }
 
-/* Small phones */
 
 @media (max-width: 380px) {
   .container {
@@ -613,7 +602,6 @@
   }
 }
 
-/* Reduced motion accessibility */
 
 @media (prefers-reduced-motion: reduce) {
 

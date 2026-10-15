@@ -7,9 +7,7 @@ import styles from "./Packages.module.css";
 
 const INITIAL_VISIBLE = 6;
 
-/* ---------- Helpers ---------- */
 
-// 4048 kbps -> "4" ، 1536 kbps -> "1.5" ، 17360 -> "17"
 const kbpsToMbps = (kbps) => {
   const mbps = Math.round((Number(kbps) / 1024) * 10) / 10;
   return Number.isInteger(mbps) ? String(mbps) : mbps.toFixed(1);
@@ -59,7 +57,6 @@ const mapPackage = (p) => {
   };
 };
 
-/* ---------- Component ---------- */
 
 const Packages = () => {
   const navigate = useNavigate();

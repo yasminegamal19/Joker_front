@@ -14,7 +14,6 @@ const ChooseUser = () => {
 
   return (
     <main className={styles.page}>
-      {/* Top Bar for Navigation & Theme Toggle */}
       <div className={styles.topActions}>
         <button
           type="button"
@@ -38,7 +37,6 @@ const ChooseUser = () => {
         </button>
       </div>
 
-      {/* عناصر الخلفية البصرية */}
       <div className={styles.bgGlow1}></div>
       <div className={styles.bgGlow2}></div>
 

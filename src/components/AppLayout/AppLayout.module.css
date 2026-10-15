@@ -1,8 +1,4 @@
-/* ==================================================
-   Customer App Shell
-   Desktop  : Navy sidebar (collapsible) + slim topbar
-   Mobile   : Topbar + bottom tab bar + "More" sheet
-   ================================================== */
+
 
 .shell {
   --sidebar-w: 268px;
@@ -31,7 +27,6 @@
   grid-template-columns: var(--sidebar-w-collapsed) minmax(0, 1fr);
 }
 
-/* ---------------- Sidebar ---------------- */
 
 .sidebar {
   position: sticky;
@@ -223,7 +218,6 @@
   border: 2px solid var(--sidebar-bg);
 }
 
-/* collapsed state (desktop only) */
 @media (min-width: 1024px) {
   .collapsed .brandText,
   .collapsed .sideLabel,
@@ -251,7 +245,6 @@
   }
 }
 
-/* ---------------- Body / Topbar ---------------- */
 
 .body {
   min-width: 0;
@@ -371,7 +364,6 @@
   font-size: 11px;
 }
 
-/* ---------------- Main content ---------------- */
 
 .main {
   flex: 1;
@@ -385,14 +377,12 @@
   padding: 30px 32px 56px;
 }
 
-/* الـ Layout هو اللي بيتحكم في العرض؛ نلغي عرض .container العام جوه المحتوى */
 .content :global(.container) {
   width: 100%;
   max-width: none;
   margin: 0;
 }
 
-/* ---------------- Tab bar + sheet (mobile) ---------------- */
 
 .tabBar,
 .overlay,
@@ -406,11 +396,50 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .sidebar,
-  .collapseButton,
-  .profileChip {
-    display: none;
-  }
+ .sidebar,
+ .collapseButton {
+   display: none;
+ }
+
+ .profileChip {
+   display: inline-flex;
+   align-items: center;
+   gap: 7px;
+   height: 40px;
+   max-width: 190px;
+   min-width: 0;
+   padding: 0 8px;
+   flex-shrink: 0;
+   border-radius: 12px;
+ }
+
+ .profileChip .avatar {
+   width: 28px;
+   height: 28px;
+   flex-shrink: 0;
+ }
+
+ .profileText {
+   min-width: 0;
+   overflow: hidden;
+ }
+
+ .profileText strong,
+ .profileText small {
+   display: block;
+   max-width: 125px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+ }
+
+ .profileText strong {
+   font-size: 11px;
+ }
+
+ .profileText small {
+   font-size: 10px;
+ }
 
   .topbar {
     padding-inline: 16px;
@@ -603,6 +632,26 @@
   .sheetGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+    .profileChip {
+      max-width: 150px;
+      gap: 5px;
+      padding-inline: 6px;
+    }
+  
+    .profileText strong,
+    .profileText small {
+      max-width: 85px;
+    }
+  
+    .mobileLogo {
+      gap: 6px;
+      font-size: 15px;
+    }
+  
+    .mobileLogo img {
+      width: 32px;
+      height: 32px;
+    }
 }
 
 @keyframes fade {

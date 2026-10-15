@@ -1,20 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
 
-/* ==================================================
-   JOKER NET GLOBAL DESIGN SYSTEM & TOKENS
-   Brand Colors:
-   - Primary Navy: #000D42
-   - Primary Blue: #0A2FD9
-   - Light Gray / White: #F2F2F2
-   ================================================== */
 
 :root {
-  /* Brand Core Tokens */
   --color-primary: #0A2FD9;
   --color-primary-dark: #000D42;
   --color-surface-light: #F2F2F2;
 
-  /* Light Theme (Default) */
   --bg-primary: #F2F2F2;
   --bg-secondary: #FFFFFF;
   --bg-card: #FFFFFF;
@@ -64,7 +55,6 @@
   --scrollbar-thumb: #CBD5E1;
   --scrollbar-thumb-hover: #94A3B8;
 
-  /* Semantic Status Tokens */
   --color-success: #16A34A;
   --color-success-bg: rgba(22, 163, 74, 0.10);
   --color-warning: #F59E0B;
@@ -74,7 +64,6 @@
   --color-info: #0A2FD9;
   --color-info-bg: rgba(10, 47, 217, 0.09);
 
-  /* Legacy & Utility Aliases */
   --primary: var(--color-primary);
   --primary-dark: var(--color-primary-dark);
   --primary-light: var(--accent-light);
@@ -93,7 +82,6 @@
   --danger: var(--color-danger);
   --danger-light: var(--color-danger-bg);
 
-  /* Typography & Layout Spacing */
   --font-family:
     "Cairo",
     Inter,
@@ -116,11 +104,7 @@
   --theme-transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* ==================================================
-   Dark Theme Overrides
-   ================================================== */
 [data-theme="dark"] {
-  /* Dark Theme */
   --bg-primary: #000D42;
   --bg-secondary: #001254;
   --bg-card: #031766;
@@ -169,7 +153,6 @@
   --scrollbar-thumb: #172B70;
   --scrollbar-thumb-hover: #233D96;
 
-  /* Semantic Status Tokens (Dark Mode) */
   --color-success: #22C55E;
   --color-success-bg: rgba(34, 197, 94, 0.16);
   --color-warning: #FBBF24;
@@ -179,7 +162,6 @@
   --color-info: #7C97FF;
   --color-info-bg: rgba(124, 151, 255, 0.16);
 
-  /* Legacy & Utility Aliases (Dark Mode) */
   --primary-dark: #061D8F;
   --primary-light: var(--accent-light);
   --secondary: #38BDF8;
@@ -187,9 +169,7 @@
   --secondary-light: rgba(56, 189, 248, 0.15);
 }
 
-/* ==================================================
-   Base & Resets
-   ================================================== */
+
 *,
 *::before,
 *::after {
@@ -253,7 +233,6 @@ ol {
   background: var(--color-primary);
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -273,13 +252,11 @@ ol {
   background: var(--scrollbar-thumb-hover);
 }
 
-/* Container */
 .container {
   width: min(calc(100% - (var(--page-padding) * 2)), var(--container-width));
   margin-inline: auto;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -328,7 +305,6 @@ ol {
   background: var(--color-primary);
 }
 
-/* Forms */
 .form-group {
   display: flex;
   flex-direction: column;

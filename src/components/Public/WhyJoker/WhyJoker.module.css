@@ -16,7 +16,6 @@
   align-items: center;
 }
 
-/* ========================= VISUAL PANEL ========================= */
 .visual {
   position: relative;
   min-height: 500px;
@@ -112,7 +111,6 @@
   line-height: 1.5;
 }
 
-/* ========================= CONNECTION CARD ========================= */
 .signalCard {
   position: absolute;
   z-index: 4;
@@ -167,7 +165,6 @@
   box-shadow: 0 0 0 3px var(--color-success-bg);
 }
 
-/* ========================= DECOR ========================= */
 .decor {
   position: absolute;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -190,7 +187,6 @@
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* ========================= CONTENT ========================= */
 .content {
   max-width: 650px;
 }
@@ -242,7 +238,6 @@
   transition: color var(--transition);
 }
 
-/* ========================= FEATURES ========================= */
 .features {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -331,7 +326,6 @@
   transition: color var(--transition);
 }
 
-/* ========================= RESPONSIVE ========================= */
 @media (max-width: 1050px) {
   .container {
     grid-template-columns: 1fr 1fr;

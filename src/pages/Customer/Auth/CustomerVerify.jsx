@@ -60,12 +60,10 @@ const CustomerVerify = () => {
 
   return (
     <div className={styles.pageViewport}>
-      {/* المؤثرات الضوئية الخلفية الفاتحة */}
       <div className={styles.glowOrb1}></div>
       <div className={styles.glowOrb2}></div>
 
       <div className={styles.verifyCard}>
-        {/* شارة الهوية للبراند */}
         <div className={styles.brandHeader}>
           <div className={styles.logoBadge}>
             <Wifi className={styles.wifiIcon} size={22} />
@@ -85,7 +83,6 @@ const CustomerVerify = () => {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.mainForm}>
-          {/* مربعات إدخال الـ OTP */}
           <div className={styles.otpGroup} dir="ltr">
             {otp.map((digit, index) => (
               <input
@@ -112,7 +109,6 @@ const CustomerVerify = () => {
             </button>
           </div>
 
-          {/* زر التأكيد */}
           <button
             type="submit"
             className={styles.primaryBtn}
@@ -123,7 +119,6 @@ const CustomerVerify = () => {
           </button>
         </form>
 
-        {/* الفوتر ورابط العودة */}
         <div className={styles.cardFooter}>
           <div className={styles.secureLine}>
             <ShieldCheck size={15} />

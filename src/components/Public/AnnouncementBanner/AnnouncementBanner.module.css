@@ -139,7 +139,6 @@
   outline-offset: 3px;
 }
 
-/* Visual area */
 
 .visual {
   position: relative;
@@ -263,7 +262,6 @@
   height: 27px;
 }
 
-/* Slider controls */
 
 .controls {
   position: absolute;
@@ -324,7 +322,6 @@
   background: #FFFFFF;
 }
 
-/* Responsive */
 
 @media (min-width: 801px) {
   .content {

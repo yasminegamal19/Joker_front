@@ -1,17 +1,14 @@
 import { ArrowLeft, Check, Wifi } from "lucide-react";
 import styles from "./PackageFlow.module.css";
 
-/*
-  كارت باقة مشترك بين صفحة "تغيير الباقة" وصفحة "تجديد الباقة".
-  pkg: الشكل الناتج من mapPackage (priceValue = null معناها السعر مش معروف)
-*/
+
 const PackageCard = ({
   pkg,
   isCurrent = false,
   actionLabel,
   onAction,
   actionDisabled = false,
-  variant = "outline", // "primary" | "outline"
+  variant = "outline", 
   large = false,
 }) => {
   const hasPrice = pkg.priceValue !== null && pkg.priceValue !== undefined;

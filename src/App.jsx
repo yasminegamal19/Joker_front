@@ -30,12 +30,10 @@ const App = () => {
   return (
     <MaintenanceGate>
       <Routes>
-        {/* Public Website */}
         <Route path="/" element={<Home />} />
         <Route path="/join" element={<CustomerJoin />} />
         <Route path="/choose-user" element={<ChooseUser />} />
         <Route path="/content/:key" element={<ContentPage />} />
-        {/* Customer */}
         <Route path="/customer/login" element={<CustomerLogin />} />
         <Route path="/customer/register" element={<CustomerRegister />} />
         <Route path="/customer/verify" element={<CustomerVerify />} />
@@ -64,11 +62,9 @@ const App = () => {
             element={<MaintenanceTracking />}
           />
         </Route>
-        {/* Merchant */}
         <Route path="/merchant/login" element={<MerchantLogin />} />
         <Route path="/merchant/register" element={<MerchantRegister />} />
         <Route path="/merchant/pending" element={<MerchantPending />} />
-        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </MaintenanceGate>

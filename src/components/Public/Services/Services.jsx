@@ -38,7 +38,6 @@ const Services = () => {
   return (
     <section className={styles.servicesSection} id="services">
       <div className={styles.container}>
-        {/* Section Header */}
         <div className={styles.sectionHeader}>
           <div className={styles.headingSide}>
             <span className={styles.subTitle}>خدمات الجوكر</span>
@@ -62,7 +61,6 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Services Grid */}
         <div className={styles.grid}>
           {servicesList.map((service) => {
             const Icon = service.icon;
@@ -102,7 +100,6 @@ const Services = () => {
           })}
         </div>
 
-        {/* Bottom Highlight */}
         <div className={styles.bottomBanner}>
           <div className={styles.bannerIcon}>
             <Wifi size={21} />

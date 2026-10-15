@@ -6,7 +6,6 @@ import logoLight from "../../../assets/logo-light.png";
 import logoDark from "../../../assets/logo-dark.png";
 import styles from "./Footer.module.css";
 
-/* عناوين صفحات المحتوى حسب الـ key اللي راجع من الـ API */
 const CONTENT_LABELS = {
   about_us: "من نحن",
   terms: "الشروط والأحكام",
@@ -45,7 +44,6 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>
         <div className={styles.main}>
-          {/* Brand */}
           <div className={styles.brand}>
             <Link to="/" className={styles.logo}>
               <img src={logoSrc} alt="الجوكر" />
@@ -71,7 +69,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Links */}
           <div className={styles.links}>
             <div className={styles.linkGroup}>
               <h3>روابط مهمة</h3>

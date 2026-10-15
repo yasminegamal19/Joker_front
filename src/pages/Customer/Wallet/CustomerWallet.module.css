@@ -495,7 +495,6 @@
 }
 
 
-/* Top-up form */
 .topUpCard {
     padding: 22px;
     border: 1px solid var(--border);
@@ -575,7 +574,6 @@
     font-size: 13px;
 }
 
-/* Payments and invoices */
 .financialRecord {
     display: flex;
     align-items: center;

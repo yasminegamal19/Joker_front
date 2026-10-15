@@ -1,7 +1,4 @@
-/* =========================================
-   JOKER NET — Customer Join
-   Unified with CustomerRegister Design
-   ========================================= */
+
 
 .page {
   position: relative;
@@ -17,7 +14,6 @@
   transition: background-color var(--transition), color var(--transition);
 }
 
-/* Ambient brand lighting */
 
 .ambientOne,
 .ambientTwo {
@@ -56,7 +52,6 @@
   opacity: 0.65;
 }
 
-/* Page layout */
 .pageShell {
   width: 100%;
   max-width: 720px;
@@ -101,7 +96,6 @@
   outline-offset: 3px;
 }
 
-/* Intro */
 
 .intro {
   max-width: 700px;
@@ -170,7 +164,6 @@
   color: var(--color-success);
 }
 
-/* Main form card */
 
 .formCard {
   position: relative;
@@ -200,7 +193,6 @@
   opacity: 0.95;
 }
 
-/* Form heading */
 
 .formHeading {
   display: flex;
@@ -251,7 +243,6 @@
   white-space: nowrap;
 }
 
-/* Form sections */
 
 .formSection {
   padding: 24px 0;
@@ -292,7 +283,6 @@
   line-height: 1.7;
 }
 
-/* Input fields */
 
 .fieldsGrid {
   display: grid;
@@ -407,7 +397,6 @@
   line-height: 1.8;
 }
 
-/* Password visibility */
 
 .passwordToggle {
   position: absolute;
@@ -436,7 +425,6 @@
   color: var(--accent-hover);
 }
 
-/* Map toolbar */
 
 .mapToolbar {
   display: flex;
@@ -493,7 +481,6 @@
   cursor: wait;
 }
 
-/* Leaflet map */
 
 .mapFrame {
   position: relative;
@@ -532,7 +519,6 @@
   color: var(--color-danger);
 }
 
-/* Selected coordinates */
 
 .coordinatesRow {
   display: flex;
@@ -572,7 +558,6 @@
   flex-shrink: 0;
 }
 
-/* National ID uploads */
 
 .uploadGrid {
   display: grid;
@@ -745,7 +730,6 @@
   border-color: var(--border-color);
 }
 
-/* Privacy notices */
 
 .privacyNote {
   display: flex;
@@ -774,7 +758,6 @@
   line-height: 1.9;
 }
 
-/* Form footer */
 
 .formFooter {
   display: flex;
@@ -800,7 +783,6 @@
   color: var(--color-success);
 }
 
-/* Primary brand button */
 
 .submitButton {
   position: relative;
@@ -867,7 +849,6 @@
   transform: translate(2px, -2px);
 }
 
-/* Existing account */
 
 .existingAccount {
   margin: 24px 0 0;
@@ -898,7 +879,6 @@
   border-radius: 3px;
 }
 
-/* Brand footer */
 
 .bottomNote {
   margin: 24px 0 0;
@@ -915,7 +895,6 @@
   color: var(--color-primary);
 }
 
-/* Entrance animation */
 
 @keyframes joinPageEnter {
   from {
@@ -929,7 +908,6 @@
   }
 }
 
-/* Tablet and mobile */
 
 @media (max-width: 640px) {
   .page {
@@ -1092,7 +1070,6 @@
   }
 }
 
-/* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
   .pageShell {

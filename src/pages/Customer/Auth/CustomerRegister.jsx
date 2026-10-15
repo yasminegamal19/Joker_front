@@ -45,12 +45,10 @@ const CustomerRegister = () => {
 
   return (
     <div className={styles.pageViewport}>
-      {/* خلفية ضوئية فاتحة وهادئة */}
       <div className={styles.glowOrb1}></div>
       <div className={styles.glowOrb2}></div>
 
       <div className={styles.registerCard}>
-        {/* الهيدر مع شارة البراند */}
         <div className={styles.brandHeader}>
           <div className={styles.logoBadge}>
             <UserRound className={styles.userIcon} size={22} />
@@ -67,7 +65,6 @@ const CustomerRegister = () => {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.mainForm}>
-          {/* حقل الاسم بالكامل */}
           <div className={styles.fieldBlock}>
             <label htmlFor="name">الاسم بالكامل</label>
             <div className={styles.inputBox}>
@@ -85,7 +82,6 @@ const CustomerRegister = () => {
             </div>
           </div>
 
-          {/* حقل رقم الهاتف */}
           <div className={styles.fieldBlock}>
             <label htmlFor="phone">رقم الهاتف</label>
             <div className={styles.inputBox}>
@@ -103,7 +99,6 @@ const CustomerRegister = () => {
             </div>
           </div>
 
-          {/* حقل كلمة المرور */}
           <div className={styles.fieldBlock}>
             <label htmlFor="password">كلمة المرور</label>
             <div className={styles.inputBox}>
@@ -128,7 +123,6 @@ const CustomerRegister = () => {
             </div>
           </div>
 
-          {/* حقل تأكيد كلمة المرور */}
           <div className={styles.fieldBlock}>
             <label htmlFor="confirmPassword">تأكيد كلمة المرور</label>
             <div className={styles.inputBox}>
@@ -153,14 +147,12 @@ const CustomerRegister = () => {
             </div>
           </div>
 
-          {/* زر التقديم */}
           <button type="submit" className={styles.primaryBtn}>
             <span>إنشاء الحساب</span>
             <ArrowLeft size={19} className={styles.btnArrow} />
           </button>
         </form>
 
-        {/* الفوتر */}
         <div className={styles.cardFooter}>
           <div className={styles.secureLine}>
             <ShieldCheck size={15} />

@@ -119,7 +119,6 @@ const Navbar = () => {
           </button>
         </nav>
 
-        {/* Actions */}
         <div className={styles.actions}>
           <button
             type="button"

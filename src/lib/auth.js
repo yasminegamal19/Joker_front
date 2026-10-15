@@ -16,7 +16,6 @@ export const setToken = (token) => {
   try {
     localStorage.setItem(TOKEN_KEY, token);
   } catch {
-    /* localStorage مش متاح */
   }
 };
 
@@ -24,7 +23,6 @@ export const clearToken = () => {
   try {
     localStorage.removeItem(TOKEN_KEY);
   } catch {
-    /* localStorage مش متاح */
   }
 };
 

@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import { useAppConfig } from "../../../context/AppConfigContext";
 import styles from "./Hero.module.css";
 
-/* البانرات الافتراضية: تظهر لو الـ API رجّع قائمة فاضية أو حصل خطأ */
 const defaultBanners = [
   {
     id: "default-1",
@@ -45,7 +44,6 @@ const defaultBanners = [
   },
 ];
 
-/* تحويل شكل الـ API إلى شكل الـ Hero */
 const mapApiBanners = (apiBanners = []) =>
   apiBanners.map((b, index) => ({
     id: b.id,
@@ -65,7 +63,6 @@ const mapApiBanners = (apiBanners = []) =>
 
 const isExternal = (url) => /^https?:\/\//i.test(url);
 
-/* لينك ذكي: خارجي <a> وداخلي <Link> */
 const SmartLink = ({ to, className, children }) =>
   isExternal(to) ? (
     <a href={to} className={className} target="_blank" rel="noreferrer">
@@ -121,7 +118,6 @@ const Hero = ({ banners: bannersProp }) => {
 
       <div className={styles.container}>
         <div className={styles.heroCard}>
-          {/* Main Content */}
           <div className={styles.content}>
             <div className={styles.badge}>
               <span className={styles.badgeIcon}>
@@ -174,7 +170,6 @@ const Hero = ({ banners: bannersProp }) => {
             </div>
           </div>
 
-          {/* Offer Visual */}
           <div className={`${styles.visual} ${styles[activeSlide.theme]}`}>
             {activeSlide.imageUrl && (
               <>
@@ -194,7 +189,6 @@ const Hero = ({ banners: bannersProp }) => {
               <WifiIcon />
             </div>
 
-            {/* العرض الرقمي يظهر فقط لو مفيش صورة */}
             {!activeSlide.imageUrl && activeSlide.offer && (
               <div className={styles.offerVisual}>
                 <span className={styles.offerSmall}>عرض</span>
@@ -226,7 +220,6 @@ const Hero = ({ banners: bannersProp }) => {
           </div>
         </div>
 
-        {/* Slider Controls */}
         {banners.length > 1 && (
           <>
             <div className={styles.sliderFooter}>

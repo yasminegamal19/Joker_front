@@ -49,10 +49,6 @@
   z-index: 2;
 }
 
-/* =========================
-   Main
-========================= */
-
 .main {
   display: flex;
   justify-content: space-between;
@@ -60,10 +56,6 @@
 
   padding-bottom: 55px;
 }
-
-/* =========================
-   Brand
-========================= */
 
 .brand {
   width: 32%;
@@ -93,10 +85,6 @@
   line-height: 1.9;
   transition: color var(--transition);
 }
-
-/* =========================
-   Social
-========================= */
 
 .socials {
   display: flex;
@@ -137,10 +125,6 @@
 
   transform: translateY(-2px);
 }
-
-/* =========================
-   Links
-========================= */
 
 .links {
   flex: 1;
@@ -206,10 +190,6 @@
   transform: translateX(-3px);
 }
 
-/* =========================
-   Bottom
-========================= */
-
 .bottom {
   min-height: 65px;
 
@@ -247,10 +227,6 @@
   color: var(--color-primary);
 }
 
-/* =========================
-   Tablet
-========================= */
-
 @media (max-width: 900px) {
   .main {
     gap: 45px;
@@ -264,10 +240,6 @@
     gap: 30px;
   }
 }
-
-/* =========================
-   Mobile
-========================= */
 
 @media (max-width: 700px) {
   .footer {
@@ -325,9 +297,6 @@
   }
 }
 
-/* =========================
-   Small Mobile
-========================= */
 
 @media (max-width: 420px) {
   .footer {

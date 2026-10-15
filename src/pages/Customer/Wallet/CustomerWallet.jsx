@@ -409,7 +409,6 @@ const CustomerWallet = () => {
             </div>
           </section>
 
-          {/* Wallet transactions */}
           <section className={styles.transactionsSection}>
             <div className={styles.sectionHeader}>
               <div>
@@ -502,7 +501,6 @@ const CustomerWallet = () => {
             </div>
           </section>
 
-          {/* Payments */}
           <section className={styles.transactionsSection}>
             <div className={styles.sectionHeader}>
               <div>
@@ -580,7 +578,6 @@ const CustomerWallet = () => {
             </div>
           </section>
 
-          {/* Invoices */}
           <section className={styles.transactionsSection}>
             <div className={styles.sectionHeader}>
               <div>

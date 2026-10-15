@@ -1,7 +1,4 @@
-/* =========================================
-   JOKER NET — Customer Register
-   Uses the existing global design tokens
-   ========================================= */
+
 
 .pageViewport {
     position: relative;
@@ -21,7 +18,6 @@
     transition: var(--theme-transition);
 }
 
-/* Ambient brand lighting */
 
 .glowOrb1,
 .glowOrb2 {
@@ -63,7 +59,6 @@
     opacity: 0.65;
 }
 
-/* Main card */
 
 .registerCard {
     position: relative;
@@ -89,7 +84,6 @@
         box-shadow var(--transition);
 }
 
-/* Subtle brand accent at the top of the card */
 
 .registerCard::before {
     content: "";
@@ -103,7 +97,6 @@
     opacity: 0.95;
 }
 
-/* Brand header */
 
 .brandHeader {
     display: flex;
@@ -161,7 +154,6 @@
     line-height: 1.6;
 }
 
-/* Heading */
 
 .cardText {
     margin-bottom: 25px;
@@ -185,7 +177,6 @@
     line-height: 1.9;
 }
 
-/* Form layout */
 
 .mainForm {
     display: flex;
@@ -208,7 +199,6 @@
     transition: color var(--transition);
 }
 
-/* Input wrapper */
 
 .inputBox {
     position: relative;
@@ -276,7 +266,6 @@
     color: var(--accent-hover);
 }
 
-/* Password visibility button */
 
 .eyeToggle {
     position: absolute;
@@ -315,7 +304,6 @@
     outline-offset: 2px;
 }
 
-/* Primary action */
 
 .primaryBtn {
     position: relative;
@@ -393,7 +381,6 @@
     transform: translateX(-4px);
 }
 
-/* Footer */
 
 .cardFooter {
     display: flex;
@@ -465,7 +452,6 @@
     border-radius: 3px;
 }
 
-/* Entrance animation */
 
 @keyframes registerCardEnter {
     from {
@@ -479,7 +465,6 @@
     }
 }
 
-/* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
     .registerCard {
@@ -496,7 +481,6 @@
     }
 }
 
-/* Tablet and mobile */
 
 @media (max-width: 600px) {
     .pageViewport {
