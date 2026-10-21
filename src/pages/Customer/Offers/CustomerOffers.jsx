@@ -15,14 +15,12 @@ import styles from "./CustomerOffers.module.css";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-// "349.00" -> "349"
 const formatPrice = (price) => {
   const n = Number(price);
   if (Number.isNaN(n)) return String(price);
   return Number.isInteger(n) ? n.toLocaleString("en-US") : n.toFixed(2);
 };
 
-// عدد الأيام المتبقية: null = مفتوح، سالب = انتهى
 const daysLeft = (endsAt) => {
   if (!endsAt) return null;
   const end = new Date(endsAt).getTime();
@@ -37,7 +35,6 @@ const expiresLabel = (days) => {
   return `ينتهي خلال ${days} يوم`;
 };
 
-// تحويل شكل الـ API إلى شكل الصفحة
 const mapOffer = (o) => {
   const days = daysLeft(o.ends_at);
   const pkg = o.package || null;
@@ -55,7 +52,6 @@ const mapOffer = (o) => {
     quota: hasQuota ? String(pkg.quota_gb) : null,
     days,
     expires: expiresLabel(days),
-    // لو الـ API بعت end date قديم نعتبره منتهي
     expired: days !== null && Date.now() > new Date(o.ends_at).getTime(),
   };
 };
@@ -95,11 +91,9 @@ const CustomerOffers = () => {
     return () => controller.abort();
   }, [attempt, navigate]);
 
-  // أول عرض هو العرض المميز، والباقي في الشبكة
   const [featured, ...others] = useMemo(() => offers, [offers]);
 
   const handleUseOffer = (offer) => {
-    // TODO: اربطه بـ endpoint الاشتراك في العرض لما الباك اند يجهزه
     console.log("use offer", offer.id, "package", offer.packageId);
   };
 

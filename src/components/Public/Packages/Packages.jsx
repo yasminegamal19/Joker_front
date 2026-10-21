@@ -1,4 +1,3 @@
-// src/components/Public/Packages/Packages.jsx
 import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Check, Gauge, Wifi } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -18,13 +17,11 @@ const parsePrice = (price) => {
   return Number.isNaN(n) ? 0 : n;
 };
 
-// "199.00" -> "199" ، "199.50" -> "199.50"
 const formatPrice = (n) =>
   Number.isInteger(n) ? n.toLocaleString("en-US") : n.toFixed(2);
 
 const durationLabel = (days) => (days === 30 ? "شهريًا" : `/ ${days} يوم`);
 
-// تحويل شكل الـ API إلى شكل الكارت
 const mapPackage = (p) => {
   const price = parsePrice(p.price);
   const hasQuota = p.quota_gb !== null && p.quota_gb !== undefined;
@@ -51,7 +48,6 @@ const mapPackage = (p) => {
     days: p.duration_days,
     priceValue: price,
     price: formatPrice(price),
-    // الـ API مفيهوش حقل "الأكثر اختيارًا"؛ لو الباك اند ضافه بالاسم ده هيشتغل
     popular: Boolean(p.is_popular ?? p.popular),
     features,
   };
@@ -90,7 +86,6 @@ const Packages = () => {
     return () => controller.abort();
   }, [attempt]);
 
-  // ترتيب من الأرخص للأغلى
   const sorted = useMemo(
     () => [...packages].sort((a, b) => a.priceValue - b.priceValue),
     [packages],

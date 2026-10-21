@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { getPackages } from "../services/packageService";
 import { mapPackage } from "../utils/packages";
 
-// بيجيب كل الباقات من GET /packages ومرتبها من الأرخص للأغلى
 export const usePackages = () => {
   const [raw, setRaw] = useState([]);
   const [loading, setLoading] = useState(true);

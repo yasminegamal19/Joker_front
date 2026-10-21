@@ -24,7 +24,6 @@ export const ThemeProvider = ({ children }) => {
         return "dark";
       }
     } catch {
-      // Fallback for privacy mode or restricted environments
     }
     return "light";
   });
@@ -34,7 +33,6 @@ export const ThemeProvider = ({ children }) => {
     try {
       localStorage.setItem(THEME_STORAGE_KEY, newTheme);
     } catch {
-      // Ignore localStorage write error
     }
   };
 
@@ -47,7 +45,6 @@ export const ThemeProvider = ({ children }) => {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
 
-    // Update meta theme-color for mobile status bar
     let metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (!metaThemeColor) {
       metaThemeColor = document.createElement("meta");
@@ -60,7 +57,6 @@ export const ThemeProvider = ({ children }) => {
     );
   }, [theme]);
 
-  // Listen to system preference changes if user hasn't explicitly set preference
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -71,7 +67,6 @@ export const ThemeProvider = ({ children }) => {
           setThemeState(e.matches ? "dark" : "light");
         }
       } catch {
-        // Ignore
       }
     };
 

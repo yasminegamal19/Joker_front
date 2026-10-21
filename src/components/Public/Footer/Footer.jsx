@@ -1,4 +1,3 @@
-// src/components/Public/Footer/Footer.jsx
 import { Link, useNavigate } from "react-router-dom";
 import { useAppConfig } from "../../../context/AppConfigContext";
 import { useTheme } from "../../../context/ThemeContext";

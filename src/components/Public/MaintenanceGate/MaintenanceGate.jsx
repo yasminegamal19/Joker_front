@@ -1,4 +1,3 @@
-// src/components/Public/MaintenanceGate/MaintenanceGate.jsx
 import { useAppConfig } from "../../../context/AppConfigContext";
 import { useTheme } from "../../../context/ThemeContext";
 import logoLight from "../../../assets/logo-light.png";

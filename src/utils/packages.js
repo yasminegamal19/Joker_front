@@ -1,6 +1,4 @@
-// أدوات مشتركة للتعامل مع باقات الـ API
 
-// 4048 kbps -> "4" ، 1536 kbps -> "1.5"
 export const kbpsToMbps = (kbps) => {
   const mbps = Math.round((Number(kbps) / 1024) * 10) / 10;
   return Number.isInteger(mbps) ? String(mbps) : mbps.toFixed(1);
@@ -11,11 +9,9 @@ export const parsePrice = (price) => {
   return Number.isNaN(n) ? 0 : n;
 };
 
-// 199 -> "199" ، 199.5 -> "199.50"
 export const formatPrice = (n) =>
   Number.isInteger(n) ? n.toLocaleString("en-US") : n.toFixed(2);
 
-// تحويل شكل الـ API إلى شكل الكارت
 export const mapPackage = (p) => {
   const priceValue = parsePrice(p.price);
   const hasQuota = p.quota_gb !== null && p.quota_gb !== undefined;
@@ -49,7 +45,6 @@ const normalize = (s) =>
     .toLowerCase()
     .replace(/\s+/g, "");
 
-// بيدوّر على باقة العميل الحالية جوه قايمة الباقات: بالـ id الأول، وبعدين بالاسم
 export const findCurrentPackage = (packages, current) => {
   if (!current || !packages?.length) return null;
 

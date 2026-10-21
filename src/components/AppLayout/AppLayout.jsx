@@ -136,7 +136,6 @@ const AppLayout = ({ children }) => {
   const tabItems = allItems.filter((item) => item.tab);
   const moreItems = allItems.filter((item) => !item.tab);
 
-  // تقفل قائمة "المزيد" مع أي تنقل، وتقفل بزر Esc
   useEffect(() => {
     setMoreOpen(false);
   }, [location.pathname]);

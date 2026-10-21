@@ -11,7 +11,6 @@ const defaultConfig = {
   content_keys: [],
 };
 
-// السيرفر بيرجّع [] بدل {} لما الـ flags فاضية، فنتأكد إنها object
 const isPlainObject = (v) => v && typeof v === "object" && !Array.isArray(v);
 
 const normalize = (data = {}) => ({
@@ -45,7 +44,6 @@ export const AppConfigProvider = ({ children }) => {
       )
       .catch((err) => {
         if (controller.signal.aborted) return;
-        // لو الـ API وقع، الموقع يشتغل بالقيم الافتراضية
         setState({ config: defaultConfig, loading: false, error: err });
       });
 

@@ -218,7 +218,6 @@ const CustomerWallet = () => {
         throw new Error("رابط الدفع غير آمن.");
       }
 
-      // Open the payment gateway supplied by the backend.
       window.location.assign(parsedUrl.href);
     } catch (err) {
       setTopUpError(

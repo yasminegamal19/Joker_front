@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Building2, Eye, EyeOff, LockKeyhole, Store } from "lucide-react";
 
 import AuthLayout from "../../../components/Auth/AuthLayout";
 import styles from "./MerchantLogin.module.css";
 
 const MerchantLogin = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -24,8 +25,7 @@ const MerchantLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("Merchant login:", formData);
+    navigate("/merchant/home");
   };
 
   return (
@@ -96,7 +96,7 @@ const MerchantLogin = () => {
           </button>
         </div>
 
-        <button type="submit" className={styles.submitButton}>
+        <button type="button" onClick={() => navigate("/merchant/home")} className={styles.submitButton}>
           تسجيل الدخول
         </button>
       </form>

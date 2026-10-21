@@ -25,6 +25,14 @@ import RenewPackage from "./pages/Customer/Package/RenewPackage";
 import MerchantLogin from "./pages/Merchant/Auth/MerchantLogin";
 import MerchantRegister from "./pages/Merchant/Auth/MerchantRegister";
 import MerchantPending from "./pages/Merchant/Auth/MerchantPending";
+import MerchantHome from "./pages/Merchant/Home/MerchantHome";
+import MerchantCards from "./pages/Merchant/Cards/Cards";
+import MerchantLayout from "./components/Merchant/MerchantLayout";
+import Packages from "./pages/Merchant/Packages/Packages";
+import Wallet from "./pages/Merchant/Wallet/Wallet";
+import Chat from "./pages/Merchant/Chat/Chat";
+import Profile from "./pages/Merchant/Profile/Profile";
+import Notifications from "./pages/Merchant/Notifications/Notifications";
 
 const App = () => {
   return (
@@ -65,6 +73,16 @@ const App = () => {
         <Route path="/merchant/login" element={<MerchantLogin />} />
         <Route path="/merchant/register" element={<MerchantRegister />} />
         <Route path="/merchant/pending" element={<MerchantPending />} />
+
+        <Route element={<MerchantLayout />}>
+          <Route path="/merchant/home" element={<MerchantHome />} />
+          <Route path="/merchant/cards" element={<MerchantCards />} />
+          <Route path="/merchant/packages" element={<Packages />} />
+          <Route path="/merchant/wallet" element={<Wallet />} />
+          <Route path="/merchant/chat" element={<Chat />} />
+          <Route path="/merchant/profile" element={<Profile />} />
+          <Route path="/merchant/notifications" element={<Notifications />} />
+        </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </MaintenanceGate>

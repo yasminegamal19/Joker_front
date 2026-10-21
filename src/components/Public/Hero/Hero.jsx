@@ -1,4 +1,3 @@
-// src/components/Public/Hero/Hero.jsx
 import { useEffect, useState } from "react";
 import {
   ArrowLeft,
@@ -51,7 +50,6 @@ const mapApiBanners = (apiBanners = []) =>
     title: b.title,
     highlight: "",
     description: "",
-    // لو مفيش link_url الزرار يوديه للاشتراك
     buttonText: b.link_url ? "اعرف أكتر" : "اشترك الآن",
     buttonLink: b.link_url || "/choose-user",
     badgeIcon: Sparkles,
@@ -83,7 +81,6 @@ const Hero = ({ banners: bannersProp }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // لو عدد البانرات قلّ بعد التحميل، نرجع للأول
   useEffect(() => {
     setCurrentSlide(0);
   }, [banners.length]);

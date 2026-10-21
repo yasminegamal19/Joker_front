@@ -27,7 +27,6 @@ const ContentPage = () => {
 
     getContent(key, controller.signal)
       .then((data) => {
-        // TODO: عدّل اسم الحقل حسب الـ response الفعلي
         setContent(data?.content ?? data?.body ?? data?.text ?? "");
       })
       .catch(() => {
@@ -40,7 +39,6 @@ const ContentPage = () => {
     return () => controller.abort();
   }, [key]);
 
-  // key مش موجود في content_keys => رجوع للرئيسية
   if (!configLoading && !config.content_keys.includes(key)) {
     return <Navigate to="/" replace />;
   }

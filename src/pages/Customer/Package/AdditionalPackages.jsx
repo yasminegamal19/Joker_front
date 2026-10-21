@@ -28,7 +28,6 @@ const AdditionalPackages = () => {
       .catch((err) => {
         if (controller.signal.aborted) return;
 
-        // الـ endpoint محتاج تسجيل دخول
         if (err?.response?.status === 401) {
           navigate("/customer/login", { replace: true });
           return;
@@ -44,7 +43,6 @@ const AdditionalPackages = () => {
   }, [attempt, navigate]);
 
   const handleAdd = (item) => {
-    // TODO: اربطه بـ endpoint شراء الباقة الإضافية لما الباك اند يجهزه
     console.log("add additional package ->", item.id, item.name);
   };
 

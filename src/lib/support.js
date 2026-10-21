@@ -1,4 +1,3 @@
-// رقم الدعم الفني — يتظبط من .env: VITE_SUPPORT_PHONE=+20122XXXXXXX
 export const SUPPORT_PHONE = import.meta.env.VITE_SUPPORT_PHONE || "";
 
 const digits = SUPPORT_PHONE.replace(/\D/g, "");

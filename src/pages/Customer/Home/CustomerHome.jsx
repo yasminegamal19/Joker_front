@@ -68,7 +68,6 @@ const CustomerHome = () => {
   const [error, setError] = useState("");
   const [retryKey, setRetryKey] = useState(0);
 
-  // Customer profile
   useEffect(() => {
     let mounted = true;
 
@@ -108,7 +107,6 @@ const CustomerHome = () => {
     };
   }, [profileRetryKey]);
 
-  // Current subscription
   useEffect(() => {
     let mounted = true;
 

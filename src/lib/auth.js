@@ -1,5 +1,3 @@
-// إدارة جلسة العميل — مكان واحد بس بيقرأ/بيكتب التوكن.
-// apiClient بيقرأ نفس المفتاح "token".
 
 const TOKEN_KEY = "token";
 export const UNAUTHORIZED_EVENT = "joker:unauthorized";

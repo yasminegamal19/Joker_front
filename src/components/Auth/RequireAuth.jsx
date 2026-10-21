@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { UNAUTHORIZED_EVENT, isAuthenticated } from "../../lib/auth";
 
-// بيحمي كل صفحات العميل: من غير توكن → تسجيل الدخول.
-// ولو أي API رجّع 401 وإحنا جوه الصفحة، بنرجّع العميل لتسجيل الدخول برضه.
 const RequireAuth = () => {
   const location = useLocation();
   const navigate = useNavigate();

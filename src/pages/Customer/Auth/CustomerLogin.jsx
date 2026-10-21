@@ -59,15 +59,12 @@ const CustomerLogin = () => {
         throw new Error("لم يرجع الخادم رمز تسجيل الدخول. حاول مرة أخرى.");
       }
 
-      // حفظ رمز الدخول الحقيقي
       setToken(token);
 
-      // حفظ بيانات العميل لاستخدامها في صفحات الحساب
       if (customer) {
         try {
           localStorage.setItem("customer", JSON.stringify(customer));
         } catch {
-          // قد لا يكون التخزين المحلي متاحًا
         }
       }
 navigate(
@@ -78,7 +75,6 @@ navigate(
   { replace: true },
 );
 
-      // العودة للصفحة المطلوبة سابقًا أو الصفحة الرئيسية للعميل
       const requestedPath = location.state?.from;
       const destination =
         typeof requestedPath === "string" &&
